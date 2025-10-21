@@ -36,13 +36,14 @@
     <!-- Main Container -->
     <div class="main-container">
         <!-- Left Sidebar -->
-       <div class="sidebar">
+        <div class="sidebar">
             <div class="sidebar-header">
                 <div class="planning-section">
                     <h5 class="mb-0">
                         <i class="fas fa-calendar-alt"></i> Plan and Optimize
                     </h5>
                 </div>
+
 
                 <div class="action-buttons">
                     <button class="btn-primary" onclick="optimizeRoutes()">
@@ -55,6 +56,7 @@
                         <i class="fas fa-undo"></i> Reverse
                     </button>
                 </div>
+
                 <div class="mb-3">
                     <button class="btn-outline me-2" onclick="copyRoutes()">
                         <i class="fas fa-copy"></i> Copy
@@ -67,14 +69,12 @@
             <div class="drivers-section">
                 <h6 class="mb-3 px-2">
                     <i class="fas fa-truck"></i> Driver
-
-                    <span id="driver-count-badge" class="badge bg-primary rounded-pill ms-2">
-                        0 drivers
-                    </span>
+                    <span id="driver-count-badge" class="badge bg-primary rounded-pill ms-2"> 0 drivers selected </span>
                 </h6>
 
                 <div id="driver-list-container">
-                    <p style="padding: 0.75rem; color: var(--secondary-color);">Đang tải danh sách tài xế...</p>
+                    <p style="padding: 1rem; color: var(--secondary-color);">Đang tải danh sách tài xế...</p>
+
                 </div>
             </div>
 
@@ -160,31 +160,8 @@
                     </div>
                 </div>
 
-                <div class="panel-content">
-                    <table class="orders-table">
-                        <thead>
-                            <tr>
-                                <th><input type="checkbox" onchange="selectAllOrders(this)"></th>
-                                <th>Order ID</th>
-                                <th>Priority</th>
-                                <th>Location</th>
-                                <th>Address</th>
-                                <th>Rescheduled order from</th>
-                                <th>Rescheduled to</th>
-                                <th>Weight [kg]</th>
-                                <th>Volume [m3]</th>
-                                <th>Duration</th>
-                                <th>Time windows</th>
-                                <th>Skills</th>
-                                <th>Vehicle features</th>
-                            </tr>
-                        </thead>
-                        <tbody id="orders-tbody">
-                            <!-- Orders will be populated by JavaScript -->
-                        </tbody>
-                    </table>
+                <div id="panel-content-container" class="panel-content">
                 </div>
-            </div>
         </div>
     </div>
 
@@ -214,25 +191,47 @@
         let routes = [];
         let currentTab = 'orders';
 
+        let allDrivers = [];
+        let allCustomers = [];
+        let allDepots = [];
+
         // Sample orders data
-        const ordersData = [
-            // { id: 'ORD001', priority: 'high', location: 'Highlands Coffee', address: 'Mac Dinh Chi', weight: 5, volume: 1, duration: '4 min', driver: 'Driver 001' },
-            // { id: 'ORD002', priority: 'medium', location: 'Ca Phe Juicy', address: '', weight: 5, volume: 1, duration: '5 min', driver: 'Driver 002' },
-            // { id: 'ORD003', priority: 'medium', location: 'Loteria', address: '11BIS Nguyen Thi Minh Khai', weight: 5, volume: 1, duration: '3 min', driver: 'Driver 003' },
-            // { id: 'ORD004', priority: 'medium', location: 'Ca Phe Smart', address: '9 Dinh Tien Hoang', weight: 5, volume: 1, duration: '10 min', driver: 'Driver 004' },
-            // { id: 'ORD005', priority: 'medium', location: 'Ca Phe Cuoc Song Dep', address: '10A Pham Ngoc Thach', weight: 5, volume: 1, duration: '7 min', driver: 'Driver 001' },
-            // { id: 'ORD006', priority: 'medium', location: 'Ca Phe Regina', address: '', weight: 5, volume: 1, duration: '9 min', driver: 'Driver 002' },
-            // { id: 'ORD007', priority: 'medium', location: 'Nha Hang Soya Pudding', address: '172 Bui Thi Xuan', weight: 5, volume: 1, duration: '4 min', driver: 'Driver 003' },
-        ];
+        const ordersData = [];
 
         // Initialize map when page loads
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', async function() {
             initMap();
-            populateOrdersTable();
-            showNotification('Routes have been planned. Undo changes');
-
+            await loadAllData();
+            // populateOrdersTable();
             loadAndDisplayDrivers();
+            loadAndDisplayCustomers();
+
+            switchTab(document.querySelector('.nav-link.active'), 'orders'); // Hiển thị tab Orders mặc định
+
+            showNotification('Dữ liệu đã được tải. Sẵn sàng tối ưu!');
         });
+        async function loadAllData() {
+            try {
+                // Gửi 3 yêu cầu cùng lúc và chờ tất cả hoàn thành
+                const [driversRes, customersRes, depotsRes] = await Promise.all([
+                    fetch('../data/drivers.json'),
+                    fetch('../data/customers.json'),
+                    fetch('../data/depots.json')
+                ]);
+
+                // Chuyển đổi kết quả thành JSON
+                allDrivers = await driversRes.json();
+                allCustomers = await customersRes.json();
+                allDepots = await depotsRes.json();
+
+                console.log("Tất cả dữ liệu đã được tải thành công!");
+
+            } catch (error) {
+                console.error("Lỗi nghiêm trọng khi tải dữ liệu ban đầu:", error);
+                // Có thể hiển thị một thông báo lỗi lớn ở đây
+            }
+        }
+
 
         function initMap() {
             // Initialize Leaflet map centered on Ho Chi Minh City
@@ -243,8 +242,6 @@
                 attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors | <a href="https://www.mapbox.com/">MapBox Streets</a>'
             }).addTo(map);
 
-            // Đọc file JSON
-            // 1️⃣ Tạo icon riêng cho depot (màu xanh dương)
             const depotIcon = L.icon({
               iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-blue.png',
               shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
@@ -281,7 +278,7 @@
               .then(data => {
                 data.forEach(order => {
                   const marker = L.marker([order.latitude, order.longitude], { icon: customerIcon }).addTo(map);
-                  marker.bindPopup(`<b>${order.name}</b><br>Lat: ${order.latitude}<br>Lon: ${order.longitude}`);
+                  marker.bindPopup(`<b>${order.name}</b><br>Lat: ${order.lat}<br>Lon: ${order.lng}`);
                 });
               })
               .catch(error => console.error("Lỗi tải JSON customer:", error));
@@ -298,17 +295,108 @@
 
         // Tab switching
         function switchTab(tabElement, tabName) {
-            // Remove active class from all tabs
-            document.querySelectorAll('.panel-tab').forEach(tab => {
-                tab.classList.remove('active');
-            });
-
-            // Add active class to clicked tab
+            document.querySelectorAll('.panel-tab, .nav-link').forEach(tab => tab.classList.remove('active'));
             tabElement.classList.add('active');
             currentTab = tabName;
 
-            // Update content based on tab
-            updatePanelContent(tabName);
+            // Dựa vào tab được chọn, gọi hàm tương ứng để vẽ lại nội dung
+            if (tabName === 'orders') {
+                populateOrdersTable();
+            } else if (tabName === 'routes') {
+                populateRoutesTable(); // Gọi hàm mới của chúng ta
+            } else {
+                // Các tab khác tạm thời hiển thị thông báo
+                const panelContent = document.getElementById('panel-content-container');
+                panelContent.innerHTML = `<div style="text-align: center; padding: 2rem; color: #6b7280;">Chức năng ${tabName} đang được phát triển.</div>`;
+            }
+        }
+
+        function populateOrdersTable() {
+            const panelContent = document.getElementById('panel-content-container');
+            let tableHTML = `
+                <table class="orders-table">
+                    <thead>
+                        <tr>
+                            <th><input type="checkbox" onchange="selectAllOrders(this)"></th>
+                            <th>Customer ID</th>
+                            <th>Tên Khách Hàng</th>
+                            <th>Địa Chỉ</th>
+                            <th>Số Điện Thoại</th>
+                            <th>Email</th>
+                            <th>Tọa Độ (Lat, Lon)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="orders-tbody">
+            `;
+
+            allCustomers.forEach(customer => {
+                tableHTML += `
+                    <tr>
+                        <td><input type="checkbox" class="order-checkbox"></td>
+                        <td><strong>${customer.id}</strong></td>
+                        <td>${customer.name}</td>
+                        <td>${customer.address}</td>
+                        <td>${customer.phone}</td>
+                        <td>${customer.email || '-'}</td>
+                        <td>${customer.latitude}, ${customer.longitude}</td>
+                    </tr>
+                `;
+            });
+
+            tableHTML += `</tbody></table>`;
+            panelContent.innerHTML = tableHTML;
+        }
+
+        function populateRoutesTable() {
+            const panelContent = document.getElementById('panel-content-container');
+
+            // 1. Tạo HTML cho sườn bảng và tiêu đề cột
+            let tableHTML = `
+                <table class="orders-table">
+                    <thead>
+                        <tr>
+                            <th>Driver ID</th>
+                            <th>Tên Tài Xế</th>
+                            <th>Kho Xuất Phát (ID)</th>
+                            <th>Địa Chỉ Kho</th>
+                            <th>Customer ID</th>
+                            <th>Điểm Đến (Khách Hàng)</th>
+                            <th>Tuyến Đường (Tạm thời)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+
+            // 2. Bắt cặp ngẫu nhiên (tạm thời)
+            // Lấy một danh sách khách hàng đã được xáo trộn
+            const shuffledCustomers = [...allCustomers].sort(() => 0.5 - Math.random());
+
+            // 3. Lặp qua từng tài xế để tạo một hàng trong bảng
+            allDrivers.forEach((driver, index) => {
+                // Bắt cặp tài xế với một khách hàng ngẫu nhiên
+                const customer = shuffledCustomers[index % shuffledCustomers.length];
+
+                // Tìm thông tin kho của tài xế dựa trên depot_id
+                const depot = allDepots.find(d => d.id === driver.depot_id);
+                const depotAddress = depot ? depot.address : "Không tìm thấy kho";
+
+                // 4. Tạo HTML cho hàng dữ liệu
+                tableHTML += `
+                    <tr>
+                        <td><strong>${driver.id}</strong></td>
+                        <td>${driver.name}</td>
+                        <td>Kho ${driver.depot_id}</td>
+                        <td>${depotAddress}</td>
+                        <td><strong>${customer.id}</strong></td>
+                        <td>${customer.address}</td>
+                        <td><em>null</em></td>
+                    </tr>
+                `;
+            });
+
+            // 5. Đóng bảng và gán vào giao diện
+            tableHTML += `</tbody></table>`;
+            panelContent.innerHTML = tableHTML;
         }
 
         function updatePanelContent(tabName) {
@@ -325,46 +413,75 @@
             }
         }
 
-        function populateOrdersTable() {
+        async function loadAndDisplayCustomers() {
             const tbody = document.getElementById('orders-tbody');
+            if (!tbody) {
+                console.error("Lỗi: Không tìm thấy tbody với id='orders-tbody'");
+                return;
+            }
+
+            try {
+        // Đảm bảo đường dẫn này chính xác (cùng cấp với đường dẫn depots.json)
+                const response = await fetch('../data/customers.json');
+                if (!response.ok) {
+                throw new Error(`Lỗi HTTP: ${response.status}`);
+            }
+            const customers = await response.json();
+
+        // Xóa dòng "Đang tải..."
             tbody.innerHTML = '';
 
-            // đoạn này thêm dữ liệu
-            ordersData.forEach((order, index) => {
-                const priorityClass = `priority-${order.priority}`;
-                const row = `
-                    <tr>
-                        <td><input type="checkbox" class="order-checkbox"></td>
-                        <td><strong>${order.id}</strong></td>
-                        <td><span class="order-priority ${priorityClass}"></span>${order.priority.charAt(0).toUpperCase() + order.priority.slice(1)}</td>
-                        <td>${order.location}</td>
-                        <td>${order.address}</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>${order.weight}</td>
-                        <td>${order.volume}</td>
-                        <td>${order.duration}</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                    </tr>
-                `;
-                tbody.innerHTML += row;
-            });
+        if (customers.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 1rem;">Không có dữ liệu khách hàng.</td></tr>';
+            return;
         }
+
+        // Lặp qua từng khách hàng và tạo một hàng (tr) mới
+        customers.forEach(customer => {
+            const row = document.createElement('tr');
+
+            // Tạo nội dung HTML cho các ô (td)
+            row.innerHTML = `
+                <td><input type="checkbox" class="order-checkbox" value="${customer.id}"></td>
+                <td><strong>${customer.id}</strong></td>
+                <td>${customer.name}</td>
+                <td>${customer.address}</td>
+                <td>${customer.phone}</td>
+                <td>${customer.email || '-'}</td> <td>${customer.latitude}, ${customer.longitude}</td>
+            `;
+
+            // Thêm hàng mới tạo vào trong tbody
+            tbody.appendChild(row);
+        });
+
+    } catch (error) {
+        console.error("Lỗi không thể tải file customers.json:", error);
+        tbody.innerHTML = `<tr><td colspan="7" style="text-align: center; padding: 1rem; color: red;">Không thể tải dữ liệu khách hàng.</td></tr>`;
+    }
+}
 
         // Driver functions
         function toggleDriver(element, driverId) {
+            // 1. Lấy checkbox bên trong
             const checkbox = element.querySelector('.driver-checkbox');
-            checkbox.checked = !checkbox.checked;
 
-            if (checkbox.checked) {
-                element.classList.add('selected');
-            } else {
-                element.classList.remove('selected');
-            }
+            // 2. Khi click vào div, chúng ta sẽ "đảo" trạng thái của class 'selected'
+            element.classList.toggle('selected');
 
+            // 3. Đồng bộ trạng thái của checkbox VỚI trạng thái 'selected' của div
+            // Đây là logic đúng: gán trạng thái, không phải "đảo ngược"
+            checkbox.checked = element.classList.contains('selected');
+
+            // 4. Gọi hàm đếm số lượng tài xế đã chọn
             updateSelectedDriversCount();
+        }
+
+        function updateSelectedDriversCount() {
+            const selectedCount = document.querySelectorAll('.driver-checkbox:checked').length;
+            const badge = document.querySelector('.badge');
+            if (badge) {
+                badge.textContent = `${selectedCount} drivers selected`;
+            }
         }
 
         // Map functions
@@ -544,8 +661,6 @@
         async function loadAndDisplayDrivers() {
             // Lấy "vùng chứa" (bạn cần đảm bảo div này tồn tại trong HTML)
             const driverListContainer = document.getElementById('driver-list-container');
-            // Lấy cái badge đếm số lượng
-            const driverCountBadge = document.getElementById('driver-count-badge');
 
             if (!driverListContainer) {
                 console.error("Lỗi: Không tìm thấy thẻ div với id='driver-list-container'.");
@@ -554,7 +669,7 @@
 
             try {
                 // 1. Lấy dữ liệu từ file JSON
-                const response = await fetch('../data/drivers.json');
+                const response = await fetch('/data/drivers.json');
                 if (!response.ok) {
                     throw new Error(`Lỗi HTTP: ${response.status}`);
                 }
@@ -565,49 +680,55 @@
                 // Xóa dòng chữ "Đang tải..."
                 driverListContainer.innerHTML = '';
 
+                if (drivers.length === 0) {
+                    driverListContainer.innerHTML = '<p style="color: #6b7280; padding: 0.75rem;">Không có dữ liệu tài xế.</p>';
+                    return;
+                }
+
                 // Mảng màu để gán xoay vòng cho tài xế
                 const colors = ['#ef4444', '#f97316', '#22c55e', '#0bd2f5', '#6b7280'];
 
                 // 3. Lặp qua TỪNG tài xế trong file JSON
                 drivers.forEach((driver, index) => {
+                    // Validate dữ liệu driver
+                    if (!driver.id || !driver.name || !driver.phone || !driver.depot_id) {
+                        console.warn(`Dữ liệu driver không đầy đủ:`, driver);
+                        return;
+                    }
 
                     const color = colors[index % colors.length];
 
                     // Tạo một thẻ div mới cho mỗi tài xế
                     const driverItem = document.createElement('div');
-                    driverItem.className = 'driver-item'; // Gán class CSS y như cũ
+                    driverItem.className = 'driver-item';
+                    driverItem.id = `driver-${driver.id}`;
 
                     // Gán sự kiện onclick cho thẻ div này
                     driverItem.onclick = function() {
-                        // Chúng ta sẽ dùng lại hàm toggleDriver bạn đã có
                         toggleDriver(driverItem, driver.id);
                     };
 
                     // 4. Tạo nội dung HTML bên trong, sử dụng dữ liệu từ file JSON
                     driverItem.innerHTML = `
-                    <input type="checkbox" class="driver-checkbox">
-                    <div class="driver-color" style="background-color: ${color};"></div>
-                    <div class="driver-info">
-                        <div class="driver-name">${driver.name} (ID: ${driver.id})</div>
-
-                        <div class="driver-contact-info">
-                            <span><i class="fas fa-phone-alt"></i> ${driver.phone}</span>
-                            <span><i class="fas fa-warehouse"></i> Kho: ${driver.depot_id}</span>
+                        <input type="checkbox" class="driver-checkbox" id="checkbox-${driver.id}">
+                        <div class="driver-color" style="background-color: ${color};"></div>
+                        <div class="driver-info">
+                            <div class="driver-name">${driver.name} (ID: ${driver.id})</div>
+                            <div class="driver-contact-info">
+                                <span><i class="fas fa-phone-alt"></i> ${driver.phone}</span>
+                                <span><i class="fas fa-warehouse"></i> Kho: ${driver.depot_id}</span>
+                            </div>
+                            <div class="driver-stats">
+                                <span class="text-muted">Unassigned</span>
+                            </div>
                         </div>
+                    `;
 
-                        <div class="driver-stats">
-                            <span class="text-muted">Unassigned</span>
-                        </div>
-                    </div>
-                `;
                     // 5. Thêm tài xế vừa tạo vào "vùng chứa"
                     driverListContainer.appendChild(driverItem);
                 });
 
-                // 6. Cập nhật lại số lượng tài xế trên badge
-                if (driverCountBadge) {
-                    driverCountBadge.textContent = `${drivers.length} drivers`;
-                }
+                console.log(`Đã tải thành công ${drivers.length} tài xế`);
 
             } catch (error) {
                 console.error("Lỗi không thể tải file drivers.json:", error);
@@ -615,9 +736,15 @@
             }
         }
 
+
         function updateSelectedDriversCount() {
-            const selectedCount = document.querySelectorAll('.driver-checkbox:checked').length;
+            // 1. Đếm tất cả checkbox đang được 'checked' BÊN TRONG danh sách
+            const selectedCount = document.querySelectorAll('#driver-list-container .driver-checkbox:checked').length;
+
+            // 2. Lấy badge bằng ID mà chúng ta đã đặt
             const driverCountBadge = document.getElementById('driver-count-badge');
+
+            // 3. Cập nhật nội dung cho badge
             if (driverCountBadge) {
                 driverCountBadge.textContent = `${selectedCount} drivers selected`;
             }
