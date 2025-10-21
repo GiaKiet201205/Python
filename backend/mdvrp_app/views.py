@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.http import JsonResponse
-from .mdvrp_solver import solve_mdvrp_enhanced
+from .mdvrp_solver import solve_mdvrp_advanced
 from .utils import get_coordinates
 import json
 import os
@@ -24,7 +24,7 @@ def calculate_routes(request):
                 customers = [(c["latitude"], c["longitude"]) for c in json.load(f)]
 
             # Gọi solver
-            result = solve_mdvrp_enhanced(
+            result = solve_mdvrp_advanced(
                 depots=depots,
                 customers=customers,
                 num_vehicles_per_depot=data.get("num_vehicles_per_depot", 2)

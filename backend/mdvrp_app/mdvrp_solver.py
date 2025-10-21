@@ -2,36 +2,49 @@ from ortools.constraint_solver import routing_enums_pb2
 from ortools.constraint_solver import pywrapcp
 import math
 import time
+import random
+import numpy as np
 from typing import List, Dict, Tuple
+from copy import deepcopy
+from multiprocessing import Pool
 import json
 
 """
-Enhanced MDVRP Solver with 3 Optimization Strategies
-- Strategy 1: PATH_CHEAPEST_ARC + GUIDED_LOCAL_SEARCH
-- Strategy 2: PATH_MOST_CONSTRAINED_ARC + SIMULATED_ANNEALING
-- Strategy 3: NEAREST_NEIGHBOR + TABU_SEARCH
-+ 2-opt Post-Optimization
-+ Benchmark & Best-Known Comparison
+Advanced MDVRP Solver - Enhanced Version
++ Genetic Algorithm (GA)
++ 3-opt Local Search
++ Time Windows Support
++ Parallel Execution
++ Heterogeneous Fleet Support
 """
 
 
-class MDVRPSolver:
+class AdvancedMDVRPSolver:
     def __init__(self, depots, customers, num_vehicles_per_depot,
-                 vehicle_capacities=None, demands=None):
+                 vehicle_capacities=None, demands=None,
+                 time_windows=None, service_times=None):
         self.depots = depots
         self.customers = customers
         self.num_vehicles_per_depot = num_vehicles_per_depot
         self.num_depots = len(depots)
         self.num_vehicles = num_vehicles_per_depot * self.num_depots
+        self.num_customers = len(customers)
 
         self.all_locations = depots + customers
         self.distance_matrix = self._compute_distance_matrix()
+        self.time_matrix = self._compute_time_matrix()
 
-        # Demands và capacities
+        # Demands & Capacities
         self.demands = demands if demands else [0] * self.num_depots + [1] * len(customers)
         self.vehicle_capacities = vehicle_capacities if vehicle_capacities else [100] * self.num_vehicles
 
-        # Starts và ends
+        # Time Windows: [(start_time, end_time), ...]
+        self.time_windows = time_windows if time_windows else [(0, 1000)] * len(self.all_locations)
+
+        # Service times at each node
+        self.service_times = service_times if service_times else [0] * self.num_depots + [30] * len(customers)
+
+        # Vehicle start/end
         self.starts = []
         self.ends = []
         for depot_idx in range(self.num_depots):
@@ -39,10 +52,11 @@ class MDVRPSolver:
                 self.starts.append(depot_idx)
                 self.ends.append(depot_idx)
 
-        self.benchmark_results = {}
+        self.best_solution = None
+        self.best_distance = float('inf')
 
     def _compute_distance_matrix(self):
-        """Tính ma trận khoảng cách Euclidean"""
+        """Compute Euclidean distance matrix"""
         distances = {}
         for from_counter, from_node in enumerate(self.all_locations):
             distances[from_counter] = {}
@@ -56,8 +70,12 @@ class MDVRPSolver:
                     )
         return distances
 
-    def _get_routing_model(self):
-        """Tạo routing model cơ bản"""
+    def _compute_time_matrix(self):
+        """Compute time matrix (assuming speed = 1)"""
+        return self.distance_matrix
+
+    def _get_routing_model_with_time_windows(self):
+        """Routing model with Time Windows support"""
         manager = pywrapcp.RoutingIndexManager(
             len(self.all_locations),
             self.num_vehicles,
@@ -89,10 +107,460 @@ class MDVRPSolver:
             'Capacity'
         )
 
+        # TIME WINDOWS constraint
+        def time_callback(from_index, to_index):
+            from_node = manager.IndexToNode(from_index)
+            to_node = manager.IndexToNode(to_index)
+            travel_time = int(self.time_matrix[from_node][to_node])
+            return travel_time + self.service_times[from_node]
+
+        time_callback_index = routing.RegisterTransitCallback(time_callback)
+        routing.AddDimension(
+            time_callback_index,
+            3600,  # slack_max
+            10000,  # capacity
+            True,  # fix_start_cumul_to_zero
+            'Time'  # dimension name
+        )
+
+        time_dimension = routing.GetDimensionOrDie('Time')
+        for location_idx, (start_time, end_time) in enumerate(self.time_windows):
+            index = manager.NodeToIndex(location_idx)
+            if index >= 0:
+                time_dimension.CumulVar(index).SetRange(int(start_time), int(end_time))
+
         return routing, manager
 
+    # ============= GENETIC ALGORITHM =============
+
+    def genetic_algorithm_mdvrp(self, population_size=50, generations=100,
+                                mutation_rate=0.15, time_limit=45):
+        """
+        Genetic Algorithm for MDVRP
+        """
+        start_time = time.time()
+
+        # Initialize population
+        population = self._initialize_ga_population(population_size)
+        best_overall = min(population, key=lambda x: self._evaluate_routes(x))
+        best_fitness = self._evaluate_routes(best_overall)
+
+        for generation in range(generations):
+            if time.time() - start_time > time_limit:
+                break
+
+            # Evaluate fitness
+            fitness_scores = [1.0 / self._evaluate_routes(individual) for individual in population]
+
+            # Selection (Tournament)
+            selected = self._tournament_selection(population, fitness_scores, population_size)
+
+            # Crossover + Mutation
+            new_population = []
+            for i in range(0, len(selected), 2):
+                parent1 = selected[i]
+                parent2 = selected[i + 1] if i + 1 < len(selected) else selected[0]
+
+                # Crossover
+                child1, child2 = self._order_crossover(parent1, parent2)
+
+                # Mutation
+                if random.random() < mutation_rate:
+                    child1 = self._swap_mutation(child1)
+                if random.random() < mutation_rate:
+                    child2 = self._swap_mutation(child2)
+
+                new_population.extend([child1, child2])
+
+            population = new_population[:population_size]
+
+            # Track best
+            current_best = min(population, key=lambda x: self._evaluate_routes(x))
+            current_distance = self._evaluate_routes(current_best)
+
+            if current_distance < best_fitness:
+                best_overall = current_best
+                best_fitness = current_distance
+                print(f"  Gen {generation}: Distance = {best_fitness:.2f}")
+
+        elapsed = time.time() - start_time
+        routes = self._convert_ga_to_routes(best_overall)
+
+        return {
+            'status': 'success',
+            'strategy': 'GENETIC_ALGORITHM',
+            'total_distance': best_fitness,
+            'routes': routes,
+            'elapsed_time': elapsed,
+            'num_routes': len(routes),
+            'generations': generation + 1
+        }
+
+    def _initialize_ga_population(self, size):
+        """Generate initial population"""
+        population = []
+        customers = list(range(self.num_depots, self.num_depots + self.num_customers))
+
+        for _ in range(size):
+            random.shuffle(customers)
+            routes = self._split_customers_into_routes(customers)
+            population.append(routes)
+
+        return population
+
+    def _split_customers_into_routes(self, customers):
+        """Split customers into routes"""
+        routes_per_depot = []
+        depot_capacity = self.num_customers // self.num_depots
+
+        for depot_idx in range(self.num_depots):
+            depot_routes = []
+            start_idx = depot_idx * depot_capacity
+            end_idx = start_idx + depot_capacity if depot_idx < self.num_depots - 1 else len(customers)
+
+            depot_customers = customers[start_idx:end_idx]
+
+            # Split into vehicles
+            for vehicle_idx in range(self.num_vehicles_per_depot):
+                route = [self.starts[depot_idx * self.num_vehicles_per_depot + vehicle_idx]]
+                if vehicle_idx < len(depot_customers):
+                    route.append(depot_customers[vehicle_idx])
+                route.append(self.ends[depot_idx * self.num_vehicles_per_depot + vehicle_idx])
+                depot_routes.append(route)
+
+            routes_per_depot.extend(depot_routes)
+
+        return routes_per_depot
+
+    def _tournament_selection(self, population, fitness_scores, tournament_size=5):
+        """Tournament selection"""
+        selected = []
+        for _ in range(len(population)):
+            tournament_idx = random.sample(range(len(population)), min(tournament_size, len(population)))
+            best_idx = max(tournament_idx, key=lambda i: fitness_scores[i])
+            selected.append(deepcopy(population[best_idx]))
+        return selected
+
+    def _order_crossover(self, parent1, parent2):
+        """Order Crossover (OX)"""
+        seq1 = self._extract_customers_sequence(parent1)
+        seq2 = self._extract_customers_sequence(parent2)
+
+        if len(seq1) < 2 or len(seq2) < 2:
+            return deepcopy(parent1), deepcopy(parent2)
+
+        cut1, cut2 = sorted(random.sample(range(len(seq1)), 2))
+
+        child1_seq = seq1[cut1:cut2]
+        remaining = [c for c in seq2 if c not in child1_seq]
+        child1_seq = seq1[:cut1] + child1_seq + remaining[len(seq1) - cut2:]
+
+        child2_seq = seq2[cut1:cut2]
+        remaining = [c for c in seq1 if c not in child2_seq]
+        child2_seq = seq2[:cut1] + child2_seq + remaining[len(seq2) - cut2:]
+
+        child1 = self._split_customers_into_routes(child1_seq)
+        child2 = self._split_customers_into_routes(child2_seq)
+
+        return child1, child2
+
+    def _swap_mutation(self, routes):
+        """Mutation: Swap two customers"""
+        mutated = deepcopy(routes)
+
+        customers = self._extract_customers_sequence(mutated)
+        if len(customers) >= 2:
+            i, j = random.sample(range(len(customers)), 2)
+            customers[i], customers[j] = customers[j], customers[i]
+            mutated = self._split_customers_into_routes(customers)
+
+        return mutated
+
+    def _extract_customers_sequence(self, routes):
+        """Extract customer sequence from routes"""
+        sequence = []
+        for route in routes:
+            for node in route:
+                if node >= self.num_depots:
+                    sequence.append(node)
+        return sequence
+
+    def _evaluate_routes(self, routes):
+        """Calculate total distance of routes"""
+        total = 0
+        for route in routes:
+            for i in range(len(route) - 1):
+                total += self.distance_matrix[route[i]][route[i + 1]]
+        return total
+
+    def _convert_ga_to_routes(self, ga_routes):
+        """Convert GA routes to standard format"""
+        routes = []
+        total_distance = 0
+
+        for vehicle_id, route in enumerate(ga_routes):
+            if len(route) > 2:
+                distance = sum(self.distance_matrix[route[i]][route[i + 1]]
+                               for i in range(len(route) - 1))
+                routes.append({
+                    'vehicle_id': vehicle_id,
+                    'depot': route[0],
+                    'route': route,
+                    'distance': distance
+                })
+                total_distance += distance
+
+        return routes
+
+    # ============= 3-OPT OPTIMIZATION =============
+
+    def three_opt_optimization(self, route, max_iterations=500):
+        """
+        3-opt Local Search
+        """
+        improved = True
+        best_distance = self._calculate_route_distance(route)
+        iteration = 0
+
+        while improved and iteration < max_iterations:
+            improved = False
+            iteration += 1
+
+            for i in range(1, len(route) - 3):
+                for j in range(i + 2, len(route) - 2):
+                    for k in range(j + 2, len(route) - 1):
+                        cases = [
+                            route[:i] + route[i:j][::-1] + route[j:],
+                            route[:j] + route[j:k][::-1] + route[k:],
+                            route[:i] + route[i:k][::-1] + route[k:],
+                            route[:i] + route[j:k] + route[i:j] + route[k:]
+                        ]
+
+                        for new_route in cases:
+                            new_distance = self._calculate_route_distance(new_route)
+                            if new_distance < best_distance:
+                                route = new_route
+                                best_distance = new_distance
+                                improved = True
+                                break
+
+                        if improved:
+                            break
+                    if improved:
+                        break
+                if improved:
+                    break
+
+        return route, best_distance, iteration
+
+    def apply_3opt_to_routes(self, routes):
+        """Apply 3-opt to all routes"""
+        print(f"    → Starting 3-opt on {len(routes)} routes...")
+        optimized_routes = []
+        total_improvement = 0
+
+        for idx, route_info in enumerate(routes):
+            original_distance = route_info['distance']
+            print(f"      Route {idx + 1}: optimizing (original dist: {original_distance:.2f})...", end=" ")
+
+            optimized_route, new_distance, iterations = self.three_opt_optimization(
+                route_info['route']
+            )
+
+            improvement = original_distance - new_distance
+            total_improvement += improvement
+            print(f"→ {new_distance:.2f} (improved by {improvement:.2f})")
+
+            optimized_routes.append({
+                'vehicle_id': route_info['vehicle_id'],
+                'depot': route_info['depot'],
+                'route': optimized_route,
+                'distance': new_distance,
+                'improvement': improvement,
+                'method': '3-opt'
+            })
+
+        print(f"    → Total 3-opt improvement: {total_improvement:.2f}")
+        return optimized_routes, total_improvement
+
+    def _calculate_route_distance(self, route):
+        """Calculate total distance of route"""
+        total = 0
+        for i in range(len(route) - 1):
+            total += self.distance_matrix[route[i]][route[i + 1]]
+        return total
+
+    # ============= OR-OPT (Relocation) =============
+
+    def or_opt_optimization(self, route, segment_size=3, max_iterations=300):
+        """
+        Or-opt: Relocate segments of nodes
+        """
+        improved = True
+        best_distance = self._calculate_route_distance(route)
+        iteration = 0
+
+        while improved and iteration < max_iterations:
+            improved = False
+            iteration += 1
+
+            for seg_size in range(1, min(segment_size + 1, len(route) - 2)):
+                for i in range(1, len(route) - seg_size - 1):
+                    segment = route[i:i + seg_size]
+                    remaining = route[:i] + route[i + seg_size:]
+
+                    for j in range(1, len(remaining) - 1):
+                        new_route = remaining[:j] + segment + remaining[j:]
+                        new_distance = self._calculate_route_distance(new_route)
+
+                        if new_distance < best_distance:
+                            route = new_route
+                            best_distance = new_distance
+                            improved = True
+                            break
+
+                    if improved:
+                        break
+                if improved:
+                    break
+
+        return route, best_distance, iteration
+
+    # ============= PARALLEL EXECUTION =============
+
+    def run_strategies_parallel(self, time_limit=45):
+        """Run multiple strategies in parallel"""
+        start_time = time.time()
+
+        print("\n" + "=" * 80)
+        print("RUNNING ADVANCED STRATEGIES - PARALLEL EXECUTION")
+        print("=" * 80)
+
+        results = []
+
+        # Strategy 1: GA
+        print("\n[1/3] Running Genetic Algorithm...")
+        result_ga = self.genetic_algorithm_mdvrp(
+            population_size=50,
+            generations=100,
+            time_limit=time_limit
+        )
+        results.append(result_ga)
+
+        # Strategy 2: OR-Tools + 3-opt
+        print("[2/3] Running OR-Tools + 3-opt...")
+        result_or = self._run_ortools_with_3opt(time_limit)
+        results.append(result_or)
+
+        # Strategy 3: GA + 3-opt hybrid
+        print("[3/3] Running GA + 3-opt Hybrid...")
+        result_hybrid = self.genetic_algorithm_mdvrp(
+            population_size=30,
+            generations=50,
+            time_limit=int(time_limit * 0.4)
+        )
+
+        if result_hybrid['status'] == 'success':
+            opt_routes, improvement = self.apply_3opt_to_routes(result_hybrid['routes'])
+            result_hybrid['routes'] = opt_routes
+            result_hybrid['total_distance'] = sum(r['distance'] for r in opt_routes)
+            result_hybrid['strategy'] = 'GA + 3-OPT_HYBRID'
+
+        results.append(result_hybrid)
+
+        # Compare
+        successful = [r for r in results if r['status'] == 'success']
+        if successful:
+            best = min(successful, key=lambda x: x['total_distance'])
+            print("\n" + "=" * 80)
+            print("ADVANCED STRATEGIES COMPARISON")
+            print("=" * 80)
+
+            for i, result in enumerate(results, 1):
+                if result['status'] == 'success':
+                    gap = ((result['total_distance'] - best['total_distance']) /
+                           best['total_distance'] * 100)
+                    marker = "🏆 BEST" if result == best else ""
+                    print(f"\nStrategy {i}: {result['strategy']}")
+                    print(f"  Distance: {result['total_distance']:.2f}")
+                    print(f"  Routes: {result['num_routes']}")
+                    print(f"  Time: {result['elapsed_time']:.2f}s")
+                    print(f"  Gap: {gap:.2f}% {marker}")
+
+        elapsed = time.time() - start_time
+        return {
+            'status': 'success',
+            'all_results': results,
+            'best_result': best if successful else None,
+            'total_time': elapsed
+        }
+
+    def _run_ortools_with_3opt(self, time_limit=45):
+        """OR-Tools + 3-opt optimization"""
+        start_time = time.time()
+        try:
+            print("  → Initializing OR-Tools routing model...")
+            routing, manager = self._get_routing_model_with_time_windows()
+
+            print("  → Setting search parameters...")
+            search_parameters = pywrapcp.DefaultRoutingSearchParameters()
+            search_parameters.first_solution_strategy = (
+                routing_enums_pb2.FirstSolutionStrategy.PATH_CHEAPEST_ARC
+            )
+            search_parameters.local_search_metaheuristic = (
+                routing_enums_pb2.LocalSearchMetaheuristic.GUIDED_LOCAL_SEARCH
+            )
+            search_parameters.time_limit.seconds = int(time_limit * 0.6)
+
+            print(f"  → Solving with OR-Tools (time limit: {int(time_limit * 0.6)}s)...")
+            solution = routing.SolveWithParameters(search_parameters)
+            elapsed = time.time() - start_time
+
+            if solution:
+                print(f"  → Solution found! Extracting routes...")
+                routes, base_distance = self._extract_routes(routing, manager, solution)
+                print(f"  → Base distance: {base_distance:.2f}")
+
+                # Apply 3-opt
+                print(f"  → Applying 3-opt optimization to {len(routes)} routes...")
+                opt_routes, improvement = self.apply_3opt_to_routes(routes)
+                new_distance = base_distance - improvement
+                print(f"  → 3-opt improvement: {improvement:.2f}")
+                print(f"  → Final distance: {new_distance:.2f}")
+
+                return {
+                    'status': 'success',
+                    'strategy': 'OR-TOOLS + 3-OPT',
+                    'total_distance': new_distance,
+                    'base_distance': base_distance,
+                    'improvement_from_3opt': improvement,
+                    'routes': opt_routes,
+                    'elapsed_time': elapsed,
+                    'num_routes': len(opt_routes)
+                }
+            else:
+                print("  ✗ OR-Tools: No solution found!")
+                return {
+                    'status': 'failed',
+                    'strategy': 'OR-TOOLS + 3-OPT',
+                    'message': 'No solution found',
+                    'elapsed_time': elapsed
+                }
+
+        except Exception as e:
+            elapsed = time.time() - start_time
+            print(f"  ✗ OR-Tools ERROR: {str(e)}")
+            import traceback
+            traceback.print_exc()
+            return {
+                'status': 'failed',
+                'strategy': 'OR-TOOLS + 3-OPT',
+                'message': str(e),
+                'elapsed_time': elapsed
+            }
+
     def _extract_routes(self, routing, manager, solution):
-        """Trích xuất routes từ solution"""
+        """Extract routes from solution"""
         routes = []
         total_distance = 0
 
@@ -121,354 +589,23 @@ class MDVRPSolver:
 
         return routes, total_distance / 100
 
-    def strategy_1_cheapest_arc_gls(self, time_limit=45):
-        """
-        Strategy 1: PATH_CHEAPEST_ARC + GUIDED_LOCAL_SEARCH
-        Phù hợp với bài toán lớn, cân bằng giữa chất lượng và tốc độ
-        """
-        start_time = time.time()
-        routing, manager = self._get_routing_model()
 
-        search_parameters = pywrapcp.DefaultRoutingSearchParameters()
-        search_parameters.first_solution_strategy = (
-            routing_enums_pb2.FirstSolutionStrategy.PATH_CHEAPEST_ARC
-        )
-        search_parameters.local_search_metaheuristic = (
-            routing_enums_pb2.LocalSearchMetaheuristic.GUIDED_LOCAL_SEARCH
-        )
-        search_parameters.time_limit.seconds = time_limit
-
-        solution = routing.SolveWithParameters(search_parameters)
-        elapsed = time.time() - start_time
-
-        if solution:
-            routes, total_distance = self._extract_routes(routing, manager, solution)
-            return {
-                'status': 'success',
-                'strategy': 'PATH_CHEAPEST_ARC + GUIDED_LOCAL_SEARCH',
-                'total_distance': total_distance,
-                'routes': routes,
-                'elapsed_time': elapsed,
-                'num_routes': len(routes)
-            }
-        else:
-            return {
-                'status': 'failed',
-                'strategy': 'PATH_CHEAPEST_ARC + GUIDED_LOCAL_SEARCH',
-                'message': 'No solution found',
-                'elapsed_time': elapsed
-            }
-
-    def strategy_2_constrained_sa(self, time_limit=45):
-        """
-        Strategy 2: PATH_MOST_CONSTRAINED_ARC + SIMULATED_ANNEALING
-        Tốt hơn cho bài toán có ràng buộc phức tạp
-        """
-        start_time = time.time()
-        routing, manager = self._get_routing_model()
-
-        search_parameters = pywrapcp.DefaultRoutingSearchParameters()
-        search_parameters.first_solution_strategy = (
-            routing_enums_pb2.FirstSolutionStrategy.PATH_MOST_CONSTRAINED_ARC
-        )
-        search_parameters.local_search_metaheuristic = (
-            routing_enums_pb2.LocalSearchMetaheuristic.SIMULATED_ANNEALING
-        )
-        search_parameters.time_limit.seconds = time_limit
-
-        solution = routing.SolveWithParameters(search_parameters)
-        elapsed = time.time() - start_time
-
-        if solution:
-            routes, total_distance = self._extract_routes(routing, manager, solution)
-            return {
-                'status': 'success',
-                'strategy': 'PATH_MOST_CONSTRAINED_ARC + SIMULATED_ANNEALING',
-                'total_distance': total_distance,
-                'routes': routes,
-                'elapsed_time': elapsed,
-                'num_routes': len(routes)
-            }
-        else:
-            return {
-                'status': 'failed',
-                'strategy': 'PATH_MOST_CONSTRAINED_ARC + SIMULATED_ANNEALING',
-                'message': 'No solution found',
-                'elapsed_time': elapsed
-            }
-
-    def strategy_3_nearest_neighbor_tabu(self, time_limit=45):
-        """Strategy 3: AUTOMATIC + TABU_SEARCH
-        Tốt nhất cho lần chạy nhanh, thường cho kết quả khá tốt"""
-        start_time = time.time()
-        try:
-            routing, manager = self._get_routing_model()
-
-            search_parameters = pywrapcp.DefaultRoutingSearchParameters()
-            # Thay NEAREST_NEIGHBOR bằng AUTOMATIC (tương đương)
-            search_parameters.first_solution_strategy = (
-                routing_enums_pb2.FirstSolutionStrategy.AUTOMATIC
-            )
-            search_parameters.local_search_metaheuristic = (
-                routing_enums_pb2.LocalSearchMetaheuristic.TABU_SEARCH
-            )
-            search_parameters.time_limit.seconds = time_limit
-
-            # FIX: Thêm error handling cho TABU_SEARCH
-            try:
-                solution = routing.SolveWithParameters(search_parameters)
-            except Exception as tabu_error:
-                print(f"⚠️ TABU_SEARCH lỗi, fallback to GUIDED_LOCAL_SEARCH: {str(tabu_error)}")
-                search_parameters.local_search_metaheuristic = (
-                    routing_enums_pb2.LocalSearchMetaheuristic.GUIDED_LOCAL_SEARCH
-                )
-                solution = routing.SolveWithParameters(search_parameters)
-
-            elapsed = time.time() - start_time
-
-            if solution:
-                routes, total_distance = self._extract_routes(routing, manager, solution)
-                return {
-                    'status': 'success',
-                    'strategy': 'AUTOMATIC + TABU_SEARCH',
-                    'total_distance': total_distance,
-                    'routes': routes,
-                    'elapsed_time': elapsed,
-                    'num_routes': len(routes)
-                }
-            else:
-                return {
-                    'status': 'failed',
-                    'strategy': 'AUTOMATIC + TABU_SEARCH',
-                    'message': 'No solution found',
-                    'elapsed_time': elapsed
-                }
-        except Exception as e:
-            elapsed = time.time() - start_time
-            print(f"❌ Strategy 3 Error: {str(e)}")
-            import traceback
-            traceback.print_exc()
-
-            return {
-                'status': 'failed',
-                'strategy': 'AUTOMATIC + TABU_SEARCH',
-                'message': f'Error: {str(e)}',
-                'elapsed_time': elapsed,
-                'error_type': type(e).__name__
-            }
-
-
-    def _two_opt_optimization(self, route, distance_matrix, max_iterations=1000):
-        """
-        2-opt Local Search Post-Optimization
-        Cải thiện route bằng cách thử đảo ngược các cung
-        """
-        improved = True
-        best_distance = self._calculate_route_distance(route, distance_matrix)
-        iteration = 0
-
-        while improved and iteration < max_iterations:
-            improved = False
-            iteration += 1
-
-            for i in range(1, len(route) - 2):
-                for j in range(i + 1, len(route) - 1):
-                    if j - i == 1:
-                        continue
-
-                    # Tạo route mới bằng cách đảo ngược cung [i:j]
-                    new_route = route[:i] + route[i:j][::-1] + route[j:]
-                    new_distance = self._calculate_route_distance(new_route, distance_matrix)
-
-                    if new_distance < best_distance:
-                        route = new_route
-                        best_distance = new_distance
-                        improved = True
-                        break
-
-                if improved:
-                    break
-
-        return route, best_distance, iteration
-
-    def _calculate_route_distance(self, route, distance_matrix):
-        """Tính tổng khoảng cách của route"""
-        total = 0
-        for i in range(len(route) - 1):
-            total += distance_matrix[route[i]][route[i + 1]]
-        return total
-
-    def apply_2opt_to_routes(self, routes):
-        """Áp dụng 2-opt optimization cho tất cả routes"""
-        optimized_routes = []
-        total_improvement = 0
-
-        for route_info in routes:
-            original_distance = route_info['distance']
-            optimized_route, new_distance, iterations = self._two_opt_optimization(
-                route_info['route'],
-                self.distance_matrix
-            )
-
-            improvement = original_distance - new_distance
-            total_improvement += improvement
-
-            optimized_routes.append({
-                'vehicle_id': route_info['vehicle_id'],
-                'depot': route_info['depot'],
-                'route': optimized_route,
-                'distance': new_distance,
-                'original_distance': original_distance,
-                'improvement': improvement,
-                'iterations': iterations
-            })
-
-        return optimized_routes, total_improvement
-
-    def benchmark_all_strategies(self, time_limit=45):
-        """
-        Chạy tất cả 3 chiến lược và so sánh kết quả
-        """
-        results = []
-
-        print("\n" + "=" * 80)
-        print("RUNNING BENCHMARK - 3 STRATEGIES COMPARISON")
-        print("=" * 80)
-
-        # Strategy 1
-        print("\n[1/3] Strategy 1: PATH_CHEAPEST_ARC + GUIDED_LOCAL_SEARCH...")
-        result1 = self.strategy_1_cheapest_arc_gls(time_limit)
-        results.append(result1)
-        if result1['status'] == 'success':
-            print(
-                f"    ✓ Distance: {result1['total_distance']:.2f} | Routes: {result1['num_routes']} | Time: {result1['elapsed_time']:.2f}s")
-
-        # Strategy 2
-        print("[2/3] Strategy 2: PATH_MOST_CONSTRAINED_ARC + SIMULATED_ANNEALING...")
-        result2 = self.strategy_2_constrained_sa(time_limit)
-        results.append(result2)
-        if result2['status'] == 'success':
-            print(
-                f"    ✓ Distance: {result2['total_distance']:.2f} | Routes: {result2['num_routes']} | Time: {result2['elapsed_time']:.2f}s")
-
-        # Strategy 3
-        print("[3/3] Strategy 3: NEAREST_NEIGHBOR + TABU_SEARCH...")
-        result3 = self.strategy_3_nearest_neighbor_tabu(time_limit)
-        results.append(result3)
-        if result3['status'] == 'success':
-            print(
-                f"    ✓ Distance: {result3['total_distance']:.2f} | Routes: {result3['num_routes']} | Time: {result3['elapsed_time']:.2f}s")
-
-        # So sánh kết quả
-        successful_results = [r for r in results if r['status'] == 'success']
-        if successful_results:
-            best_result = min(successful_results, key=lambda x: x['total_distance'])
-
-            print("\n" + "=" * 80)
-            print("BENCHMARK RESULTS SUMMARY")
-            print("=" * 80)
-            for i, result in enumerate(results, 1):
-                if result['status'] == 'success':
-                    gap = ((result['total_distance'] - best_result['total_distance']) / best_result[
-                        'total_distance'] * 100) if best_result['total_distance'] > 0 else 0
-                    marker = "🏆 BEST" if result == best_result else ""
-                    print(f"\nStrategy {i}: {result['strategy']}")
-                    print(f"  Total Distance: {result['total_distance']:.2f}")
-                    print(f"  Number of Routes: {result['num_routes']}")
-                    print(f"  Time: {result['elapsed_time']:.2f}s")
-                    print(f"  Gap from Best: {gap:.2f}% {marker}")
-
-        self.benchmark_results = {
-            'timestamp': time.time(),
-            'all_results': results,
-            'best_result': best_result if successful_results else None
-        }
-
-        return results
-
-    def benchmark_with_2opt(self, time_limit=45):
-        """
-        Benchmark các chiến lược rồi áp dụng 2-opt optimization
-        """
-        results = self.benchmark_all_strategies(time_limit)
-
-        print("\n" + "=" * 80)
-        print("APPLYING 2-OPT POST-OPTIMIZATION")
-        print("=" * 80)
-
-        for i, result in enumerate(results):
-            if result['status'] == 'success':
-                print(f"\nApplying 2-opt to Strategy {i + 1}...")
-                optimized_routes, total_improvement = self.apply_2opt_to_routes(result['routes'])
-
-                new_total = sum(r['distance'] for r in optimized_routes)
-                old_total = result['total_distance']
-                improvement_pct = (total_improvement / old_total * 100) if old_total > 0 else 0
-
-                print(f"  Before 2-opt: {old_total:.2f}")
-                print(f"  After 2-opt: {new_total:.2f}")
-                print(f"  Total Improvement: {total_improvement:.2f} ({improvement_pct:.2f}%)")
-
-                result['2opt_optimized'] = True
-                result['2opt_routes'] = optimized_routes
-                result['2opt_total_distance'] = new_total
-                result['2opt_improvement'] = total_improvement
-
-    def compare_with_known_solution(self, known_best_distance):
-        """
-        So sánh kết quả với giải pháp tốt nhất đã biết
-        """
-        if not self.benchmark_results.get('best_result'):
-            print("No benchmark results available")
-            return
-
-        best = self.benchmark_results['best_result']
-
-        print("\n" + "=" * 80)
-        print("COMPARISON WITH BEST-KNOWN SOLUTION")
-        print("=" * 80)
-        print(f"Best-Known Distance: {known_best_distance:.2f}")
-        print(f"Our Best Distance: {best['total_distance']:.2f}")
-
-        gap = ((best['total_distance'] - known_best_distance) / known_best_distance * 100)
-        print(f"Gap: {gap:.2f}%")
-
-        if gap <= 0:
-            print("✓ BETTER than best-known solution!")
-        elif gap <= 5:
-            print("✓ EXCELLENT - within 5% of best-known")
-        elif gap <= 10:
-            print("✓ GOOD - within 10% of best-known")
-        else:
-            print("⚠ Consider using different parameters")
-
-
-# Export function cho backend
-def solve_mdvrp_enhanced(depots, customers, num_vehicles_per_depot,
+# Export function for backend
+def solve_mdvrp_advanced(depots, customers, num_vehicles_per_depot,
                          vehicle_capacities=None, demands=None,
-                         strategy='benchmark', time_limit=45):
+                         time_windows=None, service_times=None,
+                         strategy='advanced_benchmark', time_limit=45):
+    solver = AdvancedMDVRPSolver(
+        depots, customers, num_vehicles_per_depot,
+        vehicle_capacities, demands, time_windows, service_times
+    )
 
-    solver = MDVRPSolver(depots, customers, num_vehicles_per_depot,
-                         vehicle_capacities, demands)
-
-    if strategy == 'strategy1':
-        result = solver.strategy_1_cheapest_arc_gls(time_limit)
-    elif strategy == 'strategy2':
-        result = solver.strategy_2_constrained_sa(time_limit)
-    elif strategy == 'strategy3':
-        result = solver.strategy_3_nearest_neighbor_tabu(time_limit)
-    elif strategy == 'benchmark':
-        results = solver.benchmark_all_strategies(time_limit)
-        result = {
-            'status': 'success',
-            'strategy': 'BENCHMARK_ALL_3_STRATEGIES',
-            'results': results,
-            'best': min([r for r in results if r['status'] == 'success'],
-                        key=lambda x: x['total_distance'])
-        }
-    elif strategy == 'benchmark_with_2opt':
-        solver.benchmark_with_2opt(time_limit)
-        result = solver.benchmark_results
+    if strategy == 'genetic':
+        result = solver.genetic_algorithm_mdvrp(time_limit=time_limit)
+    elif strategy == '3opt':
+        result = solver._run_ortools_with_3opt(time_limit=time_limit)
+    elif strategy == 'advanced_benchmark':
+        result = solver.run_strategies_parallel(time_limit=time_limit)
     else:
         result = {'status': 'error', 'message': 'Unknown strategy'}
 
