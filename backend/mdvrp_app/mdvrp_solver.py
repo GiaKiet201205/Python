@@ -103,12 +103,24 @@ class MDVRPSolver:
 
             while not routing.IsEnd(index):
                 node = manager.IndexToNode(index)
-                route.append(node)
+                lat, lng = self.all_locations[node]
+                route.append({
+                    "id": node,
+                    "lat": lat,
+                    "lng": lng
+                })
                 previous_index = index
                 index = solution.Value(routing.NextVar(index))
                 route_distance += routing.GetArcCostForVehicle(previous_index, index, vehicle_id)
 
-            route.append(manager.IndexToNode(index))
+                # Thêm điểm kết thúc (về lại depot)
+                node = manager.IndexToNode(index)
+                lat, lng = self.all_locations[node]
+                route.append({
+                    "id": node,
+                    "lat": lat,
+                    "lng": lng
+                })
 
             if len(route) > 2:
                 routes.append({

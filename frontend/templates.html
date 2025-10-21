@@ -432,7 +432,50 @@
             if (result.status === "success") {
               showNotification("Routes optimized successfully!", "success");
               console.log("Kết quả:", result);
+
+              const routes = result.best.routes
               // Có thể render routes lên map ở đây
+              // ==========================
+              //  Xóa polyline cũ (nếu có)
+              // ==========================
+              if (window.currentPolylines) {
+                window.currentPolylines.forEach(line => map.removeLayer(line));
+              }
+              window.currentPolylines = [];
+
+              // ==========================
+              // Vẽ route mới
+              // ==========================
+              const colors = ["#e6194b", "#3cb44b", "#ffe119", "#0082c8", "#f58231", "#911eb4", "#46f0f0"];
+
+              routes.forEach((routeObj, idx) => {
+
+                const rawCoords = routeObj.route || routeObj.path || routeObj.coordinates;
+                if (!rawCoords || rawCoords.length === 0) return;
+
+                // Chuẩn hóa về [lat, lng]
+                const routeCoords = rawCoords.map(p => [p.lat || p.latitude, p.lng || p.longitude]);
+
+                // Vẽ polyline
+                const polyline = L.polyline(routeCoords, {
+                  color: colors[idx % colors.length],
+                  weight: 5,
+                  opacity: 0.8,
+                }).addTo(map);
+
+                // Lưu lại để sau xóa
+                window.currentPolylines.push(polyline);
+
+                // Fit bản đồ theo route đầu tiên
+                if (idx === 0) map.fitBounds(polyline.getBounds());
+
+                // Thêm marker bắt đầu và kết thúc
+                const start = routeCoords[0];
+                const end = routeCoords[routeCoords.length - 1];
+
+                L.marker(start).addTo(map).bindPopup(`🚚 Route ${idx + 1} Start`);
+                L.marker(end).addTo(map).bindPopup(`🏁 Route ${idx + 1} End`);
+              });
             } else {
               showNotification(result.message || "No solution found!", "error");
             }
