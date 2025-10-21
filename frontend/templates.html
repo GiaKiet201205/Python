@@ -23,7 +23,7 @@
 
         <div class="nav-right">
             <div class="nav-buttons">
-                <button class="nav-btn">
+                <button class="nav-btn" onclick="showAddCustomerModal()">
                 <i class="fas fa-user-plus"></i> Add Customer
             </button>
                 <button class="nav-btn">
@@ -52,17 +52,9 @@
                     <button class="btn-outline" onclick="switchView()">
                         <i class="fas fa-exchange-alt"></i> Switch
                     </button>
-                    <button class="btn-outline" onclick="reverseRoutes()">
-                        <i class="fas fa-undo"></i> Reverse
-                    </button>
-                </div>
-
-                <div class="mb-3">
-                    <button class="btn-outline me-2" onclick="copyRoutes()">
+                    <button class="btn-outline" onclick="copyRoutes()">
                         <i class="fas fa-copy"></i> Copy
                     </button>
-                    <input type="checkbox" id="unschedule" class="me-1">
-                    <label for="unschedule" style="font-size: 0.875rem;">Unschedule</label>
                 </div>
             </div>
 
@@ -144,7 +136,6 @@
 
 
                     <div class="d-flex align-items-center">
-                          <input type="date" value="2025-09-27" class="form-control form-control-sm me-2" style="width: 150px;">
                           <button class="btn btn-primary btn-sm me-2" onclick="importOrders()">
                             <i class="fas fa-upload"></i> Import Orders
                           </button>
@@ -180,9 +171,15 @@
         <div>Optimizing routes...</div>
     </div>
 
+
+
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <!-- SheetJS for Excel processing -->
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <!-- Custom functions -->
+    <script src="../backend/func.js"></script>
 
     <script>
         // Initialize map
@@ -209,7 +206,11 @@
             switchTab(document.querySelector('.nav-link.active'), 'orders'); // Hiển thị tab Orders mặc định
 
             showNotification('Dữ liệu đã được tải. Sẵn sàng tối ưu!');
+
+            // Khởi tạo các event listeners cho Add Customer
+            initAddCustomerEvents();
         });
+
         async function loadAllData() {
             try {
                 // Gửi 3 yêu cầu cùng lúc và chờ tất cả hoàn thành
@@ -232,57 +233,76 @@
             }
         }
 
-
         function initMap() {
-            // Initialize Leaflet map centered on Ho Chi Minh City
-            map = L.map('map').setView([10.8231, 106.6297], 12);
+            try {
+                // Initialize Leaflet map centered on Ho Chi Minh City
+                map = L.map('map').setView([10.8231, 106.6297], 12);
 
-            // Add tile layer
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors | <a href="https://www.mapbox.com/">MapBox Streets</a>'
-            }).addTo(map);
+                // Đảm bảo window.map được gán đúng instance và có các phương thức cần thiết
+                window.map = map;
 
-            const depotIcon = L.icon({
-              iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-blue.png',
-              shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
-              iconSize: [25, 41],
-              iconAnchor: [12, 41],
-              popupAnchor: [1, -34],
-              shadowSize: [41, 41]
-            });
+                // Đợi map sẵn sàng hoàn toàn trước khi sử dụng
+                setTimeout(() => {
+                    if (window.map && typeof window.map.addLayer === 'function') {
+                        console.log('✅ Map đã sẵn sàng với đầy đủ chức năng');
+                    } else {
+                        console.error('❌ Map chưa sẵn sàng sau khi khởi tạo');
+                    }
+                }, 100);
 
-            // 2️⃣ Tạo icon riêng cho customer (màu đỏ)
-            const customerIcon = L.icon({
-              iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
-              shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
-              iconSize: [25, 41],
-              iconAnchor: [12, 41],
-              popupAnchor: [1, -34],
-              shadowSize: [41, 41]
-            });
+                // Add tile layer
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors | <a href="https://www.mapbox.com/">MapBox Streets</a>'
+                }).addTo(map);
 
-            // 3️⃣ Load depot markers (màu xanh)
-            fetch("../data/depots.json")
-              .then(response => response.json())
-              .then(data => {
-                data.forEach(depot => {
-                  const marker = L.marker([depot.latitude, depot.longitude], { icon: depotIcon }).addTo(map);
-                  marker.bindPopup(`<b>${depot.name}</b><br>Lat: ${depot.latitude}<br>Lon: ${depot.longitude}`);
+                const depotIcon = L.icon({
+                  iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-blue.png',
+                  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+                  iconSize: [25, 41],
+                  iconAnchor: [12, 41],
+                  popupAnchor: [1, -34],
+                  shadowSize: [41, 41]
                 });
-              })
-              .catch(error => console.error("Lỗi tải JSON depot:", error));
 
-            // 4️⃣ Load customer markers (màu đỏ)
-            fetch("../data/customers.json")
-              .then(response => response.json())
-              .then(data => {
-                data.forEach(order => {
-                  const marker = L.marker([order.latitude, order.longitude], { icon: customerIcon }).addTo(map);
-                  marker.bindPopup(`<b>${order.name}</b><br>Lat: ${order.lat}<br>Lon: ${order.lng}`);
+                // 2️⃣ Tạo icon riêng cho customer (màu đỏ)
+                const customerIcon = L.icon({
+                  iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
+                  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+                  iconSize: [25, 41],
+                  iconAnchor: [12, 41],
+                  popupAnchor: [1, -34],
+                  shadowSize: [41, 41]
                 });
-              })
-              .catch(error => console.error("Lỗi tải JSON customer:", error));
 
+                // 3️⃣ Load depot markers (màu xanh)
+                fetch("../data/depots.json")
+                  .then(response => response.json())
+                  .then(data => {
+                    data.forEach(depot => {
+                      const marker = L.marker([depot.latitude, depot.longitude], { icon: depotIcon }).addTo(map);
+                      marker.bindPopup(`<b>${depot.name}</b><br>Lat: ${depot.latitude}<br>Lon: ${depot.longitude}`);
+                    });
+                  })
+                  .catch(error => console.error("Lỗi tải JSON depot:", error));
+
+                // 4️⃣ Load customer markers (màu đỏ)
+                fetch("../data/customers.json")
+                  .then(response => response.json())
+                  .then(data => {
+                    data.forEach(customer => {
+                      if (customer.latitude && customer.longitude) {
+                        const marker = L.marker([customer.latitude, customer.longitude], { icon: customerIcon }).addTo(map);
+                        marker.bindPopup(`<b>${customer.name}</b><br>ID: ${customer.id}<br>Địa chỉ: ${customer.address}<br>SĐT: ${customer.phone}`);
+                      }
+                    });
+                  })
+                  .catch(error => console.error("Lỗi tải JSON customer:", error));
+
+                console.log('Map đã được khởi tạo thành công:', map);
+
+            } catch (error) {
+                console.error('Lỗi khi khởi tạo map:', error);
+            }
         }
 
         // Toggle bottom panel
@@ -290,8 +310,6 @@
             const panel = document.querySelector('.bottom-panel');
             panel.classList.toggle('collapsed');
         }
-
-
 
         // Tab switching
         function switchTab(tabElement, tabName) {
@@ -338,7 +356,7 @@
                         <td>${customer.address}</td>
                         <td>${customer.phone}</td>
                         <td>${customer.email || '-'}</td>
-                        <td>${customer.latitude}, ${customer.longitude}</td>
+                        <td>${customer.latitude || 0}, ${customer.longitude || 0}</td>
                     </tr>
                 `;
             });
@@ -421,44 +439,45 @@
             }
 
             try {
-        // Đảm bảo đường dẫn này chính xác (cùng cấp với đường dẫn depots.json)
+                // Đảm bảo đường dẫn này chính xác (cùng cấp với đường dẫn depots.json)
                 const response = await fetch('../data/customers.json');
                 if (!response.ok) {
-                throw new Error(`Lỗi HTTP: ${response.status}`);
+                    throw new Error(`Lỗi HTTP: ${response.status}`);
+                }
+                const customers = await response.json();
+
+                // Xóa dòng "Đang tải..."
+                tbody.innerHTML = '';
+
+                if (customers.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 1rem;">Không có dữ liệu khách hàng.</td></tr>';
+                    return;
+                }
+
+                // Lặp qua từng khách hàng và tạo một hàng (tr) mới
+                customers.forEach(customer => {
+                    const row = document.createElement('tr');
+
+                    // Tạo nội dung HTML cho các ô (td)
+                    row.innerHTML = `
+                        <td><input type="checkbox" class="order-checkbox" value="${customer.id}"></td>
+                        <td><strong>${customer.id}</strong></td>
+                        <td>${customer.name}</td>
+                        <td>${customer.address}</td>
+                        <td>${customer.phone}</td>
+                        <td>${customer.email || '-'}</td>
+                        <td>${customer.latitude || 0}, ${customer.longitude || 0}</td>
+                    `;
+
+                    // Thêm hàng mới tạo vào trong tbody
+                    tbody.appendChild(row);
+                });
+
+            } catch (error) {
+                console.error("Lỗi không thể tải file customers.json:", error);
+                tbody.innerHTML = `<tr><td colspan="7" style="text-align: center; padding: 1rem; color: red;">Không thể tải dữ liệu khách hàng.</td></tr>`;
             }
-            const customers = await response.json();
-
-        // Xóa dòng "Đang tải..."
-            tbody.innerHTML = '';
-
-        if (customers.length === 0) {
-            tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 1rem;">Không có dữ liệu khách hàng.</td></tr>';
-            return;
         }
-
-        // Lặp qua từng khách hàng và tạo một hàng (tr) mới
-        customers.forEach(customer => {
-            const row = document.createElement('tr');
-
-            // Tạo nội dung HTML cho các ô (td)
-            row.innerHTML = `
-                <td><input type="checkbox" class="order-checkbox" value="${customer.id}"></td>
-                <td><strong>${customer.id}</strong></td>
-                <td>${customer.name}</td>
-                <td>${customer.address}</td>
-                <td>${customer.phone}</td>
-                <td>${customer.email || '-'}</td> <td>${customer.latitude}, ${customer.longitude}</td>
-            `;
-
-            // Thêm hàng mới tạo vào trong tbody
-            tbody.appendChild(row);
-        });
-
-    } catch (error) {
-        console.error("Lỗi không thể tải file customers.json:", error);
-        tbody.innerHTML = `<tr><td colspan="7" style="text-align: center; padding: 1rem; color: red;">Không thể tải dữ liệu khách hàng.</td></tr>`;
-    }
-}
 
         // Driver functions
         function toggleDriver(element, driverId) {
@@ -503,12 +522,10 @@
             map.removeLayer(currentLayer);
 
             if (currentLayer._url.includes('openstreetmap')) {
-                // Switch to satellite
                 L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
                     attribution: 'Tiles © Esri'
                 }).addTo(map);
             } else {
-                // Switch to normal
                 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                     attribution: '© OpenStreetMap contributors'
                 }).addTo(map);
@@ -530,8 +547,6 @@
                 document.exitFullscreen();
             }
         }
-
-        // Action functions
         async function optimizeRoutes() {
           showLoading();
           try {
@@ -562,15 +577,138 @@
         }
 
         function switchView() {
-            showNotification('View switched');
+            // Lấy danh sách drivers được chọn
+            const selectedDrivers = document.querySelectorAll('#driver-list-container .driver-checkbox:checked');
+            if (selectedDrivers.length !== 2) {
+                showNotification('Vui lòng chọn đúng 2 drivers để thực hiện switch!', 'error');
+                return;
+            }
+
+            const driverItems = [];
+            selectedDrivers.forEach(checkbox => {
+                const driverItem = checkbox.closest('.driver-item');
+                const driverId = checkbox.id.replace('checkbox-', '');
+                const driverName = driverItem.querySelector('.driver-name').textContent;
+                const depotInfo = driverItem.querySelector('.driver-contact-info span:last-child').textContent;
+                const depotId = depotInfo.replace('Kho: ', '');
+
+                driverItems.push({
+                    id: driverId,
+                    name: driverName,
+                    depotId: depotId
+                });
+            });
+
+            switchDriversDepot(driverItems[0].id, driverItems[1].id);
+        }
+        async function switchDriversDepot(driverId1, driverId2) {
+            showLoading();
+            try {
+                const response = await fetch("http://127.0.0.1:8000/api/switch-drivers/", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        driver_id_1: driverId1,
+                        driver_id_2: driverId2
+                    })
+                });
+
+                const result = await response.json();
+                hideLoading();
+
+                if (result.status === "success") {
+                    showNotification(`Đã hoán đổi depot thành công! Driver ${driverId1} ↔ Driver ${driverId2}`, "success");
+                    setTimeout(() => {
+                        location.reload();
+                    }, 1500);
+                } else {
+                    showNotification(result.message || "Không thể thực hiện switch!", "error");
+                }
+
+            } catch (error) {
+                hideLoading();
+                console.error("Error:", error);
+                showNotification("Lỗi kết nối đến server!", "error");
+            }
         }
 
         function reverseRoutes() {
             showNotification('Routes reversed');
         }
 
-        function copyRoutes() {
-            showNotification('Routes copied to clipboard');
+        async function copyRoutes() {
+            const selectedDrivers = document.querySelectorAll('#driver-list-container .driver-checkbox:checked');
+            if (selectedDrivers.length === 0) {
+                showNotification('Vui lòng chọn ít nhất 1 driver để copy!', 'error');
+                return;
+            }
+
+            try {
+                const routesData = [];
+                selectedDrivers.forEach(checkbox => {
+                    const driverItem = checkbox.closest('.driver-item');
+                    const driverId = checkbox.id.replace('checkbox-', '');
+                    const driverName = driverItem.querySelector('.driver-name').textContent;
+                    const depotInfo = driverItem.querySelector('.driver-contact-info span:last-child').textContent;
+                    const depotId = depotInfo.replace('Kho: ', '');
+
+                    // Tìm thông tin driver từ allDrivers array
+                    const driverData = allDrivers.find(d => d.id === driverId);
+                    const depotData = allDepots.find(d => d.id === depotId);
+
+                    routesData.push({
+                        driverId: driverId,
+                        driverName: driverName,
+                        depotId: depotId,
+                        depotAddress: depotData ? depotData.address : 'Không tìm thấy địa chỉ',
+                        phone: driverData ? driverData.phone : 'N/A'
+                    });
+                });
+                let copyText = `=== DANH SÁCH TUYẾN ĐƯỜNG (${routesData.length} DRIVERS) ===\n`;
+                copyText += `Thời gian xuất: ${new Date().toLocaleString('vi-VN')}\n\n`;
+
+                routesData.forEach((route, index) => {
+                    copyText += `${index + 1}. DRIVER ${route.driverId}\n`;
+                    copyText += `   Tên: ${route.driverName}\n`;
+                    copyText += `   SĐT: ${route.phone}\n`;
+                    copyText += `   Kho xuất phát: ${route.depotId}\n`;
+                    copyText += `   Địa chỉ kho: ${route.depotAddress}\n`;
+                    copyText += `   Trạng thái: Unassigned\n`;
+                    copyText += `   Tuyến đường: Chưa có dữ liệu tuyến đường cụ thể\n\n`;
+                });
+
+                copyText += `=== TỔNG KẾT ===\n`;
+                copyText += `Tổng số drivers: ${routesData.length}\n`;
+                copyText += `Đã copy lúc: ${new Date().toLocaleString('vi-VN')}\n`;
+
+                // Copy vào clipboard
+                if (navigator.clipboard && window.isSecureContext) {
+                    await navigator.clipboard.writeText(copyText);
+                } else {
+                    const textArea = document.createElement('textarea');
+                    textArea.value = copyText;
+                    textArea.style.position = 'fixed';
+                    textArea.style.left = '-999999px';
+                    textArea.style.top = '-999999px';
+                    document.body.appendChild(textArea);
+                    textArea.focus();
+                    textArea.select();
+
+                    try {
+                        document.execCommand('copy');
+                    } catch (err) {
+                        console.error('Fallback: Không thể copy', err);
+                        showNotification('Không thể copy vào clipboard!', 'error');
+                        return;
+                    }
+
+                    textArea.remove();
+                }
+                showNotification(`Đã copy tuyến đường của ${routesData.length} drivers vào clipboard!`, 'success');
+            } catch (error) {
+                console.error('Lỗi khi copy routes:', error);
+                showNotification('Có lỗi xảy ra khi copy!', 'error');
+            }
         }
 
         function hideDrivers() {
@@ -581,11 +719,17 @@
         function importOrders() {
             const input = document.createElement('input');
             input.type = 'file';
-            input.accept = '.csv,.xlsx,.json';
+            input.accept = '.xlsx,.xls';
             input.onchange = function(e) {
                 const file = e.target.files[0];
                 if (file) {
-                    showNotification(`Importing ${file.name}...`);
+                    // Kiểm tra định dạng file
+                    if (!file.name.endsWith('.xlsx') && !file.name.endsWith('.xls')) {
+                        showNotification('Chỉ chấp nhận file Excel (.xlsx hoặc .xls)!', 'error');
+                        return;
+                    }
+
+                    showNotification(`Đang xử lý file ${file.name}...`);
                     setTimeout(() => {
                         showNotification('Orders imported successfully!', 'success');
                     }, 2000);
@@ -611,7 +755,6 @@
                     url: window.location.href
                 });
             } else {
-                // Fallback - copy to clipboard
                 navigator.clipboard.writeText(window.location.href);
                 showNotification('Link copied to clipboard!');
             }
@@ -629,7 +772,6 @@
             alert(`Order Details:\n\nID: ${order.id}\nLocation: ${order.location}\nAddress: ${order.address}\nPriority: ${order.priority}\nWeight: ${order.weight}kg\nVolume: ${order.volume}m³\nDuration: ${order.duration}`);
         }
 
-        // Utility functions
         function showNotification(message, type = 'default') {
             const notification = document.getElementById('notification');
             const text = document.getElementById('notification-text');
@@ -654,12 +796,7 @@
         function hideLoading() {
             document.getElementById('loading').style.display = 'none';
         }
-
-        /**
-         * Tải dữ liệu từ file 'data/drivers.json' và hiển thị lên giao diện
-         */
         async function loadAndDisplayDrivers() {
-            // Lấy "vùng chứa" (bạn cần đảm bảo div này tồn tại trong HTML)
             const driverListContainer = document.getElementById('driver-list-container');
 
             if (!driverListContainer) {
@@ -668,47 +805,32 @@
             }
 
             try {
-                // 1. Lấy dữ liệu từ file JSON
                 const response = await fetch('/data/drivers.json');
                 if (!response.ok) {
                     throw new Error(`Lỗi HTTP: ${response.status}`);
                 }
-
-                // 2. Chuyển đổi dữ liệu từ text sang mảng JavaScript
                 const drivers = await response.json();
-
-                // Xóa dòng chữ "Đang tải..."
                 driverListContainer.innerHTML = '';
 
                 if (drivers.length === 0) {
                     driverListContainer.innerHTML = '<p style="color: #6b7280; padding: 0.75rem;">Không có dữ liệu tài xế.</p>';
                     return;
                 }
-
-                // Mảng màu để gán xoay vòng cho tài xế
                 const colors = ['#ef4444', '#f97316', '#22c55e', '#0bd2f5', '#6b7280'];
-
-                // 3. Lặp qua TỪNG tài xế trong file JSON
                 drivers.forEach((driver, index) => {
                     // Validate dữ liệu driver
                     if (!driver.id || !driver.name || !driver.phone || !driver.depot_id) {
                         console.warn(`Dữ liệu driver không đầy đủ:`, driver);
                         return;
                     }
-
                     const color = colors[index % colors.length];
-
-                    // Tạo một thẻ div mới cho mỗi tài xế
                     const driverItem = document.createElement('div');
                     driverItem.className = 'driver-item';
                     driverItem.id = `driver-${driver.id}`;
-
-                    // Gán sự kiện onclick cho thẻ div này
                     driverItem.onclick = function() {
                         toggleDriver(driverItem, driver.id);
                     };
 
-                    // 4. Tạo nội dung HTML bên trong, sử dụng dữ liệu từ file JSON
                     driverItem.innerHTML = `
                         <input type="checkbox" class="driver-checkbox" id="checkbox-${driver.id}">
                         <div class="driver-color" style="background-color: ${color};"></div>
@@ -723,8 +845,6 @@
                             </div>
                         </div>
                     `;
-
-                    // 5. Thêm tài xế vừa tạo vào "vùng chứa"
                     driverListContainer.appendChild(driverItem);
                 });
 
@@ -736,21 +856,13 @@
             }
         }
 
-
         function updateSelectedDriversCount() {
-            // 1. Đếm tất cả checkbox đang được 'checked' BÊN TRONG danh sách
             const selectedCount = document.querySelectorAll('#driver-list-container .driver-checkbox:checked').length;
-
-            // 2. Lấy badge bằng ID mà chúng ta đã đặt
             const driverCountBadge = document.getElementById('driver-count-badge');
-
-            // 3. Cập nhật nội dung cho badge
             if (driverCountBadge) {
                 driverCountBadge.textContent = `${selectedCount} drivers selected`;
             }
         }
-
-        // Map resize handler
         window.addEventListener('resize', function() {
             if (map) {
                 setTimeout(() => {
