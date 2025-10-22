@@ -10,12 +10,18 @@ from multiprocessing import Pool
 import json
 
 """
-Advanced MDVRP Solver - Enhanced Version
+Advanced MDVRP Solver - Enhanced Version (FIXED)
 + Genetic Algorithm (GA)
 + 3-opt Local Search
 + Time Windows Support
 + Parallel Execution
 + Heterogeneous Fleet Support
+
+Fixes applied:
+- GA respects a maximum of `num_vehicles_per_depot` vehicles per depot (e.g. 2).
+- GA no longer forces using all depots: it clusters customers to nearest depots and only creates vehicles for depots that have assigned customers.
+- Improved `_split_customers_into_routes` to distribute customers across available vehicle slots per active depot.
+- GA's internal vehicle indexing is local to GA population; routes returned are consistent and only include active vehicles.
 """
 
 
@@ -27,6 +33,7 @@ class AdvancedMDVRPSolver:
         self.customers = customers
         self.num_vehicles_per_depot = num_vehicles_per_depot
         self.num_depots = len(depots)
+        # Note: Keep full fleet count for OR-Tools; GA will manage active vehicles internally
         self.num_vehicles = num_vehicles_per_depot * self.num_depots
         self.num_customers = len(customers)
 
@@ -44,7 +51,7 @@ class AdvancedMDVRPSolver:
         # Service times at each node
         self.service_times = service_times if service_times else [0] * self.num_depots + [30] * len(customers)
 
-        # Vehicle start/end
+        # Vehicle start/end (for OR-Tools full model)
         self.starts = []
         self.ends = []
         for depot_idx in range(self.num_depots):
@@ -131,26 +138,109 @@ class AdvancedMDVRPSolver:
 
         return routing, manager
 
+    # ======= NEW HELPERS FOR GA: clustering + active vehicle management ======
+    def _assign_customers_to_nearest_depots(self):
+        """Assign each customer to its nearest depot (returns dict depot_idx -> list of customer node indices).
+        Customer/node indices are the indexes within all_locations (i.e., depots are 0..num_depots-1, customers num_depots..)
+        """
+        groups = {d: [] for d in range(self.num_depots)}
+        for cust_local_idx in range(self.num_depots, self.num_depots + self.num_customers):
+            cust_coord = self.all_locations[cust_local_idx]
+            nearest = min(range(self.num_depots), key=lambda d: self.distance_matrix[cust_local_idx][d])
+            groups[nearest].append(cust_local_idx)
+        # Remove empty groups
+        groups = {d: groups[d] for d in groups if len(groups[d]) > 0}
+        return groups
+
+    def _create_active_fleet_from_groups(self, groups):
+        """Return list of (depot_idx, vehicle_slots) for depots that have customers.
+        vehicle_slots = number of vehicles to allocate for that depot (<= self.num_vehicles_per_depot)
+        Strategy: allocate at least 1 vehicle per active depot, and up to num_vehicles_per_depot; if a depot has many customers, allocate full slots.
+        """
+        active = []
+        for depot_idx, custs in groups.items():
+            # heuristic: vehicles needed = min(max(1, ceil(len(custs)/ (self.num_customers / max(1, self.num_depots)))), self.num_vehicles_per_depot)
+            # simpler: ceil(len(custs) / (max(1, len(custs) // self.num_vehicles_per_depot + 1))) but keep bounded
+            vehicles_needed = min(self.num_vehicles_per_depot, max(1, math.ceil(len(custs) / max(1, int(len(custs) / self.num_vehicles_per_depot) or 1))))
+            # ensure at least 1 and at most configured
+            vehicles_needed = min(max(1, vehicles_needed), self.num_vehicles_per_depot)
+            active.append((depot_idx, vehicles_needed))
+        return active
+
+    def _split_customers_into_routes_for_active_fleet(self, customers_sequence, active_fleet):
+        """Distribute customers_sequence across active_fleet vehicles.
+        customers_sequence: list of customer node indices (in all_locations indexing)
+        active_fleet: list of tuples (depot_idx, vehicle_count)
+
+        Returns: list of routes where each route is [depot_idx, ...customers..., depot_idx]
+        """
+        # Build mapping depot -> list of customers (preserve order in customers_sequence)
+        depot_to_customers = {depot: [] for depot, _ in active_fleet}
+        for c in customers_sequence:
+            # find nearest active depot for this customer (in case sequence contains customers from many depots)
+            nearest = min((d for d, _ in active_fleet), key=lambda d: self.distance_matrix[c][d])
+            depot_to_customers[nearest].append(c)
+
+        routes = []
+        vehicle_global_id = 0
+        for depot_idx, vehicle_count in active_fleet:
+            assigned = depot_to_customers.get(depot_idx, [])
+            if not assigned:
+                # still create vehicle_count empty return routes (they won't be counted later)
+                for v in range(vehicle_count):
+                    routes.append([depot_idx, depot_idx])
+                    vehicle_global_id += 1
+                continue
+
+            # split assigned customers into at most vehicle_count routes, balancing count
+            chunk_size = math.ceil(len(assigned) / vehicle_count)
+            for i in range(vehicle_count):
+                chunk = assigned[i*chunk_size:(i+1)*chunk_size]
+                route = [depot_idx]
+                if chunk:
+                    route.extend(chunk)
+                route.append(depot_idx)
+                routes.append(route)
+                vehicle_global_id += 1
+
+        return routes
+
     # ============= GENETIC ALGORITHM =============
 
     def genetic_algorithm_mdvrp(self, population_size=50, generations=100,
-                                mutation_rate=0.15, time_limit=45):
+                                mutation_rate=0.15, time_limit=45, max_active_depots=None):
         """
         Genetic Algorithm for MDVRP
+        - Now respects maximum vehicles per depot (self.num_vehicles_per_depot)
+        - Chooses only depots that actually have assigned customers (clustering by nearest depot)
+        - max_active_depots (optional): allows user to cap how many depots are allowed to be active
         """
         start_time = time.time()
 
+        # Pre-assign customers to nearest depots
+        groups = self._assign_customers_to_nearest_depots()
+        active_fleet = self._create_active_fleet_from_groups(groups)
+
+        # If user specified cap on active depots, reduce
+        if max_active_depots and len(active_fleet) > max_active_depots:
+            # choose largest groups to remain active
+            active_fleet = sorted(active_fleet, key=lambda x: len(groups[x[0]]), reverse=True)[:max_active_depots]
+
+        # Now `active_fleet` is list of (depot_idx, vehicle_count)
+        # Build a flattened list of vehicle slots if needed. GA will only manage these vehicles.
+
         # Initialize population
-        population = self._initialize_ga_population(population_size)
+        population = self._initialize_ga_population(population_size, active_fleet)
         best_overall = min(population, key=lambda x: self._evaluate_routes(x))
         best_fitness = self._evaluate_routes(best_overall)
 
+        generation = 0
         for generation in range(generations):
             if time.time() - start_time > time_limit:
                 break
 
             # Evaluate fitness
-            fitness_scores = [1.0 / self._evaluate_routes(individual) for individual in population]
+            fitness_scores = [1.0 / (self._evaluate_routes(individual) + 1e-6) for individual in population]
 
             # Selection (Tournament)
             selected = self._tournament_selection(population, fitness_scores, population_size)
@@ -179,7 +269,7 @@ class AdvancedMDVRPSolver:
             current_distance = self._evaluate_routes(current_best)
 
             if current_distance < best_fitness:
-                best_overall = current_best
+                best_overall = deepcopy(current_best)
                 best_fitness = current_distance
                 print(f"  Gen {generation}: Distance = {best_fitness:.2f}")
 
@@ -196,41 +286,20 @@ class AdvancedMDVRPSolver:
             'generations': generation + 1
         }
 
-    def _initialize_ga_population(self, size):
-        """Generate initial population"""
+    def _initialize_ga_population(self, size, active_fleet):
+        """Generate initial population
+        active_fleet: list of (depot_idx, vehicle_count)
+        """
         population = []
+        # Flatten all customers into list of customer node indices
         customers = list(range(self.num_depots, self.num_depots + self.num_customers))
 
         for _ in range(size):
             random.shuffle(customers)
-            routes = self._split_customers_into_routes(customers)
+            routes = self._split_customers_into_routes_for_active_fleet(customers, active_fleet)
             population.append(routes)
 
         return population
-
-    def _split_customers_into_routes(self, customers):
-        """Split customers into routes"""
-        routes_per_depot = []
-        depot_capacity = self.num_customers // self.num_depots
-
-        for depot_idx in range(self.num_depots):
-            depot_routes = []
-            start_idx = depot_idx * depot_capacity
-            end_idx = start_idx + depot_capacity if depot_idx < self.num_depots - 1 else len(customers)
-
-            depot_customers = customers[start_idx:end_idx]
-
-            # Split into vehicles
-            for vehicle_idx in range(self.num_vehicles_per_depot):
-                route = [self.starts[depot_idx * self.num_vehicles_per_depot + vehicle_idx]]
-                if vehicle_idx < len(depot_customers):
-                    route.append(depot_customers[vehicle_idx])
-                route.append(self.ends[depot_idx * self.num_vehicles_per_depot + vehicle_idx])
-                depot_routes.append(route)
-
-            routes_per_depot.extend(depot_routes)
-
-        return routes_per_depot
 
     def _tournament_selection(self, population, fitness_scores, tournament_size=5):
         """Tournament selection"""
@@ -242,7 +311,10 @@ class AdvancedMDVRPSolver:
         return selected
 
     def _order_crossover(self, parent1, parent2):
-        """Order Crossover (OX)"""
+        """Order Crossover (OX)
+        parents are lists of routes (each route is [depot, ...customers..., depot])
+        We'll extract customer sequences, perform OX on sequences, then re-split based on active depot structure inferred from parents.
+        """
         seq1 = self._extract_customers_sequence(parent1)
         seq2 = self._extract_customers_sequence(parent2)
 
@@ -251,16 +323,20 @@ class AdvancedMDVRPSolver:
 
         cut1, cut2 = sorted(random.sample(range(len(seq1)), 2))
 
-        child1_seq = seq1[cut1:cut2]
-        remaining = [c for c in seq2 if c not in child1_seq]
-        child1_seq = seq1[:cut1] + child1_seq + remaining[len(seq1) - cut2:]
+        child1_seq_mid = seq1[cut1:cut2]
+        remaining = [c for c in seq2 if c not in child1_seq_mid]
+        child1_seq = remaining[:cut1] + child1_seq_mid + remaining[cut1:]
 
-        child2_seq = seq2[cut1:cut2]
-        remaining = [c for c in seq1 if c not in child2_seq]
-        child2_seq = seq2[:cut1] + child2_seq + remaining[len(seq2) - cut2:]
+        child2_seq_mid = seq2[cut1:cut2]
+        remaining2 = [c for c in seq1 if c not in child2_seq_mid]
+        child2_seq = remaining2[:cut1] + child2_seq_mid + remaining2[cut1:]
 
-        child1 = self._split_customers_into_routes(child1_seq)
-        child2 = self._split_customers_into_routes(child2_seq)
+        # Heuristic: create active fleet based on nearest depot clustering for the child sequence
+        groups = self._assign_customers_to_nearest_depots()
+        active_fleet = self._create_active_fleet_from_groups(groups)
+
+        child1 = self._split_customers_into_routes_for_active_fleet(child1_seq, active_fleet)
+        child2 = self._split_customers_into_routes_for_active_fleet(child2_seq, active_fleet)
 
         return child1, child2
 
@@ -272,7 +348,10 @@ class AdvancedMDVRPSolver:
         if len(customers) >= 2:
             i, j = random.sample(range(len(customers)), 2)
             customers[i], customers[j] = customers[j], customers[i]
-            mutated = self._split_customers_into_routes(customers)
+            # rebuild routes using clustering-based fleet
+            groups = self._assign_customers_to_nearest_depots()
+            active_fleet = self._create_active_fleet_from_groups(groups)
+            mutated = self._split_customers_into_routes_for_active_fleet(customers, active_fleet)
 
         return mutated
 
@@ -289,6 +368,9 @@ class AdvancedMDVRPSolver:
         """Calculate total distance of routes"""
         total = 0
         for route in routes:
+            # ignore trivial routes like [depot, depot]
+            if len(route) <= 2:
+                continue
             for i in range(len(route) - 1):
                 total += self.distance_matrix[route[i]][route[i + 1]]
         return total
@@ -299,6 +381,7 @@ class AdvancedMDVRPSolver:
         total_distance = 0
 
         for vehicle_id, route in enumerate(ga_routes):
+            # route example: [depot_idx, cust1, cust2, depot_idx]
             if len(route) > 2:
                 distance = sum(self.distance_matrix[route[i]][route[i + 1]]
                                for i in range(len(route) - 1))
