@@ -611,6 +611,10 @@ class AdvancedMDVRPSolver:
                 print(f"  → 3-opt improvement: {improvement:.2f}")
                 print(f"  → Final distance: {new_distance:.2f}")
 
+                # 🧩 Thêm lại coordinates cho route sau khi tối ưu (phòng trường hợp route bị đổi thứ tự)
+                for route in opt_routes:
+                    route["coordinates"] = [self.all_locations[node] for node in route["route"]]
+
                 return {
                     'status': 'success',
                     'strategy': 'OR-TOOLS + 3-OPT',
