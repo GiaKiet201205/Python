@@ -222,10 +222,7 @@ function renderRoutesOnMap(data) {
   // Xoá các routes cũ nếu có
   routes.forEach(route => map.removeLayer(route));
   routes = [];
-
-  // Định nghĩa các màu khác nhau cho mỗi tuyến
   const colors = ['red', 'blue', 'green', 'purple', 'orange', 'yellow'];
-
   if (data.results) {
     // Benchmark results có nhiều chiến lược
     data.results.forEach((strategyResult, index) => {
@@ -236,21 +233,17 @@ function renderRoutesOnMap(data) {
       }
     });
   } else if (data.routes) {
-    // Single strategy result
     data.routes.forEach((route, index) => {
       drawRoute(route, colors[index % colors.length]);
     });
   }
 }
-
 function drawRoute(route, color) {
   const routeCoordinates = [];
-
   route.route.forEach(nodeIndex => {
     const location = ordersData[nodeIndex] || {latitude: 0, longitude: 0};
     routeCoordinates.push([location.latitude, location.longitude]);
   });
-
   if (routeCoordinates.length > 0) {
     const polyline = L.polyline(routeCoordinates, {
       color: color,
@@ -258,15 +251,12 @@ function drawRoute(route, color) {
       opacity: 0.7,
       dashArray: '5, 5'
     }).addTo(map);
-
     routes.push(polyline);
   }
 }
-
 let driversData = [];
 let selectedDrivers = [];
 let ordersData = [];
-
 async function loadDriversData() {
     try {
         const depotsResponse = await fetch('../data/depots.json');
@@ -288,7 +278,6 @@ async function loadDriversData() {
             latitude: customer.latitude,
             longitude: customer.longitude
         }));
-
         driversData = drivers.map(driver => {
             const depot = depots.find(d => d.id === driver.depot_id);
             return {
@@ -318,11 +307,8 @@ async function switchView() {
 
     try {
         showLoading();
-
         const result = await performSwitch(selectedDrivers[0].id, selectedDrivers[1].id);
-
         hideLoading();
-
         if (result.success) {
             showNotification('Các tài xế đã được chuyển đổi thành công!', 'success');
             console.log('Switch result:', result);
@@ -336,55 +322,25 @@ async function switchView() {
     }
 }
 
-async function reverseRoutes() {
-    if (selectedDrivers.length !== 1) {
-        showNotification('Vui lòng chọn chính xác 1 tài xế để đảo ngược!', 'error');
-        return;
-    }
-
-    try {
-        showLoading();
-
-        const result = await performReverse(selectedDrivers[0].id);
-
-        hideLoading();
-
-        if (result.success) {
-            showNotification('Tuyến đường đã được đảo ngược thành công!', 'success');
-            console.log('Reverse result:', result);
-        } else {
-            showNotification(result.message || 'Đảo ngược thất bại!', 'error');
-        }
-    } catch (error) {
-        hideLoading();
-        console.error('Reverse error:', error);
-        showNotification('Lỗi trong quá trình đảo ngược!', 'error');
-    }
-}
-
 async function performSwitch(driverId1, driverId2) {
     try {
         const driver1 = driversData.find(d => d.id === driverId1);
         const driver2 = driversData.find(d => d.id === driverId2);
-
         if (!driver1 || !driver2) {
             return {
                 success: false,
                 message: 'Driver not found!'
             };
         }
-
         if (driver1.id === driver2.id) {
             return {
                 success: false,
                 message: 'Please select 2 different drivers!'
             };
         }
-
         const tempOrders = [...driver1.orders];
         driver1.orders = [...driver2.orders];
         driver2.orders = tempOrders;
-
         return {
             success: true,
             message: 'Switch completed successfully!',
@@ -401,7 +357,6 @@ async function performSwitch(driverId1, driverId2) {
                 }
             }
         };
-
     } catch (error) {
         console.error('Switch error:', error);
         return {
@@ -414,31 +369,26 @@ async function performSwitch(driverId1, driverId2) {
 async function performReverse(driverId) {
     try {
         const driver = driversData.find(d => d.id === driverId);
-
         if (!driver) {
             return {
                 success: false,
                 message: 'Driver not found!'
             };
         }
-
         if (!driver.orders || driver.orders.length <= 2) {
             return {
                 success: false,
                 message: 'Tuyến đường ngắn (<2 depot) , không thể đảo ngược!'
             };
         }
-
         const originalOrders = [...driver.orders];
         const middleOrders = driver.orders.slice(1, -1);
         const reversedMiddleOrders = middleOrders.reverse();
-
         driver.orders = [
             driver.orders[0],
             ...reversedMiddleOrders,
             driver.orders[driver.orders.length - 1]
         ];
-
         return {
             success: true,
             message: 'Route reversed successfully!',
@@ -450,7 +400,6 @@ async function performReverse(driverId) {
                 }
             }
         };
-
     } catch (error) {
         console.error('Reverse error:', error);
         return {
@@ -459,16 +408,13 @@ async function performReverse(driverId) {
         };
     }
 }
-
 function copyRoutes() {
     showNotification('Routes copied to clipboard');
 }
-
 function hideDrivers() {
     const driversSection = document.querySelector('.drivers-section');
     driversSection.style.display = driversSection.style.display === 'none' ? 'block' : 'none';
 }
-
 function importOrders() {
     const input = document.createElement('input');
     input.type = 'file';
@@ -484,16 +430,13 @@ function importOrders() {
     };
     input.click();
 }
-
 function planRoutes() {
     showLoading();
-
     setTimeout(() => {
         hideLoading();
         showNotification('Routes planned successfully!', 'success');
     }, 2500);
 }
-
 function shareRoutes() {
     if (navigator.share) {
         navigator.share({
@@ -506,44 +449,35 @@ function shareRoutes() {
         showNotification('Link copied to clipboard!');
     }
 }
-
 function selectAllOrders(checkbox) {
     const orderCheckboxes = document.querySelectorAll('.order-checkbox');
     orderCheckboxes.forEach(cb => {
         cb.checked = checkbox.checked;
     });
 }
-
 function viewOrderDetails(orderIndex) {
     const order = ordersData[orderIndex];
     alert(`Order Details:\n\nID: ${order.id}\nLocation: ${order.location}\nAddress: ${order.address}\nPriority: ${order.priority}\nWeight: ${order.weight}kg\nVolume: ${order.volume}m³\nDuration: ${order.duration}`);
 }
-
 function showNotification(message, type = 'default') {
     const notification = document.getElementById('notification');
     const text = document.getElementById('notification-text');
-
     text.textContent = message;
     notification.className = `notification ${type}`;
     notification.style.display = 'flex';
-
     setTimeout(() => {
         hideNotification();
     }, 5000);
 }
-
 function hideNotification() {
     document.getElementById('notification').style.display = 'none';
 }
-
 function showLoading() {
     document.getElementById('loading').style.display = 'block';
 }
-
 function hideLoading() {
     document.getElementById('loading').style.display = 'none';
 }
-
 window.addEventListener('resize', function() {
     if (map) {
         setTimeout(() => {

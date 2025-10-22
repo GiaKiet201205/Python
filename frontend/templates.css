@@ -170,7 +170,7 @@ body {
 .drivers-section {
     flex: 1;
     overflow-y: auto;
-    padding: 0 1rem;
+    padding: 1rem;
 }
 
 .driver-item {
