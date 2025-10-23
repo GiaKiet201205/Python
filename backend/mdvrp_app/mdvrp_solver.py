@@ -12,16 +12,15 @@ import json
 """
 Advanced MDVRP Solver - Enhanced Version (FIXED)
 + Genetic Algorithm (GA)
-+ 3-opt Local Search
++ 3-opt Local Search (Full Implementation)
 + Time Windows Support
 + Parallel Execution
 + Heterogeneous Fleet Support
 
-Fixes applied:
-- GA respects a maximum of `num_vehicles_per_depot` vehicles per depot (e.g. 2).
-- GA no longer forces using all depots: it clusters customers to nearest depots and only creates vehicles for depots that have assigned customers.
-- Improved `_split_customers_into_routes` to distribute customers across available vehicle slots per active depot.
-- GA's internal vehicle indexing is local to GA population; routes returned are consistent and only include active vehicles.
+GA Fixes applied:
+- GA chromosome is now a 1D sequence (list) of all customers.
+- `_split_customers_into_routes_for_active_fleet` is a proper "decoder".
+- `_evaluate_routes` (fitness function) now adds a heavy penalty for unserved customers.
 """
 
 
@@ -43,7 +42,15 @@ class AdvancedMDVRPSolver:
 
         # Demands & Capacities
         self.demands = demands if demands else [0] * self.num_depots + [1] * len(customers)
-        self.vehicle_capacities = vehicle_capacities if vehicle_capacities else [100] * self.num_vehicles
+        # Ensure capacities list matches total number of vehicles if provided
+        if vehicle_capacities and len(vehicle_capacities) != self.num_vehicles:
+            print(
+                f"Warning: vehicle_capacities length ({len(vehicle_capacities)}) != num_vehicles ({self.num_vehicles}). Using first capacity for all.")
+            self.vehicle_capacities = [vehicle_capacities[0]] * self.num_vehicles
+        elif vehicle_capacities:
+            self.vehicle_capacities = vehicle_capacities
+        else:
+            self.vehicle_capacities = [100] * self.num_vehicles
 
         # Time Windows: [(start_time, end_time), ...]
         self.time_windows = time_windows if time_windows else [(0, 1000)] * len(self.all_locations)
@@ -61,6 +68,27 @@ class AdvancedMDVRPSolver:
 
         self.best_solution = None
         self.best_distance = float('inf')
+
+        # === GA FIX ===
+        # Set of all customer indices (node index) for penalty calculation
+        self.all_customer_indices = set(range(self.num_depots, self.num_depots + self.num_customers))
+        # Pre-calculate a large penalty for the fitness function
+        self._max_penalty = self._calculate_max_penalty()
+
+    def _calculate_max_penalty(self):
+        """Calculate a large penalty for unserved customers."""
+        if not self.all_customer_indices:
+            return 1_000_000  # Default large number
+
+        max_penalty = 0
+        for cust_idx in self.all_customer_indices:
+            # Find nearest depot
+            nearest_depot = min(range(self.num_depots), key=lambda d: self.distance_matrix[cust_idx][d])
+            # Add round-trip distance
+            max_penalty += self.distance_matrix[nearest_depot][cust_idx] * 2
+
+        # Make penalty significantly larger than any possible route distance
+        return max_penalty * 1.5 + 1_000_000
 
     def _compute_distance_matrix(self):
         """Compute Euclidean distance matrix"""
@@ -119,14 +147,16 @@ class AdvancedMDVRPSolver:
             from_node = manager.IndexToNode(from_index)
             to_node = manager.IndexToNode(to_index)
             travel_time = int(self.time_matrix[from_node][to_node])
+            # Service time is added at the node, not on the arc
+            # But OR-Tools callback includes service time of 'from_node'
             return travel_time + self.service_times[from_node]
 
         time_callback_index = routing.RegisterTransitCallback(time_callback)
         routing.AddDimension(
             time_callback_index,
-            3600,  # slack_max
-            10000,  # capacity
-            True,  # fix_start_cumul_to_zero
+            3600,  # slack_max (e.g., 1 hour)
+            10000,  # capacity (max time for a route)
+            False,  # fix_start_cumul_to_zero (False because depots have windows)
             'Time'  # dimension name
         )
 
@@ -135,6 +165,19 @@ class AdvancedMDVRPSolver:
             index = manager.NodeToIndex(location_idx)
             if index >= 0:
                 time_dimension.CumulVar(index).SetRange(int(start_time), int(end_time))
+
+        # Also set start/end time windows for depots
+        for vehicle_id in range(self.num_vehicles):
+            depot_index = routing.Start(vehicle_id)
+            time_dimension.CumulVar(depot_index).SetRange(
+                int(self.time_windows[self.starts[vehicle_id]][0]),
+                int(self.time_windows[self.starts[vehicle_id]][1])
+            )
+            depot_end_index = routing.End(vehicle_id)
+            time_dimension.CumulVar(depot_end_index).SetRange(
+                int(self.time_windows[self.ends[vehicle_id]][0]),
+                int(self.time_windows[self.ends[vehicle_id]][1])
+            )
 
         return routing, manager
 
@@ -159,61 +202,125 @@ class AdvancedMDVRPSolver:
         """
         active = []
         for depot_idx, custs in groups.items():
-            # heuristic: vehicles needed = min(max(1, ceil(len(custs)/ (self.num_customers / max(1, self.num_depots)))), self.num_vehicles_per_depot)
-            # simpler: ceil(len(custs) / (max(1, len(custs) // self.num_vehicles_per_depot + 1))) but keep bounded
-            vehicles_needed = min(self.num_vehicles_per_depot, max(1, math.ceil(len(custs) / max(1, int(len(custs) / self.num_vehicles_per_depot) or 1))))
-            # ensure at least 1 and at most configured
-            vehicles_needed = min(max(1, vehicles_needed), self.num_vehicles_per_depot)
+            # --- SIMPLIFIED/FIXED LOGIC ---
+            # Just use the max available vehicles per depot if it has customers.
+            # The GA's new decoder will handle optimizing *how many* are actually used.
+            vehicles_needed = self.num_vehicles_per_depot
+
             active.append((depot_idx, vehicles_needed))
         return active
 
     def _split_customers_into_routes_for_active_fleet(self, customers_sequence, active_fleet):
-        """Distribute customers_sequence across active_fleet vehicles.
-        customers_sequence: list of customer node indices (in all_locations indexing)
+        """
+        (!!!) GA DECODER FUNCTION (FIXED) (!!!)
+        Distribute customers_sequence across active_fleet vehicles using a sequential
+        insertion heuristic that respects capacity and time windows.
+        This function *naturally* optimizes the number of vehicles used.
+
+        customers_sequence: list of ALL customer node indices (in all_locations indexing)
         active_fleet: list of tuples (depot_idx, vehicle_count)
 
         Returns: list of routes where each route is [depot_idx, ...customers..., depot_idx]
         """
         # Build mapping depot -> list of customers (preserve order in customers_sequence)
         depot_to_customers = {depot: [] for depot, _ in active_fleet}
+
+        # Cluster customers to their nearest *active* depot
+        active_depot_indices = [d for d, _ in active_fleet]
+        if not active_depot_indices:
+            return []  # No active depots, no routes
+
         for c in customers_sequence:
-            # find nearest active depot for this customer (in case sequence contains customers from many depots)
-            nearest = min((d for d, _ in active_fleet), key=lambda d: self.distance_matrix[c][d])
+            nearest = min(active_depot_indices, key=lambda d: self.distance_matrix[c][d])
             depot_to_customers[nearest].append(c)
 
         routes = []
-        vehicle_global_id = 0
+
         for depot_idx, vehicle_count in active_fleet:
+            # Get customers for this depot, in the order defined by the chromosome
             assigned = depot_to_customers.get(depot_idx, [])
             if not assigned:
-                # still create vehicle_count empty return routes (they won't be counted later)
-                for v in range(vehicle_count):
-                    routes.append([depot_idx, depot_idx])
-                    vehicle_global_id += 1
-                continue
+                continue  # No customers for this depot
 
-            # split assigned customers into at most vehicle_count routes, balancing count
-            chunk_size = math.ceil(len(assigned) / vehicle_count)
-            for i in range(vehicle_count):
-                chunk = assigned[i*chunk_size:(i+1)*chunk_size]
-                route = [depot_idx]
-                if chunk:
-                    route.extend(chunk)
-                route.append(depot_idx)
-                routes.append(route)
-                vehicle_global_id += 1
+            vehicle_local_idx = 0
+            # Keep creating routes while there are customers AND vehicles available
+            while assigned and vehicle_local_idx < vehicle_count:
 
+                # Get vehicle info (index is relative to all vehicles)
+                global_vehicle_idx = (depot_idx * self.num_vehicles_per_depot) + vehicle_local_idx
+                if global_vehicle_idx >= len(self.vehicle_capacities):
+                    break  # Safety check
+
+                max_cap = self.vehicle_capacities[global_vehicle_idx]
+                current_route = [depot_idx]
+                current_load = 0
+                # Route starts at depot's opening time
+                current_time = self.time_windows[depot_idx][0]
+
+                # Customers who couldn't fit in *this* route
+                customers_still_assigned = []
+
+                # Iterate through customers assigned to this depot
+                for customer_node in assigned:
+                    demand = self.demands[customer_node]
+                    service_time = self.service_times[customer_node]
+                    last_node = current_route[-1]
+
+                    # --- Check Time Windows and Capacity ---
+                    time_to_cust = self.time_matrix[last_node][customer_node]
+                    time_at_cust_arrival = current_time + time_to_cust
+                    # Wait if arriving early
+                    time_at_cust_service_start = max(self.time_windows[customer_node][0], time_at_cust_arrival)
+
+                    time_at_cust_service_end = time_at_cust_service_start + service_time
+
+                    time_to_depot = self.time_matrix[customer_node][depot_idx]
+                    time_at_depot_if_return = time_at_cust_service_end + time_to_depot
+
+                    # --- Check Constraints ---
+                    can_serve = True
+                    # 1. Capacity
+                    if current_load + demand > max_cap:
+                        can_serve = False
+                    # 2. Customer Time Window (cannot start service after it closes)
+                    if time_at_cust_service_start > self.time_windows[customer_node][1]:
+                        can_serve = False
+                    # 3. Depot Return Time Window (cannot return after it closes)
+                    if time_at_depot_if_return > self.time_windows[depot_idx][1]:
+                        can_serve = False
+
+                    if can_serve:
+                        # Add customer to this route
+                        current_route.append(customer_node)
+                        current_load += demand
+                        current_time = time_at_cust_service_end  # Update time to end of service
+                    else:
+                        # Customer cannot be served by *this* route, save for next route
+                        customers_still_assigned.append(customer_node)
+
+                # Done with this route, update the list of remaining customers
+                assigned = customers_still_assigned
+
+                # Finalize and add route (only if it served at least one customer)
+                if len(current_route) > 1:
+                    current_route.append(depot_idx)
+                    routes.append(current_route)
+
+                vehicle_local_idx += 1  # Use next vehicle
+
+        # Any customers left in 'assigned' (from any depot) are unserved.
+        # The _evaluate_routes function will find and penalize this.
         return routes
 
-    # ============= GENETIC ALGORITHM =============
+    # ============= GENETIC ALGORITHM (RESTRUCTURED) =============
 
     def genetic_algorithm_mdvrp(self, population_size=50, generations=100,
                                 mutation_rate=0.15, time_limit=45, max_active_depots=None):
         """
-        Genetic Algorithm for MDVRP
-        - Now respects maximum vehicles per depot (self.num_vehicles_per_depot)
-        - Chooses only depots that actually have assigned customers (clustering by nearest depot)
-        - max_active_depots (optional): allows user to cap how many depots are allowed to be active
+        (!!!) GA (FIXED) (!!!)
+        - Chromosome is now a 1D sequence of customers.
+        - Fitness is evaluated by decoding the sequence into routes and applying penalties.
+        - This optimizes vehicle count and route density.
         """
         start_time = time.time()
 
@@ -226,137 +333,167 @@ class AdvancedMDVRPSolver:
             # choose largest groups to remain active
             active_fleet = sorted(active_fleet, key=lambda x: len(groups[x[0]]), reverse=True)[:max_active_depots]
 
-        # Now `active_fleet` is list of (depot_idx, vehicle_count)
-        # Build a flattened list of vehicle slots if needed. GA will only manage these vehicles.
+        # Initialize population (list of customer sequences)
+        population = self._initialize_ga_population_seq(population_size)
 
-        # Initialize population
-        population = self._initialize_ga_population(population_size, active_fleet)
-        best_overall = min(population, key=lambda x: self._evaluate_routes(x))
-        best_fitness = self._evaluate_routes(best_overall)
+        # Evaluate initial population
+        pop_with_fitness = []
+        for seq in population:
+            fitness = self._evaluate_sequence(seq, active_fleet)
+            pop_with_fitness.append((seq, fitness))
+
+        best_overall_seq, best_fitness = min(pop_with_fitness, key=lambda x: x[1])
 
         generation = 0
         for generation in range(generations):
             if time.time() - start_time > time_limit:
                 break
 
-            # Evaluate fitness
-            fitness_scores = [1.0 / (self._evaluate_routes(individual) + 1e-6) for individual in population]
+            # Evaluate fitness scores (lower distance = higher fitness)
+            fitness_scores = [1.0 / (fit + 1e-6) for seq, fit in pop_with_fitness]
 
             # Selection (Tournament)
-            selected = self._tournament_selection(population, fitness_scores, population_size)
+            selected_seqs = self._tournament_selection_seq(population, fitness_scores, population_size)
 
             # Crossover + Mutation
             new_population = []
-            for i in range(0, len(selected), 2):
-                parent1 = selected[i]
-                parent2 = selected[i + 1] if i + 1 < len(selected) else selected[0]
+            for i in range(0, len(selected_seqs), 2):
+                parent1_seq = selected_seqs[i]
+                parent2_seq = selected_seqs[i + 1] if i + 1 < len(selected_seqs) else selected_seqs[0]
 
-                # Crossover
-                child1, child2 = self._order_crossover(parent1, parent2)
+                # Crossover (on sequences)
+                child1_seq, child2_seq = self._order_crossover_seq(parent1_seq, parent2_seq)
 
-                # Mutation
+                # Mutation (on sequences)
                 if random.random() < mutation_rate:
-                    child1 = self._swap_mutation(child1)
+                    child1_seq = self._swap_mutation_seq(child1_seq)
                 if random.random() < mutation_rate:
-                    child2 = self._swap_mutation(child2)
+                    child2_seq = self._swap_mutation_seq(child2_seq)
 
-                new_population.extend([child1, child2])
+                new_population.extend([child1_seq, child2_seq])
 
-            population = new_population[:population_size]
+            population = new_population[:population_size]  # Truncate to population size
+
+            # Evaluate new population
+            pop_with_fitness = []
+            for seq in population:
+                fitness = self._evaluate_sequence(seq, active_fleet)
+                pop_with_fitness.append((seq, fitness))
 
             # Track best
-            current_best = min(population, key=lambda x: self._evaluate_routes(x))
-            current_distance = self._evaluate_routes(current_best)
+            current_best_seq, current_best_fitness = min(pop_with_fitness, key=lambda x: x[1])
 
-            if current_distance < best_fitness:
-                best_overall = deepcopy(current_best)
-                best_fitness = current_distance
+            if current_best_fitness < best_fitness:
+                best_overall_seq = deepcopy(current_best_seq)
+                best_fitness = current_best_fitness
                 print(f"  Gen {generation}: Distance = {best_fitness:.2f}")
 
         elapsed = time.time() - start_time
-        routes = self._convert_ga_to_routes(best_overall)
+
+        # Final step: decode the best sequence into routes
+        final_routes_list = self._split_customers_into_routes_for_active_fleet(best_overall_seq, active_fleet)
+
+        # Convert to standard output format
+        routes = self._convert_ga_to_routes(final_routes_list)
+
+        # Recalculate true distance (without penalties)
+        true_distance = sum(r['distance'] for r in routes)
 
         return {
             'status': 'success',
             'strategy': 'GENETIC_ALGORITHM',
-            'total_distance': best_fitness,
+            'total_distance': true_distance,  # Report true distance
+            'fitness_with_penalty': best_fitness,  # For debugging
             'routes': routes,
             'elapsed_time': elapsed,
             'num_routes': len(routes),
             'generations': generation + 1
         }
 
-    def _initialize_ga_population(self, size, active_fleet):
-        """Generate initial population
-        active_fleet: list of (depot_idx, vehicle_count)
-        """
+    def _initialize_ga_population_seq(self, size):
+        """Generate initial population of customer sequences."""
         population = []
         # Flatten all customers into list of customer node indices
-        customers = list(range(self.num_depots, self.num_depots + self.num_customers))
+        customers = list(self.all_customer_indices)
 
         for _ in range(size):
             random.shuffle(customers)
-            routes = self._split_customers_into_routes_for_active_fleet(customers, active_fleet)
-            population.append(routes)
+            population.append(customers[:])  # Add a copy
 
         return population
 
-    def _tournament_selection(self, population, fitness_scores, tournament_size=5):
-        """Tournament selection"""
+    def _evaluate_sequence(self, customer_sequence, active_fleet):
+        """Helper to decode a sequence and evaluate its routes."""
+        # 1. Decode sequence into routes
+        routes = self._split_customers_into_routes_for_active_fleet(customer_sequence, active_fleet)
+        # 2. Evaluate routes (calculates distance + penalty)
+        return self._evaluate_routes(routes)
+
+    def _tournament_selection_seq(self, population_seqs, fitness_scores, tournament_size=5):
+        """Tournament selection on sequences."""
         selected = []
-        for _ in range(len(population)):
-            tournament_idx = random.sample(range(len(population)), min(tournament_size, len(population)))
+        for _ in range(len(population_seqs)):
+            tournament_idx = random.sample(range(len(population_seqs)), min(tournament_size, len(population_seqs)))
+            # Higher fitness score is better
             best_idx = max(tournament_idx, key=lambda i: fitness_scores[i])
-            selected.append(deepcopy(population[best_idx]))
+            selected.append(deepcopy(population_seqs[best_idx]))
         return selected
 
-    def _order_crossover(self, parent1, parent2):
-        """Order Crossover (OX)
-        parents are lists of routes (each route is [depot, ...customers..., depot])
-        We'll extract customer sequences, perform OX on sequences, then re-split based on active depot structure inferred from parents.
-        """
-        seq1 = self._extract_customers_sequence(parent1)
-        seq2 = self._extract_customers_sequence(parent2)
+    def _order_crossover_seq(self, parent1_seq, parent2_seq):
+        """Order Crossover (OX) on customer sequences."""
+        size = len(parent1_seq)
+        if size < 2:
+            return deepcopy(parent1_seq), deepcopy(parent2_seq)
 
-        if len(seq1) < 2 or len(seq2) < 2:
-            return deepcopy(parent1), deepcopy(parent2)
+        child1_seq, child2_seq = [-1] * size, [-1] * size
 
-        cut1, cut2 = sorted(random.sample(range(len(seq1)), 2))
+        # Choose crossover points
+        cut1, cut2 = sorted(random.sample(range(size), 2))
 
-        child1_seq_mid = seq1[cut1:cut2]
-        remaining = [c for c in seq2 if c not in child1_seq_mid]
-        child1_seq = remaining[:cut1] + child1_seq_mid + remaining[cut1:]
+        # Copy segment from parent 1 to child 1
+        child1_seq[cut1:cut2] = parent1_seq[cut1:cut2]
 
-        child2_seq_mid = seq2[cut1:cut2]
-        remaining2 = [c for c in seq1 if c not in child2_seq_mid]
-        child2_seq = remaining2[:cut1] + child2_seq_mid + remaining2[cut1:]
+        # Copy segment from parent 2 to child 2
+        child2_seq[cut1:cut2] = parent2_seq[cut1:cut2]
 
-        # Heuristic: create active fleet based on nearest depot clustering for the child sequence
-        groups = self._assign_customers_to_nearest_depots()
-        active_fleet = self._create_active_fleet_from_groups(groups)
+        # Fill remaining for child 1
+        p2_idx, c1_idx = 0, 0
+        while c1_idx < size:
+            if c1_idx == cut1:  # Skip over the copied segment
+                c1_idx = cut2
+            if c1_idx >= size:
+                break
 
-        child1 = self._split_customers_into_routes_for_active_fleet(child1_seq, active_fleet)
-        child2 = self._split_customers_into_routes_for_active_fleet(child2_seq, active_fleet)
+            if parent2_seq[p2_idx] not in child1_seq:
+                child1_seq[c1_idx] = parent2_seq[p2_idx]
+                c1_idx += 1
+            p2_idx += 1
 
-        return child1, child2
+        # Fill remaining for child 2
+        p1_idx, c2_idx = 0, 0
+        while c2_idx < size:
+            if c2_idx == cut1:  # Skip over the copied segment
+                c2_idx = cut2
+            if c2_idx >= size:
+                break
 
-    def _swap_mutation(self, routes):
-        """Mutation: Swap two customers"""
-        mutated = deepcopy(routes)
+            if parent1_seq[p1_idx] not in child2_seq:
+                child2_seq[c2_idx] = parent1_seq[p1_idx]
+                c2_idx += 1
+            p1_idx += 1
 
-        customers = self._extract_customers_sequence(mutated)
-        if len(customers) >= 2:
-            i, j = random.sample(range(len(customers)), 2)
-            customers[i], customers[j] = customers[j], customers[i]
-            # rebuild routes using clustering-based fleet
-            groups = self._assign_customers_to_nearest_depots()
-            active_fleet = self._create_active_fleet_from_groups(groups)
-            mutated = self._split_customers_into_routes_for_active_fleet(customers, active_fleet)
+        return child1_seq, child2_seq
 
+    def _swap_mutation_seq(self, sequence):
+        """Mutation: Swap two customers in the sequence."""
+        mutated = deepcopy(sequence)
+        if len(mutated) >= 2:
+            i, j = random.sample(range(len(mutated)), 2)
+            mutated[i], mutated[j] = mutated[j], mutated[i]
         return mutated
 
     def _extract_customers_sequence(self, routes):
-        """Extract customer sequence from routes"""
+        """(DEPRECATED, but kept for reference) Extract customer sequence from routes"""
         sequence = []
         for route in routes:
             for node in route:
@@ -365,76 +502,172 @@ class AdvancedMDVRPSolver:
         return sequence
 
     def _evaluate_routes(self, routes):
-        """Calculate total distance of routes"""
-        total = 0
+        """
+        (!!!) GA FITNESS FUNCTION (FIXED) (!!!)
+        Calculate total distance of routes + PENALTY for unserved customers.
+        """
+        total_distance = 0
+        served_customers = set()
+
         for route in routes:
             # ignore trivial routes like [depot, depot]
             if len(route) <= 2:
                 continue
             for i in range(len(route) - 1):
-                total += self.distance_matrix[route[i]][route[i + 1]]
-        return total
+                total_distance += self.distance_matrix[route[i]][route[i + 1]]
+
+            # Track served customers
+            for node in route:
+                if node in self.all_customer_indices:
+                    served_customers.add(node)
+
+        unserved_customers = self.all_customer_indices - served_customers
+        unserved_count = len(unserved_customers)
+
+        # Apply the pre-calculated large penalty for each unserved customer
+        penalty = unserved_count * self._max_penalty
+
+        return total_distance + penalty
 
     def _convert_ga_to_routes(self, ga_routes):
-        """Convert GA routes to standard format"""
+        """Convert GA routes list (from decoder) to standard output format"""
         routes = []
         total_distance = 0
 
-        for vehicle_id, route in enumerate(ga_routes):
+        # We need to assign a unique vehicle_id
+        # The GA routes don't have a persistent ID, so we just enumerate them
+        vehicle_id_counter = 0
+        for route in ga_routes:
             # route example: [depot_idx, cust1, cust2, depot_idx]
             if len(route) > 2:
                 distance = sum(self.distance_matrix[route[i]][route[i + 1]]
                                for i in range(len(route) - 1))
                 routes.append({
-                    'vehicle_id': vehicle_id,
+                    'vehicle_id': vehicle_id_counter,
                     'depot': route[0],
                     'route': route,
                     'distance': distance
                 })
                 total_distance += distance
+                vehicle_id_counter += 1
 
         return routes
 
-    # ============= 3-OPT OPTIMIZATION =============
+    # ============= 3-OPT OPTIMIZATION (FULL) =============
 
     def three_opt_optimization(self, route, max_iterations=500):
         """
-        3-opt Local Search
+        Full 3-opt Local Search
+        (Note: This is a pure distance optimization and does not re-check
+        time windows or capacity constraints. It is suitable for post-processing
+        routes that are already feasible.)
         """
+        best_route = route
+        best_distance = self._calculate_route_distance(best_route)
         improved = True
-        best_distance = self._calculate_route_distance(route)
         iteration = 0
 
         while improved and iteration < max_iterations:
             improved = False
             iteration += 1
 
-            for i in range(1, len(route) - 3):
-                for j in range(i + 2, len(route) - 2):
-                    for k in range(j + 2, len(route) - 1):
-                        cases = [
-                            route[:i] + route[i:j][::-1] + route[j:],
-                            route[:j] + route[j:k][::-1] + route[k:],
-                            route[:i] + route[i:k][::-1] + route[k:],
-                            route[:i] + route[j:k] + route[i:j] + route[k:]
-                        ]
+            # Need at least 7 points for a 3-opt (depot, c1, c2, c3, c4, c5, depot)
+            # 3 edges to break: (i-1, i), (j-1, j), (k-1, k)
+            # Min indices: i=1, j=3, k=5. route[k] = route[5]
+            if len(best_route) < 7:
+                break  # Not enough nodes to perform 3-opt
 
-                        for new_route in cases:
-                            new_distance = self._calculate_route_distance(new_route)
-                            if new_distance < best_distance:
-                                route = new_route
-                                best_distance = new_distance
-                                improved = True
-                                break
+            n = len(best_route)
+            # i iterates from 1 (after depot) up to n-5
+            # j iterates from i+2 (skip at least one node) up to n-3
+            # k iterates from j+2 (skip at least one node) up to n-1 (before last depot)
+            for i in range(1, n - 4):
+                if improved: break
+                for j in range(i + 2, n - 2):
+                    if improved: break
+                    for k in range(j + 2, n):
+                        if improved: break
 
-                        if improved:
-                            break
-                    if improved:
-                        break
-                if improved:
-                    break
+                        # The 3 edges we are breaking:
+                        # (i-1) -> i
+                        # (j-1) -> j
+                        # (k-1) -> k
+                        A, B = best_route[i - 1], best_route[i]
+                        C, D = best_route[j - 1], best_route[j]
+                        E, F = best_route[k - 1], best_route[k]
 
-        return route, best_distance, iteration
+                        d = self.distance_matrix
+
+                        # Current distance for the 3 edges
+                        d0 = d[A][B] + d[C][D] + d[E][F]
+
+                        # --- Try all 7 new combinations ---
+
+                        # Case 1 (2-opt): A-B C-E D-F (reverse seg D...E)
+                        d1 = d[A][B] + d[C][E] + d[D][F]
+                        if d1 < d0:
+                            best_route = best_route[:j] + best_route[k - 1:j - 1:-1] + best_route[k:]
+                            best_distance = self._calculate_route_distance(best_route)
+                            d0 = best_distance
+                            improved = True
+                            continue  # Restart loops
+
+                        # Case 2 (2-opt): A-C B-D E-F (reverse seg B...C)
+                        d2 = d[A][C] + d[B][D] + d[E][F]
+                        if d2 < d0:
+                            best_route = best_route[:i] + best_route[j - 1:i - 1:-1] + best_route[j:]
+                            best_distance = self._calculate_route_distance(best_route)
+                            d0 = best_distance
+                            improved = True
+                            continue
+
+                        # Case 3 (3-opt): A-D E-B C-F (swap seg B...C and D...E)
+                        d3 = d[A][D] + d[E][B] + d[C][F]
+                        if d3 < d0:
+                            best_route = best_route[:i] + best_route[j:k] + best_route[i:j] + best_route[k:]
+                            best_distance = self._calculate_route_distance(best_route)
+                            d0 = best_distance
+                            improved = True
+                            continue
+
+                        # Case 4 (3-opt): A-D E-C B-F (swap; reverse seg B...C)
+                        d4 = d[A][D] + d[E][C] + d[B][F]
+                        if d4 < d0:
+                            best_route = best_route[:i] + best_route[j:k] + best_route[j - 1:i - 1:-1] + best_route[k:]
+                            best_distance = self._calculate_route_distance(best_route)
+                            d0 = best_distance
+                            improved = True
+                            continue
+
+                        # Case 5 (3-opt): A-E D-B C-F (swap; reverse seg D...E)
+                        d5 = d[A][E] + d[D][B] + d[C][F]
+                        if d5 < d0:
+                            best_route = best_route[:i] + best_route[k - 1:j - 1:-1] + best_route[i:j] + best_route[k:]
+                            best_distance = self._calculate_route_distance(best_route)
+                            d0 = best_distance
+                            improved = True
+                            continue
+
+                        # Case 6 (3-opt): A-C B-E D-F (reverse seg B...C and D...E)
+                        d6 = d[A][C] + d[B][E] + d[D][F]
+                        if d6 < d0:
+                            best_route = best_route[:i] + best_route[j - 1:i - 1:-1] + best_route[k - 1:j - 1:-1] + best_route[k:]
+                            best_distance = self._calculate_route_distance(best_route)
+                            d0 = best_distance
+                            improved = True
+                            continue
+
+                        # Case 7 (3-opt): A-E D-C B-F (swap; reverse all)
+                        d7 = d[A][E] + d[D][C] + d[B][F]
+                        if d7 < d0:
+                            best_route = best_route[:i] + best_route[k - 1:j - 1:-1] + best_route[j - 1:i - 1:-1] + best_route[k:]
+                            best_distance = self._calculate_route_distance(best_route)
+                            d0 = best_distance
+                            improved = True
+                            continue
+
+        return best_route, best_distance, iteration
+
 
     def apply_3opt_to_routes(self, routes):
         """Apply 3-opt to all routes"""
@@ -444,8 +677,16 @@ class AdvancedMDVRPSolver:
 
         for idx, route_info in enumerate(routes):
             original_distance = route_info['distance']
+
+            # Skip optimization for trivial routes
+            if len(route_info['route']) < 7:
+                print(f"      Route {idx + 1}: skipping (too short for 3-opt)")
+                optimized_routes.append(route_info)
+                continue
+
             print(f"      Route {idx + 1}: optimizing (original dist: {original_distance:.2f})...", end=" ")
 
+            # Use the 3-opt function
             optimized_route, new_distance, iterations = self.three_opt_optimization(
                 route_info['route']
             )
@@ -474,30 +715,43 @@ class AdvancedMDVRPSolver:
         return total
 
     # ============= OR-OPT (Relocation) =============
-
+    # (Giữ nguyên, không thay đổi)
     def or_opt_optimization(self, route, segment_size=3, max_iterations=300):
         """
         Or-opt: Relocate segments of nodes
+        (Note: Also does not check TW/Capacity constraints)
         """
         improved = True
         best_distance = self._calculate_route_distance(route)
+        best_route = route
         iteration = 0
 
         while improved and iteration < max_iterations:
             improved = False
             iteration += 1
 
-            for seg_size in range(1, min(segment_size + 1, len(route) - 2)):
-                for i in range(1, len(route) - seg_size - 1):
-                    segment = route[i:i + seg_size]
-                    remaining = route[:i] + route[i + seg_size:]
+            # Iterate over all possible segment sizes
+            for seg_size in range(1, min(segment_size + 1, len(best_route) - 3)):
+                # Iterate over all possible start positions (i) for the segment
+                # (Must be after depot, must end before last customer)
+                for i in range(1, len(best_route) - seg_size - 1):
+                    segment = best_route[i:i + seg_size]
 
-                    for j in range(1, len(remaining) - 1):
+                    # Create route without the segment
+                    remaining = best_route[:i] + best_route[i + seg_size:]
+
+                    # Iterate over all possible insertion points (j)
+                    # (Must be after depot, can be at the end before depot)
+                    for j in range(1, len(remaining)):
+                        # Avoid re-inserting at the same place
+                        if j == i:
+                            continue
+
                         new_route = remaining[:j] + segment + remaining[j:]
                         new_distance = self._calculate_route_distance(new_route)
 
                         if new_distance < best_distance:
-                            route = new_route
+                            best_route = new_route
                             best_distance = new_distance
                             improved = True
                             break
@@ -506,8 +760,10 @@ class AdvancedMDVRPSolver:
                         break
                 if improved:
                     break
+            if improved:
+                break  # Restart
 
-        return route, best_distance, iteration
+        return best_route, best_distance, iteration
 
     # ============= PARALLEL EXECUTION =============
 
@@ -521,11 +777,11 @@ class AdvancedMDVRPSolver:
 
         results = []
 
-        # Strategy 1: GA
-        print("\n[1/3] Running Genetic Algorithm...")
+        # Strategy 1: GA (FIXED)
+        print("\n[1/3] Running Genetic Algorithm (FIXED)...")
         result_ga = self.genetic_algorithm_mdvrp(
             population_size=50,
-            generations=100,
+            generations=200,  # More generations now that fitness is correct
             time_limit=time_limit
         )
         results.append(result_ga)
@@ -539,11 +795,12 @@ class AdvancedMDVRPSolver:
         print("[3/3] Running GA + 3-opt Hybrid...")
         result_hybrid = self.genetic_algorithm_mdvrp(
             population_size=30,
-            generations=50,
+            generations=100,
             time_limit=int(time_limit * 0.4)
         )
 
         if result_hybrid['status'] == 'success':
+            # Apply 3-opt
             opt_routes, improvement = self.apply_3opt_to_routes(result_hybrid['routes'])
             result_hybrid['routes'] = opt_routes
             result_hybrid['total_distance'] = sum(r['distance'] for r in opt_routes)
@@ -552,7 +809,7 @@ class AdvancedMDVRPSolver:
         results.append(result_hybrid)
 
         # Compare
-        successful = [r for r in results if r['status'] == 'success']
+        successful = [r for r in results if r['status'] == 'success' and r['total_distance'] > 0]
         if successful:
             best = min(successful, key=lambda x: x['total_distance'])
             print("\n" + "=" * 80)
@@ -561,8 +818,10 @@ class AdvancedMDVRPSolver:
 
             for i, result in enumerate(results, 1):
                 if result['status'] == 'success':
+                    if result['total_distance'] == 0: continue  # Skip failed/empty
+
                     gap = ((result['total_distance'] - best['total_distance']) /
-                           best['total_distance'] * 100)
+                           best['total_distance'] * 100) if best['total_distance'] > 0 else 0
                     marker = "🏆 BEST" if result == best else ""
                     print(f"\nStrategy {i}: {result['strategy']}")
                     print(f"  Distance: {result['total_distance']:.2f}")
@@ -603,6 +862,15 @@ class AdvancedMDVRPSolver:
                 print(f"  → Solution found! Extracting routes...")
                 routes, base_distance = self._extract_routes(routing, manager, solution)
                 print(f"  → Base distance: {base_distance:.2f}")
+
+                if not routes:
+                    print("  ✗ OR-Tools: Solution found but no routes extracted.")
+                    return {
+                        'status': 'failed',
+                        'strategy': 'OR-TOOLS + 3-OPT',
+                        'message': 'No routes extracted from solution',
+                        'elapsed_time': elapsed
+                    }
 
                 # Apply 3-opt
                 print(f"  → Applying 3-opt optimization to {len(routes)} routes...")
@@ -650,6 +918,7 @@ class AdvancedMDVRPSolver:
         """Extract routes from solution"""
         routes = []
         total_distance = 0
+        time_dimension = routing.GetDimensionOrDie('Time')
 
         for vehicle_id in range(self.num_vehicles):
             index = routing.Start(vehicle_id)
@@ -659,22 +928,27 @@ class AdvancedMDVRPSolver:
             while not routing.IsEnd(index):
                 node = manager.IndexToNode(index)
                 route.append(node)
+
                 previous_index = index
                 index = solution.Value(routing.NextVar(index))
+
+                # GetArcCostForVehicle scales by 100
                 route_distance += routing.GetArcCostForVehicle(previous_index, index, vehicle_id)
 
-            route.append(manager.IndexToNode(index))
+                # Add the end node (depot)
+            node = manager.IndexToNode(index)
+            route.append(node)
 
-            if len(route) > 2:
+            if len(route) > 2:  # Only save non-empty routes
                 routes.append({
                     'vehicle_id': vehicle_id,
                     'depot': self.starts[vehicle_id],
                     'route': route,
-                    'distance': route_distance / 100
+                    'distance': route_distance / 100.0  # Rescale distance
                 })
                 total_distance += route_distance
 
-        return routes, total_distance / 100
+        return routes, total_distance / 100.0
 
 
 # Export function for backend
