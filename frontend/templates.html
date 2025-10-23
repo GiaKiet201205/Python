@@ -565,6 +565,45 @@
               showNotification("Routes optimized successfully!", "success");
               console.log("Kết quả:", result);
               // Có thể render routes lên map ở đây
+
+               const routes = result.best_result.routes
+               console.log("Cac routes", routes);
+              // ==========================
+              //  Xóa polyline cũ (nếu có)
+              // ==========================
+              if (window.currentPolylines) {
+                window.currentPolylines.forEach(line => map.removeLayer(line));
+              }
+              window.currentPolylines = [];
+
+               // ==========================
+              // Vẽ route mới
+              // ==========================
+              const colors = ["#e6194b", "#3cb44b", "#ffe119", "#0082c8", "#f58231", "#911eb4", "#46f0f0"];
+
+              routes.forEach((route, index) => {
+                // Lấy mảng tọa độ
+                const coords = route.coordinates.map(c => [c[0], c[1]]);
+                // Vẽ polyline
+                const polyline = L.polyline(coords, {
+                  color: colors[index % colors.length],
+                  weight: 5,
+                  opacity: 0.8,
+                }).addTo(map);
+
+                // Lưu lại để sau xóa
+                window.currentPolylines.push(polyline);
+
+                // Fit bản đồ theo route đầu tiên
+                if (index === 0) map.fitBounds(polyline.getBounds());
+
+                // Thêm marker bắt đầu và kết thúc
+                const start = coords[0];
+                const end = coords[coords.length - 1];
+
+                L.marker(start).addTo(map).bindPopup(`🚚 Route ${index + 1} Start`);
+                L.marker(end).addTo(map).bindPopup(`🏁 Route ${index + 1} End`);
+              });
             } else {
               showNotification(result.message || "No solution found!", "error");
             }
