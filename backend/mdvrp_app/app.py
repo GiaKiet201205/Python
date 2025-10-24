@@ -40,7 +40,7 @@ def calculate_routes():
 
         num_vehicles = data.get('num_vehicles_per_depot', 2)
         strategy = data.get('strategy', 'advanced_benchmark')
-        time_limit = data.get('time_limit', 45)
+        time_limit = data.get('time_limit', 60)
 
         print(f"  - Num vehicles: {num_vehicles}")
         print(f"  - Strategy: {strategy}")
