@@ -753,6 +753,8 @@ class AdvancedMDVRPSolver:
         if result_ga_base['status'] == 'success':
             # Áp dụng 3-opt HẬU XỬ LÝ
             opt_routes, improvement = self.apply_3opt_to_routes(result_ga_base['routes'])
+            for route in opt_routes:
+                route["coordinates"] = [self.all_locations[node] for node in route["route"]]
             result_ga_base['routes'] = opt_routes
             result_ga_base['total_distance'] = sum(r['distance'] for r in opt_routes)
             result_ga_base['strategy'] = 'BASE_GA + 3-OPT_HYBRID'
