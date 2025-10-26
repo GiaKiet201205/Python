@@ -1,1752 +1,3502 @@
 [
   {
     "id": "001",
-    "name": "Kho Trung tâm - 001",
-    "address": "1208 Lê Lợi, TP. Bà Rịa, Bà Rịa - Vũng Tàu",
-    "latitude": 10.578183,
-    "longitude": 106.957895
+    "name": "Kho Việt Nam - 001",
+    "address": "Số 629, Đường Trần Hưng Đạo, Quận 1, Khánh Hòa",
+    "latitude": 13.260242,
+    "longitude": 108.868691
   },
   {
     "id": "002",
-    "name": "Kho Trung tâm - 002",
-    "address": "1084 30/4, Huyện Xuyên Mộc, Bà Rịa - Vũng Tàu",
-    "latitude": 10.730796,
-    "longitude": 107.074756
+    "name": "Kho Việt Nam - 002",
+    "address": "Số 1329, Đường Trần Hưng Đạo, Quận Ninh Kiều, Hà Nội",
+    "latitude": 16.940146,
+    "longitude": 105.767213
   },
   {
     "id": "003",
-    "name": "Kho Trung tâm - 003",
-    "address": "140 Hùng Vương, Huyện Châu Đức, Bà Rịa - Vũng Tàu",
-    "latitude": 10.688776,
-    "longitude": 106.951688
+    "name": "Kho Việt Nam - 003",
+    "address": "Số 1478, Đường Phạm Văn Đồng, Quận Cầu Giấy, Hải Phòng",
+    "latitude": 10.718458,
+    "longitude": 105.327474
   },
   {
     "id": "004",
-    "name": "Kho Trung tâm - 004",
-    "address": "793 Nguyễn Huệ, Huyện Xuyên Mộc, Bà Rịa - Vũng Tàu",
-    "latitude": 10.603219,
-    "longitude": 106.985297
+    "name": "Kho Việt Nam - 004",
+    "address": "Số 761, Đường Nguyễn Văn Cừ, Quận Cầu Giấy, An Giang",
+    "latitude": 17.071352,
+    "longitude": 106.605505
   },
   {
     "id": "005",
-    "name": "Kho Trung tâm - 005",
-    "address": "1412 Quang Trung, Huyện Châu Đức, Bà Rịa - Vũng Tàu",
-    "latitude": 10.619889,
-    "longitude": 106.961035
+    "name": "Kho Việt Nam - 005",
+    "address": "Số 1499, Đường Lê Lợi, Quận Hồng Bàng, Hà Nội",
+    "latitude": 12.097543,
+    "longitude": 107.588353
   },
   {
     "id": "006",
-    "name": "Kho Trung tâm - 006",
-    "address": "1394 Hùng Vương, TP. Bà Rịa, Bà Rịa - Vũng Tàu",
-    "latitude": 10.707895,
-    "longitude": 107.089671
+    "name": "Kho Việt Nam - 006",
+    "address": "Số 1404, Đường Lý Thường Kiệt, Quận Ninh Kiều, Hải Phòng",
+    "latitude": 11.161869,
+    "longitude": 105.200625
   },
   {
     "id": "007",
-    "name": "Kho Trung tâm - 007",
-    "address": "562 30/4, TP. Bà Rịa, Bà Rịa - Vũng Tàu",
-    "latitude": 10.693328,
-    "longitude": 107.124922
+    "name": "Kho Việt Nam - 007",
+    "address": "Số 754, Đường Lý Thường Kiệt, Quận Cầu Giấy, TP. HCM",
+    "latitude": 14.884676,
+    "longitude": 106.725325
   },
   {
     "id": "008",
-    "name": "Kho Trung tâm - 008",
-    "address": "232 Quang Trung, Thị xã Phú Mỹ, Bà Rịa - Vũng Tàu",
-    "latitude": 10.615827,
-    "longitude": 107.071774
+    "name": "Kho Việt Nam - 008",
+    "address": "Số 995, Đường Trần Hưng Đạo, Quận Ninh Kiều, Nghệ An",
+    "latitude": 20.805755,
+    "longitude": 107.136947
   },
   {
     "id": "009",
-    "name": "Kho Trung tâm - 009",
-    "address": "61 Lê Lợi, Huyện Châu Đức, Bà Rịa - Vũng Tàu",
-    "latitude": 10.711779,
-    "longitude": 107.119696
+    "name": "Kho Việt Nam - 009",
+    "address": "Số 1176, Đường Phạm Văn Đồng, Quận Cầu Giấy, Hà Nội",
+    "latitude": 11.604751,
+    "longitude": 106.619292
   },
   {
     "id": "010",
-    "name": "Kho Trung tâm - 010",
-    "address": "565 Điện Biên Phủ, TP. Vũng Tàu, Bà Rịa - Vũng Tàu",
-    "latitude": 10.721745,
-    "longitude": 106.962487
+    "name": "Kho Việt Nam - 010",
+    "address": "Số 581, Đường Lý Thường Kiệt, TP. Bắc Ninh, TP. HCM",
+    "latitude": 22.583923,
+    "longitude": 103.887245
   },
   {
     "id": "011",
-    "name": "Kho Trung tâm - 011",
-    "address": "335 Cách Mạng Tháng Tám, Huyện Châu Đức, Bà Rịa - Vũng Tàu",
-    "latitude": 10.598911,
-    "longitude": 106.948631
+    "name": "Kho Việt Nam - 011",
+    "address": "Số 1461, Đường Nguyễn Văn Cừ, Quận 1, Nghệ An",
+    "latitude": 21.507913,
+    "longitude": 106.276823
   },
   {
     "id": "012",
-    "name": "Kho Trung tâm - 012",
-    "address": "1418 Điện Biên Phủ, TP. Bà Rịa, Bà Rịa - Vũng Tàu",
-    "latitude": 10.44406,
-    "longitude": 107.091403
+    "name": "Kho Việt Nam - 012",
+    "address": "Số 521, Đường Lê Lợi, Quận 1, Cần Thơ",
+    "latitude": 20.8101,
+    "longitude": 105.031526
   },
   {
     "id": "013",
-    "name": "Kho Trung tâm - 013",
-    "address": "1172 Điện Biên Phủ, Thị xã Phú Mỹ, Bà Rịa - Vũng Tàu",
-    "latitude": 10.659675,
-    "longitude": 106.956729
+    "name": "Kho Việt Nam - 013",
+    "address": "Số 449, Đường Trần Hưng Đạo, Quận Hồng Bàng, Thanh Hóa",
+    "latitude": 12.127276,
+    "longitude": 106.604081
   },
   {
     "id": "014",
-    "name": "Kho Trung tâm - 014",
-    "address": "1321 Quang Trung, TP. Bà Rịa, Bà Rịa - Vũng Tàu",
-    "latitude": 10.541543,
-    "longitude": 107.083307
+    "name": "Kho Việt Nam - 014",
+    "address": "Số 40, Đường Lê Lợi, Quận Cầu Giấy, Quảng Ninh",
+    "latitude": 17.050502,
+    "longitude": 106.111535
   },
   {
     "id": "015",
-    "name": "Kho Trung tâm - 015",
-    "address": "782 Hùng Vương, TP. Vũng Tàu, Bà Rịa - Vũng Tàu",
-    "latitude": 10.675973,
-    "longitude": 107.121798
+    "name": "Kho Việt Nam - 015",
+    "address": "Số 660, Đường Võ Nguyên Giáp, Quận Ninh Kiều, Bình Dương",
+    "latitude": 19.186428,
+    "longitude": 107.720058
   },
   {
     "id": "016",
-    "name": "Kho Trung tâm - 016",
-    "address": "1294 30/4, Huyện Châu Đức, Bà Rịa - Vũng Tàu",
-    "latitude": 10.674194,
-    "longitude": 106.972395
+    "name": "Kho Việt Nam - 016",
+    "address": "Số 1159, Đường Nguyễn Văn Cừ, Quận Ninh Kiều, Hà Nội",
+    "latitude": 21.055179,
+    "longitude": 104.244175
   },
   {
     "id": "017",
-    "name": "Kho Trung tâm - 017",
-    "address": "383 Lê Lợi, Huyện Châu Đức, Bà Rịa - Vũng Tàu",
-    "latitude": 10.624264,
-    "longitude": 107.018043
+    "name": "Kho Việt Nam - 017",
+    "address": "Số 1451, Đường Lê Lợi, TP. Bắc Ninh, Cần Thơ",
+    "latitude": 13.755526,
+    "longitude": 106.201954
   },
   {
     "id": "018",
-    "name": "Kho Trung tâm - 018",
-    "address": "291 Quang Trung, Huyện Châu Đức, Bà Rịa - Vũng Tàu",
-    "latitude": 10.614571,
-    "longitude": 106.97509
+    "name": "Kho Việt Nam - 018",
+    "address": "Số 223, Đường Trần Hưng Đạo, TP. Thủ Dầu Một, Nghệ An",
+    "latitude": 22.268327,
+    "longitude": 105.254221
   },
   {
     "id": "019",
-    "name": "Kho Trung tâm - 019",
-    "address": "851 Cách Mạng Tháng Tám, TP. Vũng Tàu, Bà Rịa - Vũng Tàu",
-    "latitude": 10.5554,
-    "longitude": 107.167547
+    "name": "Kho Việt Nam - 019",
+    "address": "Số 727, Đường Phạm Văn Đồng, Quận Cầu Giấy, Quảng Ninh",
+    "latitude": 18.171354,
+    "longitude": 106.527947
   },
   {
     "id": "020",
-    "name": "Kho Trung tâm - 020",
-    "address": "1275 Cách Mạng Tháng Tám, Thị xã Phú Mỹ, Bà Rịa - Vũng Tàu",
-    "latitude": 10.7398,
-    "longitude": 107.061744
+    "name": "Kho Việt Nam - 020",
+    "address": "Số 373, Đường Võ Nguyên Giáp, Quận Cầu Giấy, TP. HCM",
+    "latitude": 13.0637,
+    "longitude": 105.592046
   },
   {
     "id": "021",
-    "name": "Kho Trung tâm - 021",
-    "address": "623 Điện Biên Phủ, Thị xã Phú Mỹ, Bà Rịa - Vũng Tàu",
-    "latitude": 10.643536,
-    "longitude": 107.113341
+    "name": "Kho Việt Nam - 021",
+    "address": "Số 203, Đường Võ Nguyên Giáp, Quận 1, Hải Phòng",
+    "latitude": 20.182357,
+    "longitude": 107.243886
   },
   {
     "id": "022",
-    "name": "Kho Trung tâm - 022",
-    "address": "689 Hùng Vương, TP. Vũng Tàu, Bà Rịa - Vũng Tàu",
-    "latitude": 10.525823,
-    "longitude": 107.129166
+    "name": "Kho Việt Nam - 022",
+    "address": "Số 655, Đường Nguyễn Văn Cừ, Quận 1, Hải Phòng",
+    "latitude": 19.64397,
+    "longitude": 108.394149
   },
   {
     "id": "023",
-    "name": "Kho Trung tâm - 023",
-    "address": "1376 Hùng Vương, Huyện Xuyên Mộc, Bà Rịa - Vũng Tàu",
-    "latitude": 10.646427,
-    "longitude": 107.022034
+    "name": "Kho Việt Nam - 023",
+    "address": "Số 1266, Đường Phạm Văn Đồng, Quận 1, Nghệ An",
+    "latitude": 22.490554,
+    "longitude": 102.765744
   },
   {
     "id": "024",
-    "name": "Kho Trung tâm - 024",
-    "address": "1213 Lý Thường Kiệt, TP. Bà Rịa, Bà Rịa - Vũng Tàu",
-    "latitude": 10.52581,
-    "longitude": 107.11167
+    "name": "Kho Việt Nam - 024",
+    "address": "Số 92, Đường Lý Thường Kiệt, Quận Ninh Kiều, An Giang",
+    "latitude": 18.97768,
+    "longitude": 107.681293
   },
   {
     "id": "025",
-    "name": "Kho Trung tâm - 025",
-    "address": "1291 30/4, Thị xã Phú Mỹ, Bà Rịa - Vũng Tàu",
-    "latitude": 10.638643,
-    "longitude":  107.667505
+    "name": "Kho Việt Nam - 025",
+    "address": "Số 740, Đường Trần Hưng Đạo, Quận Cầu Giấy, Bắc Ninh",
+    "latitude": 20.705371,
+    "longitude": 105.89269
   },
   {
     "id": "026",
-    "name": "Kho Trung tâm - 026",
-    "address": "766 Quang Trung, TP. Vũng Tàu, Bà Rịa - Vũng Tàu",
-    "latitude": 10.586504,
-    "longitude": 107.034637
+    "name": "Kho Việt Nam - 026",
+    "address": "Số 31, Đường Lê Lợi, TP. Bắc Ninh, Bắc Ninh",
+    "latitude": 11.108006,
+    "longitude": 106.347145
   },
   {
     "id": "027",
-    "name": "Kho Trung tâm - 027",
-    "address": "705 Nguyễn Huệ, Huyện Xuyên Mộc, Bà Rịa - Vũng Tàu",
-    "latitude": 10.579968,
-    "longitude":  107.383751
+    "name": "Kho Việt Nam - 027",
+    "address": "Số 1315, Đường Nguyễn Văn Cừ, Quận 1, Bắc Ninh",
+    "latitude": 16.805935,
+    "longitude": 106.328825
   },
   {
     "id": "028",
-    "name": "Kho Trung tâm - 028",
-    "address": "1147 Lê Lợi, TP. Bà Rịa, Bà Rịa - Vũng Tàu",
-    "latitude": 10.704759,
-    "longitude": 106.946181
+    "name": "Kho Việt Nam - 028",
+    "address": "Số 370, Đường Lý Thường Kiệt, TP. Bắc Ninh, Thanh Hóa",
+    "latitude": 12.903809,
+    "longitude": 106.805803
   },
   {
     "id": "029",
-    "name": "Kho Trung tâm - 029",
-    "address": "257 Lê Lợi, TP. Thuận An, Bình Dương",
-    "latitude": 11.084526,
-    "longitude": 106.635725
+    "name": "Kho Việt Nam - 029",
+    "address": "Số 634, Đường Nguyễn Văn Cừ, Huyện Châu Đốc, Cần Thơ",
+    "latitude": 13.600252,
+    "longitude": 107.939859
   },
   {
     "id": "030",
-    "name": "Kho Trung tâm - 030",
-    "address": "6 Trần Hưng Đạo, TP. Thuận An, Bình Dương",
-    "latitude": 11.40759,
-    "longitude": 106.653836
+    "name": "Kho Việt Nam - 030",
+    "address": "Số 1342, Đường Nguyễn Văn Cừ, Huyện Châu Đốc, TP. HCM",
+    "latitude": 19.78911,
+    "longitude": 108.537789
   },
   {
     "id": "031",
-    "name": "Kho Trung tâm - 031",
-    "address": "717 Phan Bội Châu, Huyện Dầu Tiếng, Bình Dương",
-    "latitude": 11.069555,
-    "longitude": 106.747692
+    "name": "Kho Việt Nam - 031",
+    "address": "Số 1193, Đường Lý Thường Kiệt, Quận Hải Châu, Hải Phòng",
+    "latitude": 17.627228,
+    "longitude": 105.10621
   },
   {
     "id": "032",
-    "name": "Kho Trung tâm - 032",
-    "address": "837 Quang Trung, TP. Thủ Dầu Một, Bình Dương",
-    "latitude": 11.314683,
-    "longitude": 106.776744
+    "name": "Kho Việt Nam - 032",
+    "address": "Số 35, Đường Võ Nguyên Giáp, Quận 1, Hải Phòng",
+    "latitude": 14.887722,
+    "longitude": 106.457153
   },
   {
     "id": "033",
-    "name": "Kho Trung tâm - 033",
-    "address": "146 Lý Thường Kiệt, Thị xã Bến Cát, Bình Dương",
-    "latitude": 11.32719,
-    "longitude": 106.577696
+    "name": "Kho Việt Nam - 033",
+    "address": "Số 1445, Đường Trần Hưng Đạo, Quận Cầu Giấy, Hải Phòng",
+    "latitude": 15.878806,
+    "longitude": 106.40656
   },
   {
     "id": "034",
-    "name": "Kho Trung tâm - 034",
-    "address": "806 Nguyễn Huệ, TP. Dĩ An, Bình Dương",
-    "latitude": 11.015098,
-    "longitude": 106.60401
+    "name": "Kho Việt Nam - 034",
+    "address": "Số 1316, Đường Lê Lợi, Quận Cầu Giấy, Quảng Ninh",
+    "latitude": 17.707222,
+    "longitude": 106.648283
   },
   {
     "id": "035",
-    "name": "Kho Trung tâm - 035",
-    "address": "409 Nguyễn Huệ, TP. Thuận An, Bình Dương",
-    "latitude": 11.40916,
-    "longitude": 106.623354
+    "name": "Kho Việt Nam - 035",
+    "address": "Số 965, Đường Võ Nguyên Giáp, Quận Hồng Bàng, Đà Nẵng",
+    "latitude": 11.118417,
+    "longitude": 106.364167
   },
   {
     "id": "036",
-    "name": "Kho Trung tâm - 036",
-    "address": "659 Lý Thường Kiệt, TP. Dĩ An, Bình Dương",
-    "latitude": 11.217987,
-    "longitude": 106.733443
+    "name": "Kho Việt Nam - 036",
+    "address": "Số 875, Đường Võ Nguyên Giáp, Quận Hồng Bàng, An Giang",
+    "latitude": 21.644979,
+    "longitude": 105.654999
   },
   {
     "id": "037",
-    "name": "Kho Trung tâm - 037",
-    "address": "1396 Nguyễn Huệ, Huyện Dầu Tiếng, Bình Dương",
-    "latitude": 11.152372,
-    "longitude": 106.487018
+    "name": "Kho Việt Nam - 037",
+    "address": "Số 953, Đường Trần Hưng Đạo, Quận 1, Quảng Ninh",
+    "latitude": 19.528519,
+    "longitude": 104.783089
   },
   {
     "id": "038",
-    "name": "Kho Trung tâm - 038",
-    "address": "1165 Lê Lợi, TP. Thủ Dầu Một, Bình Dương",
-    "latitude": 11.039561,
-    "longitude": 106.777705
+    "name": "Kho Việt Nam - 038",
+    "address": "Số 1060, Đường Trần Hưng Đạo, Quận Cầu Giấy, Hà Nội",
+    "latitude": 21.700102,
+    "longitude": 107.238594
   },
   {
     "id": "039",
-    "name": "Kho Trung tâm - 039",
-    "address": "1282 Lê Lợi, TP. Thuận An, Bình Dương",
-    "latitude": 11.023171,
-    "longitude": 106.53614
+    "name": "Kho Việt Nam - 039",
+    "address": "Số 532, Đường Võ Nguyên Giáp, Quận Hải Châu, Hải Phòng",
+    "latitude": 19.068716,
+    "longitude": 105.496679
   },
   {
     "id": "040",
-    "name": "Kho Trung tâm - 040",
-    "address": "588 Phan Bội Châu, TP. Thuận An, Bình Dương",
-    "latitude": 10.978962,
-    "longitude": 106.677997
+    "name": "Kho Việt Nam - 040",
+    "address": "Số 1434, Đường Lý Thường Kiệt, Quận 1, Nghệ An",
+    "latitude": 20.924695,
+    "longitude": 105.356618
   },
   {
     "id": "041",
-    "name": "Kho Trung tâm - 041",
-    "address": "1254 Phan Bội Châu, TP. Dĩ An, Bình Dương",
-    "latitude": 11.206458,
-    "longitude": 106.840985
+    "name": "Kho Việt Nam - 041",
+    "address": "Số 1419, Đường Võ Nguyên Giáp, Quận Hải Châu, Đà Nẵng",
+    "latitude": 17.833678,
+    "longitude": 106.249312
   },
   {
     "id": "042",
-    "name": "Kho Trung tâm - 042",
-    "address": "325 Lê Lợi, TP. Thuận An, Bình Dương",
-    "latitude": 11.090883,
-    "longitude": 106.517193
+    "name": "Kho Việt Nam - 042",
+    "address": "Số 1416, Đường Võ Nguyên Giáp, TP. Thủ Dầu Một, Quảng Ninh",
+    "latitude": 13.620206,
+    "longitude": 106.700947
   },
   {
     "id": "043",
-    "name": "Kho Trung tâm - 043",
-    "address": "1466 Phan Bội Châu, TP. Dĩ An, Bình Dương",
-    "latitude": 11.279655,
-    "longitude": 106.634461
+    "name": "Kho Việt Nam - 043",
+    "address": "Số 1161, Đường Trần Hưng Đạo, Quận Ninh Kiều, Khánh Hòa",
+    "latitude": 12.729509,
+    "longitude": 107.966104
   },
   {
     "id": "044",
-    "name": "Kho Trung tâm - 044",
-    "address": "862 Quang Trung, Thị xã Bến Cát, Bình Dương",
-    "latitude": 11.239159,
-    "longitude": 106.425448
+    "name": "Kho Việt Nam - 044",
+    "address": "Số 1108, Đường Võ Nguyên Giáp, Huyện Châu Đốc, Bắc Ninh",
+    "latitude": 22.164959,
+    "longitude": 106.084972
   },
   {
     "id": "045",
-    "name": "Kho Trung tâm - 045",
-    "address": "1437 Trần Hưng Đạo, Huyện Dầu Tiếng, Bình Dương",
-    "latitude": 11.277749,
-    "longitude": 106.829077
+    "name": "Kho Việt Nam - 045",
+    "address": "Số 1162, Đường Trần Hưng Đạo, Quận Hải Châu, Quảng Ninh",
+    "latitude": 17.19989,
+    "longitude": 104.899185
   },
   {
     "id": "046",
-    "name": "Kho Trung tâm - 046",
-    "address": "397 Lý Thường Kiệt, Huyện Dầu Tiếng, Bình Dương",
-    "latitude": 11.290649,
-    "longitude": 106.464013
+    "name": "Kho Việt Nam - 046",
+    "address": "Số 164, Đường Lý Thường Kiệt, Quận Hải Châu, Khánh Hòa",
+    "latitude": 20.715776,
+    "longitude": 104.97961
   },
   {
     "id": "047",
-    "name": "Kho Trung tâm - 047",
-    "address": "1092 Trần Hưng Đạo, TP. Thủ Dầu Một, Bình Dương",
-    "latitude": 11.149347,
-    "longitude": 106.620969
+    "name": "Kho Việt Nam - 047",
+    "address": "Số 1105, Đường Nguyễn Văn Cừ, Quận Hồng Bàng, Nghệ An",
+    "latitude": 13.95267,
+    "longitude": 107.977209
   },
   {
     "id": "048",
-    "name": "Kho Trung tâm - 048",
-    "address": "1281 Điện Biên Phủ, Huyện Dầu Tiếng, Bình Dương",
-    "latitude": 11.292388,
-    "longitude": 106.748281
+    "name": "Kho Việt Nam - 048",
+    "address": "Số 409, Đường Lý Thường Kiệt, Quận Hải Châu, Hải Phòng",
+    "latitude": 13.835642,
+    "longitude": 106.935038
   },
   {
     "id": "049",
-    "name": "Kho Trung tâm - 049",
-    "address": "287 Nguyễn Huệ, TP. Dĩ An, Bình Dương",
-    "latitude": 11.146702,
-    "longitude": 106.61777
+    "name": "Kho Việt Nam - 049",
+    "address": "Số 1127, Đường Lý Thường Kiệt, TP. Thủ Dầu Một, TP. HCM",
+    "latitude": 11.935649,
+    "longitude": 105.282491
   },
   {
     "id": "050",
-    "name": "Kho Trung tâm - 050",
-    "address": "1458 Quang Trung, TP. Dĩ An, Bình Dương",
-    "latitude": 11.269851,
-    "longitude": 106.789174
+    "name": "Kho Việt Nam - 050",
+    "address": "Số 991, Đường Trần Hưng Đạo, TP. Thủ Dầu Một, An Giang",
+    "latitude": 20.974072,
+    "longitude": 102.868163
   },
   {
     "id": "051",
-    "name": "Kho Trung tâm - 051",
-    "address": "1058 Nguyễn Huệ, Thị xã Bến Cát, Bình Dương",
-    "latitude": 11.428644,
-    "longitude": 106.52944
+    "name": "Kho Việt Nam - 051",
+    "address": "Số 799, Đường Nguyễn Văn Cừ, Quận Ninh Kiều, TP. HCM",
+    "latitude": 12.289568,
+    "longitude": 107.006184
   },
   {
     "id": "052",
-    "name": "Kho Trung tâm - 052",
-    "address": "1162 Nguyễn Huệ, TP. Dĩ An, Bình Dương",
-    "latitude": 11.072899,
-    "longitude": 106.759639
+    "name": "Kho Việt Nam - 052",
+    "address": "Số 308, Đường Trần Hưng Đạo, Huyện Châu Đốc, Cần Thơ",
+    "latitude": 16.925946,
+    "longitude": 111.79152
   },
   {
     "id": "053",
-    "name": "Kho Trung tâm - 053",
-    "address": "922 Hùng Vương, TP. Dĩ An, Bình Dương",
-    "latitude": 11.16128,
-    "longitude": 106.86682
+    "name": "Kho Việt Nam - 053",
+    "address": "Số 1344, Đường Lê Lợi, TP. Thủ Dầu Một, Hải Phòng",
+    "latitude": 15.389775,
+    "longitude": 106.308272
   },
   {
     "id": "054",
-    "name": "Kho Trung tâm - 054",
-    "address": "403 Cách Mạng Tháng Tám, TP. Dĩ An, Bình Dương",
-    "latitude": 11.026808,
-    "longitude": 106.616335
+    "name": "Kho Việt Nam - 054",
+    "address": "Số 344, Đường Nguyễn Văn Cừ, TP. Bắc Ninh, Bình Dương",
+    "latitude": 18.043642,
+    "longitude": 107.21505
   },
   {
     "id": "055",
-    "name": "Kho Trung tâm - 055",
-    "address": "812 Điện Biên Phủ, TP. Dĩ An, Bình Dương",
-    "latitude": 11.200757,
-    "longitude": 106.470743
+    "name": "Kho Việt Nam - 055",
+    "address": "Số 1282, Đường Phạm Văn Đồng, Quận Hồng Bàng, Thanh Hóa",
+    "latitude": 22.692963,
+    "longitude": 102.437925
   },
   {
     "id": "056",
-    "name": "Kho Trung tâm - 056",
-    "address": "1499 Cách Mạng Tháng Tám, TP. Thuận An, Bình Dương",
-    "latitude": 11.017501,
-    "longitude": 106.648497
+    "name": "Kho Việt Nam - 056",
+    "address": "Số 581, Đường Võ Nguyên Giáp, Quận Cầu Giấy, Thanh Hóa",
+    "latitude": 21.121904,
+    "longitude": 106.821711
   },
   {
     "id": "057",
-    "name": "Kho Trung tâm - 057",
-    "address": "1292 Hùng Vương, Thị xã Phước Long, Bình Phước",
-    "latitude": 11.870359,
-    "longitude": 107.330409
+    "name": "Kho Việt Nam - 057",
+    "address": "Số 1097, Đường Võ Nguyên Giáp, Quận 1, Quảng Ninh",
+    "latitude": 10.504538,
+    "longitude": 105.452551
   },
   {
     "id": "058",
-    "name": "Kho Trung tâm - 058",
-    "address": "104 Cách Mạng Tháng Tám, TP. Đồng Xoài, Bình Phước",
-    "latitude": 11.75617,
-    "longitude": 106.689147
+    "name": "Kho Việt Nam - 058",
+    "address": "Số 1018, Đường Võ Nguyên Giáp, Quận Hải Châu, An Giang",
+    "latitude": 16.55497,
+    "longitude": 106.250867
   },
   {
     "id": "059",
-    "name": "Kho Trung tâm - 059",
-    "address": "161 30/4, Huyện Bù Đăng, Bình Phước",
-    "latitude": 11.67476,
-    "longitude": 107.167625
+    "name": "Kho Việt Nam - 059",
+    "address": "Số 68, Đường Lý Thường Kiệt, Quận Hải Châu, Thanh Hóa",
+    "latitude": 16.351476,
+    "longitude": 105.583229
   },
   {
     "id": "060",
-    "name": "Kho Trung tâm - 060",
-    "address": "1377 Điện Biên Phủ, Thị xã Bình Long, Bình Phước",
-    "latitude": 111.334818,
-    "longitude": 106.531142
+    "name": "Kho Việt Nam - 060",
+    "address": "Số 1278, Đường Nguyễn Văn Cừ, Quận Cầu Giấy, Cần Thơ",
+    "latitude": 21.283323,
+    "longitude": 107.201588
   },
   {
     "id": "061",
-    "name": "Kho Trung tâm - 061",
-    "address": "31 Điện Biên Phủ, Thị xã Phước Long, Bình Phước",
-    "latitude": 11.66058,
-    "longitude": 107.205757
+    "name": "Kho Việt Nam - 061",
+    "address": "Số 836, Đường Phạm Văn Đồng, TP. Bắc Ninh, Hà Nội",
+    "latitude": 20.545113,
+    "longitude": 106.308438
   },
   {
     "id": "062",
-    "name": "Kho Trung tâm - 062",
-    "address": "295 Trần Hưng Đạo, Thị xã Phước Long, Bình Phước",
-    "latitude": 12.056555,
-    "longitude": 107.310766
+    "name": "Kho Việt Nam - 062",
+    "address": "Số 514, Đường Trần Hưng Đạo, Quận 1, TP. HCM",
+    "latitude": 21.914001,
+    "longitude": 105.772767
   },
   {
     "id": "063",
-    "name": "Kho Trung tâm - 063",
-    "address": "1292 Lê Lợi, Thị xã Phước Long, Bình Phước",
-    "latitude": 11.655932,
-    "longitude": 106.908641
+    "name": "Kho Việt Nam - 063",
+    "address": "Số 101, Đường Võ Nguyên Giáp, Huyện Châu Đốc, Khánh Hòa",
+    "latitude": 12.259563,
+    "longitude": 106.110844
   },
   {
     "id": "064",
-    "name": "Kho Trung tâm - 064",
-    "address": "1500 Điện Biên Phủ, Thị xã Phước Long, Bình Phước",
-    "latitude": 11.292109,
-    "longitude": 106.632521
+    "name": "Kho Việt Nam - 064",
+    "address": "Số 333, Đường Phạm Văn Đồng, Quận Ninh Kiều, Hải Phòng",
+    "latitude": 21.581908,
+    "longitude": 107.548335
   },
   {
     "id": "065",
-    "name": "Kho Trung tâm - 065",
-    "address": "1229 Nguyễn Huệ, Huyện Chơn Thành, Bình Phước",
-    "latitude": 11.940352,
-    "longitude": 106.587401
+    "name": "Kho Việt Nam - 065",
+    "address": "Số 563, Đường Phạm Văn Đồng, TP. Thủ Dầu Một, Quảng Ninh",
+    "latitude": 9.59153,
+    "longitude": 104.811676
   },
   {
     "id": "066",
-    "name": "Kho Trung tâm - 066",
-    "address": "279 Lê Lợi, Huyện Bù Đăng, Bình Phước",
-    "latitude": 11.726609,
-    "longitude":  107.719364
+    "name": "Kho Việt Nam - 066",
+    "address": "Số 856, Đường Lý Thường Kiệt, Quận 1, Nghệ An",
+    "latitude": 11.111327,
+    "longitude": 105.423787
   },
   {
     "id": "067",
-    "name": "Kho Trung tâm - 067",
-    "address": "523 30/4, Thị xã Phước Long, Bình Phước",
-    "latitude": 11.877171,
-    "longitude": 106.788471
+    "name": "Kho Việt Nam - 067",
+    "address": "Số 1208, Đường Phạm Văn Đồng, Huyện Châu Đốc, Cần Thơ",
+    "latitude": 18.137332,
+    "longitude": 106.343838
   },
   {
     "id": "068",
-    "name": "Kho Trung tâm - 068",
-    "address": "971 Lý Thường Kiệt, Thị xã Phước Long, Bình Phước",
-    "latitude": 11.867438,
-    "longitude": 106.786122
+    "name": "Kho Việt Nam - 068",
+    "address": "Số 926, Đường Lê Lợi, Quận Hải Châu, An Giang",
+    "latitude": 20.998524,
+    "longitude": 106.842072
   },
   {
     "id": "069",
-    "name": "Kho Trung tâm - 069",
-    "address": "1329 Lý Thường Kiệt, Thị xã Phước Long, Bình Phước",
-    "latitude": 11.830721,
-    "longitude": 107.302247
+    "name": "Kho Việt Nam - 069",
+    "address": "Số 1036, Đường Lý Thường Kiệt, TP. Thủ Dầu Một, Quảng Ninh",
+    "latitude": 21.053694,
+    "longitude": 108.185488
   },
   {
     "id": "070",
-    "name": "Kho Trung tâm - 070",
-    "address": "962 Cách Mạng Tháng Tám, Thị xã Bình Long, Bình Phước",
-    "latitude": 11.709371,
-    "longitude": 107.200318
+    "name": "Kho Việt Nam - 070",
+    "address": "Số 681, Đường Trần Hưng Đạo, Huyện Châu Đốc, Quảng Ninh",
+    "latitude": 19.810953,
+    "longitude": 103.484716
   },
   {
     "id": "071",
-    "name": "Kho Trung tâm - 071",
-    "address": "26 Lý Thường Kiệt, Thị xã Phước Long, Bình Phước",
-    "latitude": 11.709857,
-    "longitude": 106.67538
+    "name": "Kho Việt Nam - 071",
+    "address": "Số 1217, Đường Nguyễn Văn Cừ, TP. Thủ Dầu Một, Hà Nội",
+    "latitude": 17.12509,
+    "longitude": 104.906783
   },
   {
     "id": "072",
-    "name": "Kho Trung tâm - 072",
-    "address": "1215 Nguyễn Huệ, Thị xã Phước Long, Bình Phước",
-    "latitude": 11.676067,
-    "longitude": 107.001989
+    "name": "Kho Việt Nam - 072",
+    "address": "Số 1434, Đường Nguyễn Văn Cừ, Quận Ninh Kiều, Cần Thơ",
+    "latitude": 11.591762,
+    "longitude": 107.032763
   },
   {
     "id": "073",
-    "name": "Kho Trung tâm - 073",
-    "address": "1349 Cách Mạng Tháng Tám, Huyện Chơn Thành, Bình Phước",
-    "latitude": 11.745746,
-    "longitude": 107.213609
+    "name": "Kho Việt Nam - 073",
+    "address": "Số 299, Đường Trần Hưng Đạo, Quận 1, Bình Dương",
+    "latitude": 18.821077,
+    "longitude": 105.644016
   },
   {
     "id": "074",
-    "name": "Kho Trung tâm - 074",
-    "address": "1037 Điện Biên Phủ, Thị xã Phước Long, Bình Phước",
-    "latitude": 11.960814,
-    "longitude": 107.123467
+    "name": "Kho Việt Nam - 074",
+    "address": "Số 435, Đường Võ Nguyên Giáp, Quận Hải Châu, Hải Phòng",
+    "latitude": 20.693314,
+    "longitude": 107.73704
   },
   {
     "id": "075",
-    "name": "Kho Trung tâm - 075",
-    "address": "327 Nguyễn Huệ, Huyện Bù Đăng, Bình Phước",
-    "latitude": 11.869848,
-    "longitude": 106.917551
+    "name": "Kho Việt Nam - 075",
+    "address": "Số 247, Đường Lê Lợi, Huyện Châu Đốc, Bắc Ninh",
+    "latitude": 21.441272,
+    "longitude": 105.00221
   },
   {
     "id": "076",
-    "name": "Kho Trung tâm - 076",
-    "address": "299 Phan Bội Châu, Thị xã Phước Long, Bình Phước",
-    "latitude": 11.99772,
-    "longitude": 107.254429
+    "name": "Kho Việt Nam - 076",
+    "address": "Số 1479, Đường Lê Lợi, Quận 1, Cần Thơ",
+    "latitude": 20.768721,
+    "longitude": 105.153704
   },
   {
     "id": "077",
-    "name": "Kho Trung tâm - 077",
-    "address": "1383 Lê Lợi, Thị xã Bình Long, Bình Phước",
-    "latitude": 11.636276,
-    "longitude": 106.806806
+    "name": "Kho Việt Nam - 077",
+    "address": "Số 157, Đường Lý Thường Kiệt, Quận Ninh Kiều, Bắc Ninh",
+    "latitude": 20.789639,
+    "longitude": 104.282101
   },
   {
     "id": "078",
-    "name": "Kho Trung tâm - 078",
-    "address": "915 Cách Mạng Tháng Tám, Thị xã Bình Long, Bình Phước",
-    "latitude": 11.742924,
-    "longitude": 107.209086
+    "name": "Kho Việt Nam - 078",
+    "address": "Số 414, Đường Phạm Văn Đồng, Huyện Châu Đốc, Thanh Hóa",
+    "latitude": 18.531307,
+    "longitude": 105.288115
   },
   {
     "id": "079",
-    "name": "Kho Trung tâm - 079",
-    "address": "683 Trần Hưng Đạo, Thị xã Bình Long, Bình Phước",
-    "latitude": 11.757787,
-    "longitude": 106.987
+    "name": "Kho Việt Nam - 079",
+    "address": "Số 684, Đường Lý Thường Kiệt, Quận Ninh Kiều, Bắc Ninh",
+    "latitude": 14.605875,
+    "longitude": 107.053593
   },
   {
     "id": "080",
-    "name": "Kho Trung tâm - 080",
-    "address": "874 Điện Biên Phủ, TP. Đồng Xoài, Bình Phước",
-    "latitude": 11.818477,
-    "longitude": 106.867571
+    "name": "Kho Việt Nam - 080",
+    "address": "Số 497, Đường Lý Thường Kiệt, Quận Ninh Kiều, Hải Phòng",
+    "latitude": 11.98496,
+    "longitude": 108.213579
   },
   {
     "id": "081",
-    "name": "Kho Trung tâm - 081",
-    "address": "1014 Điện Biên Phủ, Thị xã Phước Long, Bình Phước",
-    "latitude": 11.8211,
-    "longitude": 106.86202
+    "name": "Kho Việt Nam - 081",
+    "address": "Số 186, Đường Võ Nguyên Giáp, Quận Ninh Kiều, Hà Nội",
+    "latitude": 17.07522,
+    "longitude": 104.897774
   },
   {
     "id": "082",
-    "name": "Kho Trung tâm - 082",
-    "address": "223 Nguyễn Huệ, Thị xã Phước Long, Bình Phước",
-    "latitude": 11.318619,
-    "longitude": 106.680582
+    "name": "Kho Việt Nam - 082",
+    "address": "Số 523, Đường Nguyễn Văn Cừ, Quận 1, Thanh Hóa",
+    "latitude": 11.474686,
+    "longitude": 106.738541
   },
   {
     "id": "083",
-    "name": "Kho Trung tâm - 083",
-    "address": "1081 Trần Hưng Đạo, Huyện Chơn Thành, Bình Phước",
-    "latitude": 12.166422,
-    "longitude": 107.198854
+    "name": "Kho Việt Nam - 083",
+    "address": "Số 1302, Đường Trần Hưng Đạo, Quận Hồng Bàng, Hải Phòng",
+    "latitude": 11.615677,
+    "longitude": 106.097194
   },
   {
     "id": "084",
-    "name": "Kho Trung tâm - 084",
-    "address": "256 Phan Bội Châu, Thị xã Bình Long, Bình Phước",
-    "latitude": 11.694698,
-    "longitude": 106.841408
+    "name": "Kho Việt Nam - 084",
+    "address": "Số 44, Đường Nguyễn Văn Cừ, TP. Thủ Dầu Một, Khánh Hòa",
+    "latitude": 22.721173,
+    "longitude": 104.523861
   },
   {
     "id": "085",
-    "name": "Kho Trung tâm - 085",
-    "address": "1445 Nguyễn Huệ, Huyện Bắc Bình, Bình Thuận",
-    "latitude": 110.745913,
-    "longitude":  107.713977
+    "name": "Kho Việt Nam - 085",
+    "address": "Số 1272, Đường Lý Thường Kiệt, Quận 1, TP. HCM",
+    "latitude": 15.757756,
+    "longitude": 105.342097
   },
   {
     "id": "086",
-    "name": "Kho Trung tâm - 086",
-    "address": "416 Lê Lợi, Huyện Tuy Phong, Bình Thuận",
-    "latitude": 11.105639,
-    "longitude": 108.389262
+    "name": "Kho Việt Nam - 086",
+    "address": "Số 104, Đường Lý Thường Kiệt, Quận Hồng Bàng, Quảng Ninh",
+    "latitude": 10.44745,
+    "longitude": 105.351304
   },
   {
     "id": "087",
-    "name": "Kho Trung tâm - 087",
-    "address": "1023 Hùng Vương, Huyện Hàm Thuận Bắc, Bình Thuận",
-    "latitude": 11.309714,
-    "longitude": 108.255901
+    "name": "Kho Việt Nam - 087",
+    "address": "Số 334, Đường Nguyễn Văn Cừ, Quận 1, Hải Phòng",
+    "latitude": 10.918359,
+    "longitude": 106.092993
   },
   {
     "id": "088",
-    "name": "Kho Trung tâm - 088",
-    "address": "1250 Lý Thường Kiệt, Huyện Tuy Phong, Bình Thuận",
-    "latitude": 11.391669,
-    "longitude": 108.266242
+    "name": "Kho Việt Nam - 088",
+    "address": "Số 208, Đường Lê Lợi, Quận 1, Khánh Hòa",
+    "latitude": 21.259694,
+    "longitude": 102.581208
   },
   {
     "id": "089",
-    "name": "Kho Trung tâm - 089",
-    "address": "1267 Lý Thường Kiệt, Huyện Hàm Thuận Bắc, Bình Thuận",
-    "latitude": 11.337103,
-    "longitude": 108.365176
+    "name": "Kho Việt Nam - 089",
+    "address": "Số 1221, Đường Trần Hưng Đạo, Quận Ninh Kiều, Nghệ An",
+    "latitude": 18.4532,
+    "longitude": 106.575993
   },
   {
     "id": "090",
-    "name": "Kho Trung tâm - 090",
-    "address": "1493 Phan Bội Châu, Huyện Bắc Bình, Bình Thuận",
-    "latitude": 11.32569,
-    "longitude": 108.089662
+    "name": "Kho Việt Nam - 090",
+    "address": "Số 938, Đường Lý Thường Kiệt, Quận 1, Hải Phòng",
+    "latitude": 19.448883,
+    "longitude": 105.247799
   },
   {
     "id": "091",
-    "name": "Kho Trung tâm - 091",
-    "address": "1149 Trần Hưng Đạo, Huyện Bắc Bình, Bình Thuận",
-    "latitude": 11.347108,
-    "longitude": 108.296957
+    "name": "Kho Việt Nam - 091",
+    "address": "Số 1143, Đường Nguyễn Văn Cừ, Quận Cầu Giấy, Hà Nội",
+    "latitude": 21.195111,
+    "longitude": 106.217622
   },
   {
     "id": "092",
-    "name": "Kho Trung tâm - 092",
-    "address": "432 Cách Mạng Tháng Tám, Huyện Bắc Bình, Bình Thuận",
-    "latitude": 11.393693,
-    "longitude": 108.341559
+    "name": "Kho Việt Nam - 092",
+    "address": "Số 533, Đường Trần Hưng Đạo, Quận Hải Châu, Thanh Hóa",
+    "latitude": 16.995502,
+    "longitude": 111.92492
   },
   {
     "id": "093",
-    "name": "Kho Trung tâm - 093",
-    "address": "832 Điện Biên Phủ, Huyện Bắc Bình, Bình Thuận",
-    "latitude": 10.991883,
-    "longitude": 107.898995
+    "name": "Kho Việt Nam - 093",
+    "address": "Số 1392, Đường Nguyễn Văn Cừ, Huyện Châu Đốc, Nghệ An",
+    "latitude": 18.668877,
+    "longitude": 106.693611
   },
   {
     "id": "094",
-    "name": "Kho Trung tâm - 094",
-    "address": "1165 Điện Biên Phủ, Huyện Bắc Bình, Bình Thuận",
-    "latitude": 11.198892,
-    "longitude": 108.085666
+    "name": "Kho Việt Nam - 094",
+    "address": "Số 603, Đường Nguyễn Văn Cừ, Quận 1, Khánh Hòa",
+    "latitude": 19.076946,
+    "longitude": 104.650357
   },
   {
     "id": "095",
-    "name": "Kho Trung tâm - 095",
-    "address": "37 Lý Thường Kiệt, Huyện Tuy Phong, Bình Thuận",
-    "latitude": 11.109648,
-    "longitude": 108.327407
+    "name": "Kho Việt Nam - 095",
+    "address": "Số 74, Đường Nguyễn Văn Cừ, Quận Ninh Kiều, An Giang",
+    "latitude": 20.975972,
+    "longitude": 103.922078
   },
   {
     "id": "096",
-    "name": "Kho Trung tâm - 096",
-    "address": "1303 Phan Bội Châu, Huyện Tuy Phong, Bình Thuận",
-    "latitude": 11.002961,
-    "longitude":  107.616231
+    "name": "Kho Việt Nam - 096",
+    "address": "Số 23, Đường Trần Hưng Đạo, Quận Hải Châu, Hà Nội",
+    "latitude": 20.687384,
+    "longitude": 104.832974
   },
   {
     "id": "097",
-    "name": "Kho Trung tâm - 097",
-    "address": "1133 Hùng Vương, Thị xã La Gi, Bình Thuận",
-    "latitude": 11.189269,
-    "longitude": 108.079949
+    "name": "Kho Việt Nam - 097",
+    "address": "Số 925, Đường Võ Nguyên Giáp, Quận Ninh Kiều, Hà Nội",
+    "latitude": 18.900057,
+    "longitude": 105.946537
   },
   {
     "id": "098",
-    "name": "Kho Trung tâm - 098",
-    "address": "144 Lê Lợi, Thị xã La Gi, Bình Thuận",
-    "latitude": 11.035046,
-    "longitude": 108.365741
+    "name": "Kho Việt Nam - 098",
+    "address": "Số 1363, Đường Lê Lợi, Quận Hồng Bàng, Cần Thơ",
+    "latitude": 11.669172,
+    "longitude": 106.567496
   },
   {
     "id": "099",
-    "name": "Kho Trung tâm - 099",
-    "address": "38 Cách Mạng Tháng Tám, Huyện Tuy Phong, Bình Thuận",
-    "latitude": 10.885383,
-    "longitude": 107.921235
+    "name": "Kho Việt Nam - 099",
+    "address": "Số 982, Đường Nguyễn Văn Cừ, Quận Hải Châu, Hà Nội",
+    "latitude": 19.4489,
+    "longitude": 107.892807
   },
   {
     "id": "100",
-    "name": "Kho Trung tâm - 100",
-    "address": "900 Lý Thường Kiệt, Huyện Bắc Bình, Bình Thuận",
-    "latitude": 11.2609,
-    "longitude": 108.298118
+    "name": "Kho Việt Nam - 100",
+    "address": "Số 1117, Đường Nguyễn Văn Cừ, Quận Hải Châu, Cần Thơ",
+    "latitude": 20.759235,
+    "longitude": 107.40986
   },
   {
     "id": "101",
-    "name": "Kho Trung tâm - 101",
-    "address": "1411 Trần Hưng Đạo, Thị xã La Gi, Bình Thuận",
-    "latitude": 11.105175,
-    "longitude": 108.067857
+    "name": "Kho Việt Nam - 101",
+    "address": "Số 1462, Đường Nguyễn Văn Cừ, Quận 1, Quảng Ninh",
+    "latitude": 10.576531,
+    "longitude": 106.15327
   },
   {
     "id": "102",
-    "name": "Kho Trung tâm - 102",
-    "address": "222 Cách Mạng Tháng Tám, Huyện Hàm Thuận Bắc, Bình Thuận",
-    "latitude": 10.839725,
-    "longitude": 107.587784
+    "name": "Kho Việt Nam - 102",
+    "address": "Số 1301, Đường Trần Hưng Đạo, Quận Hồng Bàng, Hà Nội",
+    "latitude": 18.794066,
+    "longitude": 106.247742
   },
   {
     "id": "103",
-    "name": "Kho Trung tâm - 103",
-    "address": "987 Nguyễn Huệ, Thị xã La Gi, Bình Thuận",
-    "latitude": 11.354009,
-    "longitude": 108.005677
+    "name": "Kho Việt Nam - 103",
+    "address": "Số 1199, Đường Phạm Văn Đồng, Quận Hải Châu, Hải Phòng",
+    "latitude": 8.776694,
+    "longitude": 113.226542
   },
   {
     "id": "104",
-    "name": "Kho Trung tâm - 104",
-    "address": "313 Nguyễn Huệ, Huyện Tuy Phong, Bình Thuận",
-    "latitude": 11.321659,
-    "longitude": 108.244879
+    "name": "Kho Việt Nam - 104",
+    "address": "Số 806, Đường Lý Thường Kiệt, TP. Bắc Ninh, TP. HCM",
+    "latitude": 11.590536,
+    "longitude": 107.008136
   },
   {
     "id": "105",
-    "name": "Kho Trung tâm - 105",
-    "address": "1018 Cách Mạng Tháng Tám, Huyện Hàm Thuận Bắc, Bình Thuận",
-    "latitude": 11.029413,
-    "longitude": 108.026482
+    "name": "Kho Việt Nam - 105",
+    "address": "Số 360, Đường Lý Thường Kiệt, Quận Hồng Bàng, An Giang",
+    "latitude": 21.279338,
+    "longitude": 106.652856
   },
   {
     "id": "106",
-    "name": "Kho Trung tâm - 106",
-    "address": "1188 Phan Bội Châu, Thị xã La Gi, Bình Thuận",
-    "latitude": 11.49317,
-    "longitude": 108.199438
+    "name": "Kho Việt Nam - 106",
+    "address": "Số 1067, Đường Lý Thường Kiệt, Quận Ninh Kiều, Bình Dương",
+    "latitude": 20.709024,
+    "longitude": 108.128532
   },
   {
     "id": "107",
-    "name": "Kho Trung tâm - 107",
-    "address": "388 Quang Trung, Huyện Bắc Bình, Bình Thuận",
-    "latitude": 11.120247,
-    "longitude": 108.039124
+    "name": "Kho Việt Nam - 107",
+    "address": "Số 76, Đường Lê Lợi, Quận 1, Nghệ An",
+    "latitude": 11.435069,
+    "longitude": 106.352375
   },
   {
     "id": "108",
-    "name": "Kho Trung tâm - 108",
-    "address": "1257 Lý Thường Kiệt, Huyện Bắc Bình, Bình Thuận",
-    "latitude": 11.167583,
-    "longitude": 108.296778
+    "name": "Kho Việt Nam - 108",
+    "address": "Số 970, Đường Lý Thường Kiệt, Quận Cầu Giấy, Khánh Hòa",
+    "latitude": 20.92872,
+    "longitude": 104.037124
   },
   {
     "id": "109",
-    "name": "Kho Trung tâm - 109",
-    "address": "173 Phan Bội Châu, TP. Phan Thiết, Bình Thuận",
-    "latitude": 11.153486,
-    "longitude": 107.923477
+    "name": "Kho Việt Nam - 109",
+    "address": "Số 477, Đường Trần Hưng Đạo, TP. Bắc Ninh, Đà Nẵng",
+    "latitude": 17.05371,
+    "longitude": 106.467712
   },
   {
     "id": "110",
-    "name": "Kho Trung tâm - 110",
-    "address": "384 Lý Thường Kiệt, Huyện Bắc Bình, Bình Thuận",
-    "latitude": 11.115057,
-    "longitude": 108.405957
+    "name": "Kho Việt Nam - 110",
+    "address": "Số 503, Đường Trần Hưng Đạo, TP. Bắc Ninh, Đà Nẵng",
+    "latitude": 17.74557,
+    "longitude": 106.712903
   },
   {
     "id": "111",
-    "name": "Kho Trung tâm - 111",
-    "address": "647 Lê Lợi, Thị xã La Gi, Bình Thuận",
-    "latitude": 11.012354,
-    "longitude": 107.820222
+    "name": "Kho Việt Nam - 111",
+    "address": "Số 944, Đường Phạm Văn Đồng, Quận Cầu Giấy, Thanh Hóa",
+    "latitude": 19.342735,
+    "longitude": 104.296556
   },
   {
     "id": "112",
-    "name": "Kho Trung tâm - 112",
-    "address": "780 Cách Mạng Tháng Tám, TP. Phan Thiết, Bình Thuận",
-    "latitude": 11.10117,
-    "longitude": 108.1414
+    "name": "Kho Việt Nam - 112",
+    "address": "Số 105, Đường Phạm Văn Đồng, Quận Hồng Bàng, Nghệ An",
+    "latitude": 21.813584,
+    "longitude": 105.495415
   },
   {
     "id": "113",
-    "name": "Kho Trung tâm - 113",
-    "address": "766 Nguyễn Huệ, Huyện Trảng Bom, Đồng Nai",
-    "latitude": 11.052379,
-    "longitude": 107.420383
+    "name": "Kho Việt Nam - 113",
+    "address": "Số 1327, Đường Trần Hưng Đạo, Huyện Châu Đốc, Quảng Ninh",
+    "latitude": 14.346799,
+    "longitude": 107.677587
   },
   {
     "id": "114",
-    "name": "Kho Trung tâm - 114",
-    "address": "317 Nguyễn Huệ, Huyện Nhơn Trạch, Đồng Nai",
-    "latitude": 10.97494,
-    "longitude": 106.998599
+    "name": "Kho Việt Nam - 114",
+    "address": "Số 1084, Đường Lê Lợi, Huyện Châu Đốc, Khánh Hòa",
+    "latitude": 16.262388,
+    "longitude": 106.013626
   },
   {
     "id": "115",
-    "name": "Kho Trung tâm - 115",
-    "address": "571 Điện Biên Phủ, TP. Long Khánh, Đồng Nai",
-    "latitude": 10.880455,
-    "longitude": 107.201444
+    "name": "Kho Việt Nam - 115",
+    "address": "Số 730, Đường Nguyễn Văn Cừ, Huyện Châu Đốc, Nghệ An",
+    "latitude": 13.347615,
+    "longitude": 106.248836
   },
   {
     "id": "116",
-    "name": "Kho Trung tâm - 116",
-    "address": "1331 Hùng Vương, Huyện Nhơn Trạch, Đồng Nai",
-    "latitude": 11.454767,
-    "longitude": 107.138578
+    "name": "Kho Việt Nam - 116",
+    "address": "Số 1005, Đường Trần Hưng Đạo, Quận Ninh Kiều, Cần Thơ",
+    "latitude": 17.687494,
+    "longitude": 105.063711
   },
   {
     "id": "117",
-    "name": "Kho Trung tâm - 117",
-    "address": "388 30/4, Huyện Long Thành, Đồng Nai",
-    "latitude": 11.447026,
-    "longitude": 107.396633
+    "name": "Kho Việt Nam - 117",
+    "address": "Số 883, Đường Lê Lợi, Quận Hải Châu, Đà Nẵng",
+    "latitude": 11.836637,
+    "longitude": 105.213222
   },
   {
     "id": "118",
-    "name": "Kho Trung tâm - 118",
-    "address": "1108 Lê Lợi, Huyện Trảng Bom, Đồng Nai",
-    "latitude": 10.930869,
-    "longitude": 106.900298
+    "name": "Kho Việt Nam - 118",
+    "address": "Số 410, Đường Nguyễn Văn Cừ, Quận Hải Châu, Đà Nẵng",
+    "latitude": 18.117273,
+    "longitude": 106.488975
   },
   {
     "id": "119",
-    "name": "Kho Trung tâm - 119",
-    "address": "1452 Trần Hưng Đạo, Huyện Trảng Bom, Đồng Nai",
-    "latitude": 11.463697,
-    "longitude": 107.291488
+    "name": "Kho Việt Nam - 119",
+    "address": "Số 711, Đường Võ Nguyên Giáp, Quận Hồng Bàng, Bình Dương",
+    "latitude": 21.820205,
+    "longitude": 102.767801
   },
   {
     "id": "120",
-    "name": "Kho Trung tâm - 120",
-    "address": "102 Hùng Vương, TP. Long Khánh, Đồng Nai",
-    "latitude": 10.91063,
-    "longitude": 107.310497
+    "name": "Kho Việt Nam - 120",
+    "address": "Số 764, Đường Trần Hưng Đạo, Quận Hồng Bàng, Quảng Ninh",
+    "latitude": 14.517744,
+    "longitude": 107.905418
   },
   {
     "id": "121",
-    "name": "Kho Trung tâm - 121",
-    "address": "602 Phan Bội Châu, Huyện Trảng Bom, Đồng Nai",
-    "latitude": 11.12808,
-    "longitude": 106.983904
+    "name": "Kho Việt Nam - 121",
+    "address": "Số 1116, Đường Phạm Văn Đồng, Quận Hồng Bàng, Bình Dương",
+    "latitude": 13.79205,
+    "longitude": 106.802707
   },
   {
     "id": "122",
-    "name": "Kho Trung tâm - 122",
-    "address": "669 Nguyễn Huệ, TP. Long Khánh, Đồng Nai",
-    "latitude": 10.892077,
-    "longitude": 107.207019
+    "name": "Kho Việt Nam - 122",
+    "address": "Số 983, Đường Võ Nguyên Giáp, Quận Ninh Kiều, Hà Nội",
+    "latitude": 13.902519,
+    "longitude": 106.646338
   },
   {
     "id": "123",
-    "name": "Kho Trung tâm - 123",
-    "address": "693 Phan Bội Châu, Huyện Long Thành, Đồng Nai",
-    "latitude": 11.369323,
-    "longitude": 107.243112
+    "name": "Kho Việt Nam - 123",
+    "address": "Số 301, Đường Võ Nguyên Giáp, TP. Thủ Dầu Một, Hải Phòng",
+    "latitude": 15.725018,
+    "longitude": 105.183075
   },
   {
     "id": "124",
-    "name": "Kho Trung tâm - 124",
-    "address": "1169 Trần Hưng Đạo, Huyện Long Thành, Đồng Nai",
-    "latitude": 11.457626,
-    "longitude": 107.35513
+    "name": "Kho Việt Nam - 124",
+    "address": "Số 512, Đường Phạm Văn Đồng, Quận Ninh Kiều, Hải Phòng",
+    "latitude": 21.933488,
+    "longitude": 105.15144
   },
   {
     "id": "125",
-    "name": "Kho Trung tâm - 125",
-    "address": "141 Lê Lợi, Huyện Long Thành, Đồng Nai",
-    "latitude": 11.236403,
-    "longitude": 107.106618
+    "name": "Kho Việt Nam - 125",
+    "address": "Số 785, Đường Phạm Văn Đồng, Huyện Châu Đốc, Bình Dương",
+    "latitude": 21.815725,
+    "longitude": 103.59646
   },
   {
     "id": "126",
-    "name": "Kho Trung tâm - 126",
-    "address": "914 Quang Trung, Huyện Nhơn Trạch, Đồng Nai",
-    "latitude": 11.244382,
-    "longitude": 107.535801
+    "name": "Kho Việt Nam - 126",
+    "address": "Số 1345, Đường Phạm Văn Đồng, Quận 1, Hải Phòng",
+    "latitude": 21.934735,
+    "longitude": 104.526087
   },
   {
     "id": "127",
-    "name": "Kho Trung tâm - 127",
-    "address": "115 Phan Bội Châu, Huyện Nhơn Trạch, Đồng Nai",
-    "latitude": 11.3478,
-    "longitude": 107.450502
+    "name": "Kho Việt Nam - 127",
+    "address": "Số 879, Đường Nguyễn Văn Cừ, Quận 1, TP. HCM",
+    "latitude": 18.181786,
+    "longitude": 105.945992
   },
   {
     "id": "128",
-    "name": "Kho Trung tâm - 128",
-    "address": "702 Cách Mạng Tháng Tám, TP. Long Khánh, Đồng Nai",
-    "latitude": 10.80898,
-    "longitude": 107.160405
+    "name": "Kho Việt Nam - 128",
+    "address": "Số 1274, Đường Trần Hưng Đạo, TP. Thủ Dầu Một, Bắc Ninh",
+    "latitude": 15.957343,
+    "longitude": 106.245352
   },
   {
     "id": "129",
-    "name": "Kho Trung tâm - 129",
-    "address": "17 Trần Hưng Đạo, TP. Long Khánh, Đồng Nai",
-    "latitude": 11.266031,
-    "longitude": 107.430299
+    "name": "Kho Việt Nam - 129",
+    "address": "Số 263, Đường Phạm Văn Đồng, TP. Thủ Dầu Một, Nghệ An",
+    "latitude": 15.885405,
+    "longitude": 105.630069
   },
   {
     "id": "130",
-    "name": "Kho Trung tâm - 130",
-    "address": "1229 Lý Thường Kiệt, Huyện Nhơn Trạch, Đồng Nai",
-    "latitude": 11.389532,
-    "longitude": 107.125356
+    "name": "Kho Việt Nam - 130",
+    "address": "Số 1045, Đường Lê Lợi, Quận 1, Bắc Ninh",
+    "latitude": 20.809988,
+    "longitude": 108.457549
   },
   {
     "id": "131",
-    "name": "Kho Trung tâm - 131",
-    "address": "136 30/4, Huyện Nhơn Trạch, Đồng Nai",
-    "latitude": 11.213862,
-    "longitude": 107.33998
+    "name": "Kho Việt Nam - 131",
+    "address": "Số 93, Đường Phạm Văn Đồng, TP. Thủ Dầu Một, Thanh Hóa",
+    "latitude": 21.783311,
+    "longitude": 105.458642
   },
   {
     "id": "132",
-    "name": "Kho Trung tâm - 132",
-    "address": "1479 Điện Biên Phủ, TP. Biên Hòa, Đồng Nai",
-    "latitude": 11.446057,
-    "longitude": 107.060509
+    "name": "Kho Việt Nam - 132",
+    "address": "Số 1494, Đường Lý Thường Kiệt, Quận Cầu Giấy, Hà Nội",
+    "latitude": 17.761301,
+    "longitude": 106.223321
   },
   {
     "id": "133",
-    "name": "Kho Trung tâm - 133",
-    "address": "656 Trần Hưng Đạo, TP. Biên Hòa, Đồng Nai",
-    "latitude": 11.08484,
-    "longitude": 107.410395
+    "name": "Kho Việt Nam - 133",
+    "address": "Số 410, Đường Lý Thường Kiệt, Quận Ninh Kiều, TP. HCM",
+    "latitude": 22.191627,
+    "longitude": 104.854518
   },
   {
     "id": "134",
-    "name": "Kho Trung tâm - 134",
-    "address": "975 Điện Biên Phủ, TP. Biên Hòa, Đồng Nai",
-    "latitude": 11.314017,
-    "longitude": 107.080934
+    "name": "Kho Việt Nam - 134",
+    "address": "Số 912, Đường Nguyễn Văn Cừ, Quận Cầu Giấy, TP. HCM",
+    "latitude": 19.522235,
+    "longitude": 106.632465
   },
   {
     "id": "135",
-    "name": "Kho Trung tâm - 135",
-    "address": "808 Điện Biên Phủ, Huyện Trảng Bom, Đồng Nai",
-    "latitude": 11.290408,
-    "longitude": 107.194496
+    "name": "Kho Việt Nam - 135",
+    "address": "Số 375, Đường Phạm Văn Đồng, Quận Hồng Bàng, Nghệ An",
+    "latitude": 14.49329,
+    "longitude": 107.78876
   },
   {
     "id": "136",
-    "name": "Kho Trung tâm - 136",
-    "address": "1386 30/4, Huyện Nhơn Trạch, Đồng Nai",
-    "latitude": 11.312354,
-    "longitude": 107.29245
+    "name": "Kho Việt Nam - 136",
+    "address": "Số 324, Đường Phạm Văn Đồng, Quận Hải Châu, TP. HCM",
+    "latitude": 16.927409,
+    "longitude": 106.108385
   },
   {
     "id": "137",
-    "name": "Kho Trung tâm - 137",
-    "address": "1007 Quang Trung, Huyện Trảng Bom, Đồng Nai",
-    "latitude": 10.823209,
-    "longitude": 107.018622
+    "name": "Kho Việt Nam - 137",
+    "address": "Số 578, Đường Võ Nguyên Giáp, Huyện Châu Đốc, An Giang",
+    "latitude": 13.462769,
+    "longitude": 105.475646
   },
   {
     "id": "138",
-    "name": "Kho Trung tâm - 138",
-    "address": "398 Quang Trung, Huyện Trảng Bom, Đồng Nai",
-    "latitude": 11.135319,
-    "longitude": 107.438192
+    "name": "Kho Việt Nam - 138",
+    "address": "Số 894, Đường Phạm Văn Đồng, TP. Thủ Dầu Một, TP. HCM",
+    "latitude": 20.296251,
+    "longitude": 108.410547
   },
   {
     "id": "139",
-    "name": "Kho Trung tâm - 139",
-    "address": "48 Lê Lợi, TP. Long Khánh, Đồng Nai",
-    "latitude": 10.812066,
-    "longitude": 107.166922
+    "name": "Kho Việt Nam - 139",
+    "address": "Số 8, Đường Võ Nguyên Giáp, Quận Ninh Kiều, Bình Dương",
+    "latitude": 18.202243,
+    "longitude": 105.163528
   },
   {
     "id": "140",
-    "name": "Kho Trung tâm - 140",
-    "address": "204 Cách Mạng Tháng Tám, TP. Biên Hòa, Đồng Nai",
-    "latitude": 11.130256,
-    "longitude": 107.095134
+    "name": "Kho Việt Nam - 140",
+    "address": "Số 318, Đường Nguyễn Văn Cừ, Huyện Châu Đốc, Đà Nẵng",
+    "latitude": 19.963412,
+    "longitude": 107.456277
   },
   {
     "id": "141",
-    "name": "Kho Trung tâm - 141",
-    "address": "1190 Cách Mạng Tháng Tám, Quận 3, TP. Hồ Chí Minh",
-    "latitude": 10.773125,
-    "longitude": 106.500153
+    "name": "Kho Việt Nam - 141",
+    "address": "Số 1237, Đường Lý Thường Kiệt, TP. Thủ Dầu Một, TP. HCM",
+    "latitude": 10.937005,
+    "longitude": 105.144184
   },
   {
     "id": "142",
-    "name": "Kho Trung tâm - 142",
-    "address": "578 Điện Biên Phủ, Quận Gò Vấp, TP. Hồ Chí Minh",
-    "latitude": 10.922715,
-    "longitude": 106.515291
+    "name": "Kho Việt Nam - 142",
+    "address": "Số 303, Đường Phạm Văn Đồng, Quận 1, Bình Dương",
+    "latitude": 11.547869,
+    "longitude": 105.731335
   },
   {
     "id": "143",
-    "name": "Kho Trung tâm - 143",
-    "address": "438 Cách Mạng Tháng Tám, Quận Gò Vấp, TP. Hồ Chí Minh",
-    "latitude": 10.744568,
-    "longitude": 106.720833
+    "name": "Kho Việt Nam - 143",
+    "address": "Số 100, Đường Lý Thường Kiệt, Quận Cầu Giấy, Bắc Ninh",
+    "latitude": 19.031846,
+    "longitude": 107.552326
   },
   {
     "id": "144",
-    "name": "Kho Trung tâm - 144",
-    "address": "630 Quang Trung, Huyện Bình Chánh, TP. Hồ Chí Minh",
-    "latitude": 10.814354,
-    "longitude": 106.66449
+    "name": "Kho Việt Nam - 144",
+    "address": "Số 903, Đường Phạm Văn Đồng, Quận Hồng Bàng, Cần Thơ",
+    "latitude": 20.195059,
+    "longitude": 103.441676
   },
   {
     "id": "145",
-    "name": "Kho Trung tâm - 145",
-    "address": "535 Lý Thường Kiệt, Quận 3, TP. Hồ Chí Minh",
-    "latitude": 10.974072,
-    "longitude": 106.471763
+    "name": "Kho Việt Nam - 145",
+    "address": "Số 86, Đường Nguyễn Văn Cừ, TP. Bắc Ninh, Nghệ An",
+    "latitude": 10.450605,
+    "longitude": 105.02995
   },
   {
     "id": "146",
-    "name": "Kho Trung tâm - 146",
-    "address": "348 Lý Thường Kiệt, Huyện Bình Chánh, TP. Hồ Chí Minh",
-    "latitude": 10.853874,
-    "longitude": 106.771717
+    "name": "Kho Việt Nam - 146",
+    "address": "Số 1313, Đường Võ Nguyên Giáp, Huyện Châu Đốc, Hà Nội",
+    "latitude": 12.626964,
+    "longitude": 108.772692
   },
   {
     "id": "147",
-    "name": "Kho Trung tâm - 147",
-    "address": "271 Trần Hưng Đạo, Huyện Bình Chánh, TP. Hồ Chí Minh",
-    "latitude": 10.786749,
-    "longitude": 106.733935
+    "name": "Kho Việt Nam - 147",
+    "address": "Số 1050, Đường Trần Hưng Đạo, TP. Bắc Ninh, Bình Dương",
+    "latitude": 20.976578,
+    "longitude": 105.023746
   },
   {
     "id": "148",
-    "name": "Kho Trung tâm - 148",
-    "address": "953 Hùng Vương, Quận 1, TP. Hồ Chí Minh",
-    "latitude": 10.667508,
-    "longitude": 106.86813
+    "name": "Kho Việt Nam - 148",
+    "address": "Số 1454, Đường Nguyễn Văn Cừ, Quận 1, TP. HCM",
+    "latitude": 19.193863,
+    "longitude": 105.978148
   },
   {
     "id": "149",
-    "name": "Kho Trung tâm - 149",
-    "address": "356 Hùng Vương, Quận 3, TP. Hồ Chí Minh",
-    "latitude": 10.870669,
-    "longitude": 106.485526
+    "name": "Kho Việt Nam - 149",
+    "address": "Số 381, Đường Nguyễn Văn Cừ, Huyện Châu Đốc, Hải Phòng",
+    "latitude": 12.03994,
+    "longitude": 108.28234
   },
   {
     "id": "150",
-    "name": "Kho Trung tâm - 150",
-    "address": "927 Lý Thường Kiệt, Quận 3, TP. Hồ Chí Minh",
-    "latitude": 10.696267,
-    "longitude": 106.594477
+    "name": "Kho Việt Nam - 150",
+    "address": "Số 974, Đường Lê Lợi, Quận Hải Châu, Nghệ An",
+    "latitude": 17.716445,
+    "longitude": 105.641588
   },
   {
     "id": "151",
-    "name": "Kho Trung tâm - 151",
-    "address": "667 Lý Thường Kiệt, Huyện Bình Chánh, TP. Hồ Chí Minh",
-    "latitude": 10.905467,
-    "longitude": 106.849651
+    "name": "Kho Việt Nam - 151",
+    "address": "Số 397, Đường Lý Thường Kiệt, Quận Ninh Kiều, Khánh Hòa",
+    "latitude": 21.9896,
+    "longitude": 106.030558
   },
   {
     "id": "152",
-    "name": "Kho Trung tâm - 152",
-    "address": "447 Lê Lợi, Quận 3, TP. Hồ Chí Minh",
-    "latitude": 10.607644,
-    "longitude": 106.871502
+    "name": "Kho Việt Nam - 152",
+    "address": "Số 888, Đường Trần Hưng Đạo, Quận Hồng Bàng, TP. HCM",
+    "latitude": 18.126778,
+    "longitude": 104.522021
   },
   {
     "id": "153",
-    "name": "Kho Trung tâm - 153",
-    "address": "88 Quang Trung, Quận Gò Vấp, TP. Hồ Chí Minh",
-    "latitude": 10.961113,
-    "longitude": 106.640049
+    "name": "Kho Việt Nam - 153",
+    "address": "Số 1243, Đường Phạm Văn Đồng, Huyện Châu Đốc, TP. HCM",
+    "latitude": 21.227972,
+    "longitude": 106.908587
   },
   {
     "id": "154",
-    "name": "Kho Trung tâm - 154",
-    "address": "140 Nguyễn Huệ, Quận 1, TP. Hồ Chí Minh",
-    "latitude": 10.639246,
-    "longitude": 106.635445
+    "name": "Kho Việt Nam - 154",
+    "address": "Số 166, Đường Nguyễn Văn Cừ, TP. Thủ Dầu Một, Quảng Ninh",
+    "latitude": 21.801871,
+    "longitude": 106.276667
   },
   {
     "id": "155",
-    "name": "Kho Trung tâm - 155",
-    "address": "853 30/4, Quận 1, TP. Hồ Chí Minh",
-    "latitude": 10.817175,
-    "longitude": 106.394326
+    "name": "Kho Việt Nam - 155",
+    "address": "Số 554, Đường Lê Lợi, Quận Ninh Kiều, Khánh Hòa",
+    "latitude": 20.134721,
+    "longitude": 107.190836
   },
   {
     "id": "156",
-    "name": "Kho Trung tâm - 156",
-    "address": "217 Phan Bội Châu, Huyện Bình Chánh, TP. Hồ Chí Minh",
-    "latitude": 10.808918,
-    "longitude": 106.7929
+    "name": "Kho Việt Nam - 156",
+    "address": "Số 1417, Đường Lý Thường Kiệt, Quận Hồng Bàng, Quảng Ninh",
+    "latitude": 13.615178,
+    "longitude": 107.933495
   },
   {
     "id": "157",
-    "name": "Kho Trung tâm - 157",
-    "address": "1007 Lý Thường Kiệt, Huyện Củ Chi, TP. Hồ Chí Minh",
-    "latitude": 10.784931,
-    "longitude": 106.435431
+    "name": "Kho Việt Nam - 157",
+    "address": "Số 888, Đường Trần Hưng Đạo, TP. Thủ Dầu Một, TP. HCM",
+    "latitude": 16.701634,
+    "longitude": 104.770114
   },
   {
     "id": "158",
-    "name": "Kho Trung tâm - 158",
-    "address": "1495 Trần Hưng Đạo, Huyện Củ Chi, TP. Hồ Chí Minh",
-    "latitude": 10.831933,
-    "longitude": 106.745952
+    "name": "Kho Việt Nam - 158",
+    "address": "Số 989, Đường Võ Nguyên Giáp, Quận Ninh Kiều, Hải Phòng",
+    "latitude": 11.678807,
+    "longitude": 107.460182
   },
   {
     "id": "159",
-    "name": "Kho Trung tâm - 159",
-    "address": "360 Điện Biên Phủ, TP. Thủ Đức, TP. Hồ Chí Minh",
-    "latitude": 10.684091,
-    "longitude": 106.867512
+    "name": "Kho Việt Nam - 159",
+    "address": "Số 154, Đường Phạm Văn Đồng, TP. Thủ Dầu Một, Hà Nội",
+    "latitude": 20.002075,
+    "longitude": 106.170473
   },
   {
     "id": "160",
-    "name": "Kho Trung tâm - 160",
-    "address": "994 Điện Biên Phủ, Quận Gò Vấp, TP. Hồ Chí Minh",
-    "latitude": 10.73202,
-    "longitude": 106.640879
+    "name": "Kho Việt Nam - 160",
+    "address": "Số 679, Đường Trần Hưng Đạo, Quận Ninh Kiều, Đà Nẵng",
+    "latitude": 10.332416,
+    "longitude": 104.657556
   },
   {
     "id": "161",
-    "name": "Kho Trung tâm - 161",
-    "address": "858 30/4, TP. Thủ Đức, TP. Hồ Chí Minh",
-    "latitude": 10.992888,
-    "longitude": 106.572022
+    "name": "Kho Việt Nam - 161",
+    "address": "Số 179, Đường Phạm Văn Đồng, Quận 1, Hải Phòng",
+    "latitude": 14.836065,
+    "longitude": 107.07289
   },
   {
     "id": "162",
-    "name": "Kho Trung tâm - 162",
-    "address": "982 Nguyễn Huệ, Quận 1, TP. Hồ Chí Minh",
-    "latitude": 10.896991,
-    "longitude": 106.590492
+    "name": "Kho Việt Nam - 162",
+    "address": "Số 502, Đường Võ Nguyên Giáp, Huyện Châu Đốc, Thanh Hóa",
+    "latitude": 21.323243,
+    "longitude": 104.271471
   },
   {
     "id": "163",
-    "name": "Kho Trung tâm - 163",
-    "address": "1458 Điện Biên Phủ, Quận 3, TP. Hồ Chí Minh",
-    "latitude": 10.67986,
-    "longitude": 106.563079
+    "name": "Kho Việt Nam - 163",
+    "address": "Số 332, Đường Lý Thường Kiệt, Huyện Châu Đốc, An Giang",
+    "latitude": 15.955515,
+    "longitude": 106.058692
   },
   {
     "id": "164",
-    "name": "Kho Trung tâm - 164",
-    "address": "967 Điện Biên Phủ, Quận Gò Vấp, TP. Hồ Chí Minh",
-    "latitude": 10.829238,
-    "longitude": 106.496017
+    "name": "Kho Việt Nam - 164",
+    "address": "Số 991, Đường Nguyễn Văn Cừ, Quận Ninh Kiều, Cần Thơ",
+    "latitude": 15.460041,
+    "longitude": 106.423898
   },
   {
     "id": "165",
-    "name": "Kho Trung tâm - 165",
-    "address": "400 Lý Thường Kiệt, Quận 1, TP. Hồ Chí Minh",
-    "latitude": 10.723274,
-    "longitude": 106.93858
+    "name": "Kho Việt Nam - 165",
+    "address": "Số 590, Đường Trần Hưng Đạo, Quận Hồng Bàng, Quảng Ninh",
+    "latitude": 12.142357,
+    "longitude": 107.655227
   },
   {
     "id": "166",
-    "name": "Kho Trung tâm - 166",
-    "address": "311 Trần Hưng Đạo, TP. Thủ Đức, TP. Hồ Chí Minh",
-    "latitude": 10.772969,
-    "longitude": 106.652158
+    "name": "Kho Việt Nam - 166",
+    "address": "Số 1238, Đường Lý Thường Kiệt, Quận Hồng Bàng, Quảng Ninh",
+    "latitude": 16.637296,
+    "longitude": 105.966751
   },
   {
     "id": "167",
-    "name": "Kho Trung tâm - 167",
-    "address": "1240 Cách Mạng Tháng Tám, Huyện Bình Chánh, TP. Hồ Chí Minh",
-    "latitude": 10.785239,
-    "longitude": 106.931755
+    "name": "Kho Việt Nam - 167",
+    "address": "Số 683, Đường Lý Thường Kiệt, TP. Bắc Ninh, Bắc Ninh",
+    "latitude": 22.045671,
+    "longitude": 105.033754
   },
   {
     "id": "168",
-    "name": "Kho Trung tâm - 168",
-    "address": "867 Quang Trung, Huyện Củ Chi, TP. Hồ Chí Minh",
-    "latitude": 10.699139,
-    "longitude": 106.854727
+    "name": "Kho Việt Nam - 168",
+    "address": "Số 716, Đường Nguyễn Văn Cừ, Quận Hải Châu, An Giang",
+    "latitude": 22.129409,
+    "longitude": 106.351892
   },
   {
     "id": "169",
-    "name": "Kho Trung tâm - 169",
-    "address": "1169 Điện Biên Phủ, TP. Đà Lạt, Lâm Đồng",
-    "latitude": 11.894111,
-    "longitude": 107.738484
+    "name": "Kho Việt Nam - 169",
+    "address": "Số 1356, Đường Trần Hưng Đạo, Quận 1, Hà Nội",
+    "latitude": 19.184901,
+    "longitude": 104.589025
   },
   {
     "id": "170",
-    "name": "Kho Trung tâm - 170",
-    "address": "266 Nguyễn Huệ, Huyện Lâm Hà, Lâm Đồng",
-    "latitude": 11.372785,
-    "longitude": 107.612508
+    "name": "Kho Việt Nam - 170",
+    "address": "Số 65, Đường Lý Thường Kiệt, Quận Cầu Giấy, Đà Nẵng",
+    "latitude": 13.056349,
+    "longitude": 106.024087
   },
   {
     "id": "171",
-    "name": "Kho Trung tâm - 171",
-    "address": "621 Nguyễn Huệ, TP. Bảo Lộc, Lâm Đồng",
-    "latitude": 11.830366,
-    "longitude": 108.121196
+    "name": "Kho Việt Nam - 171",
+    "address": "Số 501, Đường Lý Thường Kiệt, Quận Ninh Kiều, Bắc Ninh",
+    "latitude": 10.975954,
+    "longitude": 106.448436
   },
   {
     "id": "172",
-    "name": "Kho Trung tâm - 172",
-    "address": "1392 Phan Bội Châu, TP. Bảo Lộc, Lâm Đồng",
-    "latitude": 12.041518,
-    "longitude": 107.577251
+    "name": "Kho Việt Nam - 172",
+    "address": "Số 672, Đường Lý Thường Kiệt, Huyện Châu Đốc, Quảng Ninh",
+    "latitude": 20.794691,
+    "longitude": 105.531696
   },
   {
     "id": "173",
-    "name": "Kho Trung tâm - 173",
-    "address": "377 Phan Bội Châu, TP. Bảo Lộc, Lâm Đồng",
-    "latitude": 11.87813,
-    "longitude": 107.553427
+    "name": "Kho Việt Nam - 173",
+    "address": "Số 1399, Đường Trần Hưng Đạo, Quận Ninh Kiều, Bình Dương",
+    "latitude": 17.669998,
+    "longitude": 105.512215
   },
   {
     "id": "174",
-    "name": "Kho Trung tâm - 174",
-    "address": "893 30/4, Huyện Lâm Hà, Lâm Đồng",
-    "latitude": 11.290096,
-    "longitude": 107.785395
+    "name": "Kho Việt Nam - 174",
+    "address": "Số 777, Đường Lý Thường Kiệt, Quận 1, Quảng Ninh",
+    "latitude": 21.908778,
+    "longitude": 105.610345
   },
   {
     "id": "175",
-    "name": "Kho Trung tâm - 175",
-    "address": "358 Lê Lợi, Huyện Đức Trọng, Lâm Đồng",
-    "latitude": 11.414127,
-    "longitude": 107.459989
+    "name": "Kho Việt Nam - 175",
+    "address": "Số 924, Đường Lê Lợi, Quận Hồng Bàng, Thanh Hóa",
+    "latitude": 14.55483,
+    "longitude": 107.902552
   },
   {
     "id": "176",
-    "name": "Kho Trung tâm - 176",
-    "address": "1140 Lê Lợi, Huyện Đức Trọng, Lâm Đồng",
-    "latitude": 11.906639,
-    "longitude": 107.779171
+    "name": "Kho Việt Nam - 176",
+    "address": "Số 810, Đường Lý Thường Kiệt, Quận Hải Châu, Khánh Hòa",
+    "latitude": 20.293197,
+    "longitude": 107.307546
   },
   {
     "id": "177",
-    "name": "Kho Trung tâm - 177",
-    "address": "693 Cách Mạng Tháng Tám, Huyện Di Linh, Lâm Đồng",
-    "latitude": 11.34533,
-    "longitude": 107.644346
+    "name": "Kho Việt Nam - 177",
+    "address": "Số 1332, Đường Trần Hưng Đạo, Huyện Châu Đốc, Thanh Hóa",
+    "latitude": 21.134358,
+    "longitude": 105.868231
   },
   {
     "id": "178",
-    "name": "Kho Trung tâm - 178",
-    "address": "904 30/4, Huyện Di Linh, Lâm Đồng",
-    "latitude": 11.369212,
-    "longitude": 108.128694
+    "name": "Kho Việt Nam - 178",
+    "address": "Số 1120, Đường Lý Thường Kiệt, Quận Cầu Giấy, Thanh Hóa",
+    "latitude": 21.033892,
+    "longitude": 108.067915
   },
   {
     "id": "179",
-    "name": "Kho Trung tâm - 179",
-    "address": "958 Lê Lợi, TP. Đà Lạt, Lâm Đồng",
-    "latitude": 11.536456,
-    "longitude": 107.430734
+    "name": "Kho Việt Nam - 179",
+    "address": "Số 247, Đường Nguyễn Văn Cừ, TP. Bắc Ninh, Khánh Hòa",
+    "latitude": 16.971475,
+    "longitude": 111.916278
   },
   {
     "id": "180",
-    "name": "Kho Trung tâm - 180",
-    "address": "648 Điện Biên Phủ, TP. Bảo Lộc, Lâm Đồng",
-    "latitude": 11.766994,
-    "longitude": 107.511596
+    "name": "Kho Việt Nam - 180",
+    "address": "Số 960, Đường Lý Thường Kiệt, Quận Hải Châu, Đà Nẵng",
+    "latitude": 10.847305,
+    "longitude": 104.95968
   },
   {
     "id": "181",
-    "name": "Kho Trung tâm - 181",
-    "address": "408 Cách Mạng Tháng Tám, TP. Đà Lạt, Lâm Đồng",
-    "latitude": 11.19883,
-    "longitude": 107.987888
+    "name": "Kho Việt Nam - 181",
+    "address": "Số 155, Đường Võ Nguyên Giáp, Huyện Châu Đốc, TP. HCM",
+    "latitude": 21.18554,
+    "longitude": 103.494377
   },
   {
     "id": "182",
-    "name": "Kho Trung tâm - 182",
-    "address": "735 Hùng Vương, TP. Đà Lạt, Lâm Đồng",
-    "latitude": 11.445638,
-    "longitude": 108.07192
+    "name": "Kho Việt Nam - 182",
+    "address": "Số 257, Đường Trần Hưng Đạo, Quận Hải Châu, Cần Thơ",
+    "latitude": 8.646091,
+    "longitude": 113.076629
   },
   {
     "id": "183",
-    "name": "Kho Trung tâm - 183",
-    "address": "821 Hùng Vương, TP. Đà Lạt, Lâm Đồng",
-    "latitude": 11.489584,
-    "longitude": 108.311793
+    "name": "Kho Việt Nam - 183",
+    "address": "Số 1157, Đường Trần Hưng Đạo, Huyện Châu Đốc, Cần Thơ",
+    "latitude": 20.263464,
+    "longitude": 104.58447
   },
   {
     "id": "184",
-    "name": "Kho Trung tâm - 184",
-    "address": "1359 Cách Mạng Tháng Tám, Huyện Di Linh, Lâm Đồng",
-    "latitude": 11.37691,
-    "longitude": 107.785619
+    "name": "Kho Việt Nam - 184",
+    "address": "Số 698, Đường Nguyễn Văn Cừ, TP. Thủ Dầu Một, Quảng Ninh",
+    "latitude": 22.390165,
+    "longitude": 103.957947
   },
   {
     "id": "185",
-    "name": "Kho Trung tâm - 185",
-    "address": "984 Lê Lợi, TP. Đà Lạt, Lâm Đồng",
-    "latitude": 11.307612,
-    "longitude": 108.191231
+    "name": "Kho Việt Nam - 185",
+    "address": "Số 1462, Đường Trần Hưng Đạo, TP. Thủ Dầu Một, An Giang",
+    "latitude": 10.140465,
+    "longitude": 105.007048
   },
   {
     "id": "186",
-    "name": "Kho Trung tâm - 186",
-    "address": "1382 Quang Trung, TP. Đà Lạt, Lâm Đồng",
-    "latitude": 11.934393,
-    "longitude": 107.756847
+    "name": "Kho Việt Nam - 186",
+    "address": "Số 634, Đường Trần Hưng Đạo, Quận Cầu Giấy, Đà Nẵng",
+    "latitude": 21.067962,
+    "longitude": 106.030989
   },
   {
     "id": "187",
-    "name": "Kho Trung tâm - 187",
-    "address": "1150 Điện Biên Phủ, TP. Bảo Lộc, Lâm Đồng",
-    "latitude": 11.296873,
-    "longitude": 108.033435
+    "name": "Kho Việt Nam - 187",
+    "address": "Số 614, Đường Lê Lợi, Quận 1, Hải Phòng",
+    "latitude": 14.461975,
+    "longitude": 107.864385
   },
   {
     "id": "188",
-    "name": "Kho Trung tâm - 188",
-    "address": "434 Nguyễn Huệ, Huyện Di Linh, Lâm Đồng",
-    "latitude": 11.652438,
-    "longitude": 107.830184
+    "name": "Kho Việt Nam - 188",
+    "address": "Số 985, Đường Trần Hưng Đạo, Huyện Châu Đốc, Bắc Ninh",
+    "latitude": 19.052817,
+    "longitude": 107.602577
   },
   {
     "id": "189",
-    "name": "Kho Trung tâm - 189",
-    "address": "631 Quang Trung, TP. Bảo Lộc, Lâm Đồng",
-    "latitude": 12.063597,
-    "longitude": 107.395469
+    "name": "Kho Việt Nam - 189",
+    "address": "Số 465, Đường Lý Thường Kiệt, Huyện Châu Đốc, TP. HCM",
+    "latitude": 15.626074,
+    "longitude": 105.335166
   },
   {
     "id": "190",
-    "name": "Kho Trung tâm - 190",
-    "address": "217 Hùng Vương, Huyện Đức Trọng, Lâm Đồng",
-    "latitude": 11.215617,
-    "longitude": 108.203627
+    "name": "Kho Việt Nam - 190",
+    "address": "Số 846, Đường Trần Hưng Đạo, Huyện Châu Đốc, Hà Nội",
+    "latitude": 18.117572,
+    "longitude": 105.178374
   },
   {
     "id": "191",
-    "name": "Kho Trung tâm - 191",
-    "address": "1008 Trần Hưng Đạo, Huyện Lâm Hà, Lâm Đồng",
-    "latitude": 11.634338,
-    "longitude": 108.179141
+    "name": "Kho Việt Nam - 191",
+    "address": "Số 310, Đường Trần Hưng Đạo, Quận Cầu Giấy, Quảng Ninh",
+    "latitude": 13.06567,
+    "longitude": 107.51239
   },
   {
     "id": "192",
-    "name": "Kho Trung tâm - 192",
-    "address": "684 Hùng Vương, Huyện Lâm Hà, Lâm Đồng",
-    "latitude": 11.57526,
-    "longitude": 108.146958
+    "name": "Kho Việt Nam - 192",
+    "address": "Số 980, Đường Trần Hưng Đạo, Huyện Châu Đốc, TP. HCM",
+    "latitude": 21.581054,
+    "longitude": 104.925248
   },
   {
     "id": "193",
-    "name": "Kho Trung tâm - 193",
-    "address": "1115 Lý Thường Kiệt, TP. Đà Lạt, Lâm Đồng",
-    "latitude": 11.304012,
-    "longitude": 108.465369
+    "name": "Kho Việt Nam - 193",
+    "address": "Số 480, Đường Lê Lợi, Quận 1, Quảng Ninh",
+    "latitude": 14.820945,
+    "longitude": 106.180263
   },
   {
     "id": "194",
-    "name": "Kho Trung tâm - 194",
-    "address": "1246 Nguyễn Huệ, TP. Đà Lạt, Lâm Đồng",
-    "latitude": 11.519683,
-    "longitude": 108.273547
+    "name": "Kho Việt Nam - 194",
+    "address": "Số 766, Đường Trần Hưng Đạo, Huyện Châu Đốc, Đà Nẵng",
+    "latitude": 21.883836,
+    "longitude": 105.677618
   },
   {
     "id": "195",
-    "name": "Kho Trung tâm - 195",
-    "address": "1361 Lý Thường Kiệt, Huyện Di Linh, Lâm Đồng",
-    "latitude": 12.095743,
-    "longitude": 107.451501
+    "name": "Kho Việt Nam - 195",
+    "address": "Số 292, Đường Lý Thường Kiệt, TP. Bắc Ninh, Cần Thơ",
+    "latitude": 21.677218,
+    "longitude": 107.530198
   },
   {
     "id": "196",
-    "name": "Kho Trung tâm - 196",
-    "address": "1432 Lê Lợi, TP. Bảo Lộc, Lâm Đồng",
-    "latitude": 11.220151,
-    "longitude": 107.817702
+    "name": "Kho Việt Nam - 196",
+    "address": "Số 222, Đường Nguyễn Văn Cừ, Quận Hải Châu, Cần Thơ",
+    "latitude": 20.774479,
+    "longitude": 105.990949
   },
   {
     "id": "197",
-    "name": "Kho Trung tâm - 197",
-    "address": "323 Hùng Vương, TP. Tân An, Long An",
-    "latitude": 10.69584,
-    "longitude": 106.111291
+    "name": "Kho Việt Nam - 197",
+    "address": "Số 4, Đường Phạm Văn Đồng, TP. Bắc Ninh, Bình Dương",
+    "latitude": 18.733339,
+    "longitude": 107.384666
   },
   {
     "id": "198",
-    "name": "Kho Trung tâm - 198",
-    "address": "1232 Điện Biên Phủ, Huyện Đức Hòa, Long An",
-    "latitude": 10.608729,
-    "longitude": 106.169202
+    "name": "Kho Việt Nam - 198",
+    "address": "Số 731, Đường Nguyễn Văn Cừ, Quận Ninh Kiều, TP. HCM",
+    "latitude": 9.811926,
+    "longitude": 105.157226
   },
   {
     "id": "199",
-    "name": "Kho Trung tâm - 199",
-    "address": "962 Trần Hưng Đạo, Huyện Cần Giuộc, Long An",
-    "latitude": 10.732056,
-    "longitude": 106.2792
+    "name": "Kho Việt Nam - 199",
+    "address": "Số 631, Đường Lê Lợi, TP. Bắc Ninh, Hà Nội",
+    "latitude": 22.030789,
+    "longitude": 104.504295
   },
   {
     "id": "200",
-    "name": "Kho Trung tâm - 200",
-    "address": "1020 Điện Biên Phủ, Thị xã Kiến Tường, Long An",
-    "latitude": 10.647738,
-    "longitude": 105.929839
+    "name": "Kho Việt Nam - 200",
+    "address": "Số 433, Đường Trần Hưng Đạo, Quận Hồng Bàng, Đà Nẵng",
+    "latitude": 11.707855,
+    "longitude": 105.407482
   },
   {
     "id": "201",
-    "name": "Kho Trung tâm - 201",
-    "address": "1087 Nguyễn Huệ, Huyện Bến Lức, Long An",
-    "latitude": 10.733183,
-    "longitude": 106.434766
+    "name": "Kho Việt Nam - 201",
+    "address": "Số 652, Đường Trần Hưng Đạo, TP. Bắc Ninh, Khánh Hòa",
+    "latitude": 14.88723,
+    "longitude": 106.241926
   },
   {
     "id": "202",
-    "name": "Kho Trung tâm - 202",
-    "address": "387 30/4, Huyện Cần Giuộc, Long An",
-    "latitude": 10.574313,
-    "longitude": 106.268419
+    "name": "Kho Việt Nam - 202",
+    "address": "Số 509, Đường Lê Lợi, Quận Hải Châu, Thanh Hóa",
+    "latitude": 14.06245,
+    "longitude": 105.976551
   },
   {
     "id": "203",
-    "name": "Kho Trung tâm - 203",
-    "address": "579 Điện Biên Phủ, Huyện Đức Hòa, Long An",
-    "latitude": 10.634028,
-    "longitude": 106.216545
+    "name": "Kho Việt Nam - 203",
+    "address": "Số 1029, Đường Nguyễn Văn Cừ, Huyện Châu Đốc, Đà Nẵng",
+    "latitude": 20.889084,
+    "longitude": 108.486268
   },
   {
     "id": "204",
-    "name": "Kho Trung tâm - 204",
-    "address": "737 Cách Mạng Tháng Tám, Huyện Bến Lức, Long An",
-    "latitude": 10.670324,
-    "longitude": 106.454424
+    "name": "Kho Việt Nam - 204",
+    "address": "Số 164, Đường Trần Hưng Đạo, Quận Hải Châu, Đà Nẵng",
+    "latitude": 17.938138,
+    "longitude": 104.735102
   },
   {
     "id": "205",
-    "name": "Kho Trung tâm - 205",
-    "address": "92 Điện Biên Phủ, Huyện Cần Giuộc, Long An",
-    "latitude": 10.771149,
-    "longitude": 106.341291
+    "name": "Kho Việt Nam - 205",
+    "address": "Số 1133, Đường Võ Nguyên Giáp, TP. Thủ Dầu Một, TP. HCM",
+    "latitude": 15.133114,
+    "longitude": 105.983478
   },
   {
     "id": "206",
-    "name": "Kho Trung tâm - 206",
-    "address": "1325 Phan Bội Châu, Huyện Đức Hòa, Long An",
-    "latitude": 10.659232,
-    "longitude":  107.699030
+    "name": "Kho Việt Nam - 206",
+    "address": "Số 652, Đường Phạm Văn Đồng, TP. Thủ Dầu Một, Cần Thơ",
+    "latitude": 12.418524,
+    "longitude": 106.21812
   },
   {
     "id": "207",
-    "name": "Kho Trung tâm - 207",
-    "address": "326 Điện Biên Phủ, Huyện Đức Hòa, Long An",
-    "latitude": 10.708583,
-    "longitude":  107.390443
+    "name": "Kho Việt Nam - 207",
+    "address": "Số 1284, Đường Võ Nguyên Giáp, Quận Hồng Bàng, Cần Thơ",
+    "latitude": 14.151792,
+    "longitude": 106.533395
   },
   {
     "id": "208",
-    "name": "Kho Trung tâm - 208",
-    "address": "518 Lê Lợi, Huyện Bến Lức, Long An",
-    "latitude": 10.814257,
-    "longitude": 106.024092
+    "name": "Kho Việt Nam - 208",
+    "address": "Số 425, Đường Lê Lợi, Quận Ninh Kiều, Hà Nội",
+    "latitude": 14.044952,
+    "longitude": 105.968054
   },
   {
     "id": "209",
-    "name": "Kho Trung tâm - 209",
-    "address": "288 Điện Biên Phủ, Thị xã Kiến Tường, Long An",
-    "latitude": 10.883705,
-    "longitude": 106.395794
+    "name": "Kho Việt Nam - 209",
+    "address": "Số 838, Đường Võ Nguyên Giáp, Quận Ninh Kiều, Hải Phòng",
+    "latitude": 15.27507,
+    "longitude": 105.635952
   },
   {
     "id": "210",
-    "name": "Kho Trung tâm - 210",
-    "address": "655 Trần Hưng Đạo, Huyện Bến Lức, Long An",
-    "latitude": 10.737064,
-    "longitude": 107.650170
+    "name": "Kho Việt Nam - 210",
+    "address": "Số 1111, Đường Trần Hưng Đạo, Quận Hải Châu, Nghệ An",
+    "latitude": 21.715921,
+    "longitude": 106.127543
   },
   {
     "id": "211",
-    "name": "Kho Trung tâm - 211",
-    "address": "212 Điện Biên Phủ, TP. Tân An, Long An",
-    "latitude": 10.70242,
-    "longitude": 106.056306
+    "name": "Kho Việt Nam - 211",
+    "address": "Số 258, Đường Trần Hưng Đạo, Quận Hải Châu, Thanh Hóa",
+    "latitude": 15.193378,
+    "longitude": 107.017679
   },
   {
     "id": "212",
-    "name": "Kho Trung tâm - 212",
-    "address": "1116 30/4, Huyện Đức Hòa, Long An",
-    "latitude": 11.481504,
-    "longitude": 106.102247
+    "name": "Kho Việt Nam - 212",
+    "address": "Số 401, Đường Lê Lợi, TP. Bắc Ninh, Nghệ An",
+    "latitude": 21.439943,
+    "longitude": 103.309373
   },
   {
     "id": "213",
-    "name": "Kho Trung tâm - 213",
-    "address": "425 Trần Hưng Đạo, Huyện Cần Giuộc, Long An",
-    "latitude": 10.845436,
-    "longitude": 106.370861
+    "name": "Kho Việt Nam - 213",
+    "address": "Số 827, Đường Võ Nguyên Giáp, Quận Ninh Kiều, Quảng Ninh",
+    "latitude": 19.065788,
+    "longitude": 106.904718
   },
   {
     "id": "214",
-    "name": "Kho Trung tâm - 214",
-    "address": "1384 Nguyễn Huệ, TP. Tân An, Long An",
-    "latitude": 10.652087,
-    "longitude": 106.432919
+    "name": "Kho Việt Nam - 214",
+    "address": "Số 1094, Đường Lê Lợi, Quận Ninh Kiều, Hải Phòng",
+    "latitude": 12.575102,
+    "longitude": 105.88155
   },
   {
     "id": "215",
-    "name": "Kho Trung tâm - 215",
-    "address": "934 Lý Thường Kiệt, Huyện Cần Giuộc, Long An",
-    "latitude": 10.59153,
-    "longitude": 106.288449
+    "name": "Kho Việt Nam - 215",
+    "address": "Số 1484, Đường Nguyễn Văn Cừ, Quận Cầu Giấy, An Giang",
+    "latitude": 16.852819,
+    "longitude": 106.270034
   },
   {
     "id": "216",
-    "name": "Kho Trung tâm - 216",
-    "address": "859 Cách Mạng Tháng Tám, TP. Tân An, Long An",
-    "latitude": 10.772082,
-    "longitude": 106.350644
+    "name": "Kho Việt Nam - 216",
+    "address": "Số 1446, Đường Lý Thường Kiệt, Quận Hải Châu, TP. HCM",
+    "latitude": 18.115842,
+    "longitude": 104.120803
   },
   {
     "id": "217",
-    "name": "Kho Trung tâm - 217",
-    "address": "1484 Quang Trung, Huyện Đức Hòa, Long An",
-    "latitude": 10.774495,
-    "longitude": 106.007058
+    "name": "Kho Việt Nam - 217",
+    "address": "Số 202, Đường Nguyễn Văn Cừ, Huyện Châu Đốc, Nghệ An",
+    "latitude": 15.876667,
+    "longitude": 106.719267
   },
   {
     "id": "218",
-    "name": "Kho Trung tâm - 218",
-    "address": "870 Lý Thường Kiệt, Huyện Bến Lức, Long An",
-    "latitude": 10.628337,
-    "longitude": 106.496009
+    "name": "Kho Việt Nam - 218",
+    "address": "Số 167, Đường Võ Nguyên Giáp, Quận Cầu Giấy, Nghệ An",
+    "latitude": 17.178359,
+    "longitude": 105.716008
   },
   {
     "id": "219",
-    "name": "Kho Trung tâm - 219",
-    "address": "473 30/4, Thị xã Kiến Tường, Long An",
-    "latitude": 10.672421,
-    "longitude": 105.999774
+    "name": "Kho Việt Nam - 219",
+    "address": "Số 830, Đường Trần Hưng Đạo, Quận Cầu Giấy, Bình Dương",
+    "latitude": 19.021255,
+    "longitude": 104.131082
   },
   {
     "id": "220",
-    "name": "Kho Trung tâm - 220",
-    "address": "1216 Điện Biên Phủ, Huyện Bến Lức, Long An",
-    "latitude": 10.596707,
-    "longitude": 106.157353
+    "name": "Kho Việt Nam - 220",
+    "address": "Số 386, Đường Võ Nguyên Giáp, Quận Ninh Kiều, Đà Nẵng",
+    "latitude": 22.440621,
+    "longitude": 102.282488
   },
   {
     "id": "221",
-    "name": "Kho Trung tâm - 221",
-    "address": "15 Cách Mạng Tháng Tám, Huyện Đức Hòa, Long An",
-    "latitude": 10.754456,
-    "longitude": 106.013359
+    "name": "Kho Việt Nam - 221",
+    "address": "Số 899, Đường Phạm Văn Đồng, Quận Hải Châu, Bắc Ninh",
+    "latitude": 15.194335,
+    "longitude": 106.304954
   },
   {
     "id": "222",
-    "name": "Kho Trung tâm - 222",
-    "address": "1066 Hùng Vương, Huyện Bến Lức, Long An",
-    "latitude": 10.888419,
-    "longitude":  107.892863
+    "name": "Kho Việt Nam - 222",
+    "address": "Số 578, Đường Lý Thường Kiệt, Quận Ninh Kiều, Khánh Hòa",
+    "latitude": 20.783405,
+    "longitude": 104.626917
   },
   {
     "id": "223",
-    "name": "Kho Trung tâm - 223",
-    "address": "413 30/4, Huyện Bến Lức, Long An",
-    "latitude": 10.659038,
-    "longitude": 106.077342
+    "name": "Kho Việt Nam - 223",
+    "address": "Số 30, Đường Phạm Văn Đồng, Huyện Châu Đốc, Thanh Hóa",
+    "latitude": 12.564684,
+    "longitude": 106.850614
   },
   {
     "id": "224",
-    "name": "Kho Trung tâm - 224",
-    "address": "1303 Trần Hưng Đạo, TP. Tây Ninh, Tây Ninh",
-    "latitude": 11.645334,
-    "longitude": 106.264179
+    "name": "Kho Việt Nam - 224",
+    "address": "Số 1070, Đường Phạm Văn Đồng, Huyện Châu Đốc, Bắc Ninh",
+    "latitude": 20.701129,
+    "longitude": 102.910514
   },
   {
     "id": "225",
-    "name": "Kho Trung tâm - 225",
-    "address": "1089 Lê Lợi, TP. Tây Ninh, Tây Ninh",
-    "latitude": 11.2625,
-    "longitude": 106.214034
+    "name": "Kho Việt Nam - 225",
+    "address": "Số 643, Đường Nguyễn Văn Cừ, Quận Cầu Giấy, Hải Phòng",
+    "latitude": 21.543218,
+    "longitude": 104.904794
   },
   {
     "id": "226",
-    "name": "Kho Trung tâm - 226",
-    "address": "1433 Nguyễn Huệ, Huyện Dương Minh Châu, Tây Ninh",
-    "latitude": 11.563294,
-    "longitude":  107.803646
+    "name": "Kho Việt Nam - 226",
+    "address": "Số 285, Đường Võ Nguyên Giáp, Quận Cầu Giấy, Đà Nẵng",
+    "latitude": 14.707317,
+    "longitude": 107.70126
   },
   {
     "id": "227",
-    "name": "Kho Trung tâm - 227",
-    "address": "1136 Quang Trung, Huyện Dương Minh Châu, Tây Ninh",
-    "latitude": 11.284659,
-    "longitude":  106.786622
+    "name": "Kho Việt Nam - 227",
+    "address": "Số 88, Đường Lý Thường Kiệt, Quận Cầu Giấy, Quảng Ninh",
+    "latitude": 20.509081,
+    "longitude": 106.59074
   },
   {
     "id": "228",
-    "name": "Kho Trung tâm - 228",
-    "address": "1173 Hùng Vương, Thị xã Trảng Bàng, Tây Ninh",
-    "latitude": 11.242052,
-    "longitude": 105.96692
+    "name": "Kho Việt Nam - 228",
+    "address": "Số 855, Đường Phạm Văn Đồng, Quận Hồng Bàng, Cần Thơ",
+    "latitude": 21.479162,
+    "longitude": 107.949507
   },
   {
     "id": "229",
-    "name": "Kho Trung tâm - 229",
-    "address": "144 Trần Hưng Đạo, Thị xã Hòa Thành, Tây Ninh",
-    "latitude": 11.613993,
-    "longitude": 106.218323
+    "name": "Kho Việt Nam - 229",
+    "address": "Số 70, Đường Lê Lợi, Quận Hồng Bàng, Hà Nội",
+    "latitude": 19.284285,
+    "longitude": 107.846497
   },
   {
     "id": "230",
-    "name": "Kho Trung tâm - 230",
-    "address": "39 Hùng Vương, Huyện Gò Dầu, Tây Ninh",
-    "latitude": 11.328542,
-    "longitude": 106.079595
+    "name": "Kho Việt Nam - 230",
+    "address": "Số 223, Đường Võ Nguyên Giáp, Quận 1, Nghệ An",
+    "latitude": 18.858746,
+    "longitude": 106.763009
   },
   {
     "id": "231",
-    "name": "Kho Trung tâm - 231",
-    "address": "1091 Trần Hưng Đạo, Thị xã Hòa Thành, Tây Ninh",
-    "latitude": 11.233394,
-    "longitude": 105.935561
+    "name": "Kho Việt Nam - 231",
+    "address": "Số 423, Đường Phạm Văn Đồng, Huyện Châu Đốc, TP. HCM",
+    "latitude": 14.625228,
+    "longitude": 105.743822
   },
   {
     "id": "232",
-    "name": "Kho Trung tâm - 232",
-    "address": "358 Phan Bội Châu, Thị xã Hòa Thành, Tây Ninh",
-    "latitude": 11.231042,
-    "longitude": 106.187593
+    "name": "Kho Việt Nam - 232",
+    "address": "Số 840, Đường Lê Lợi, Quận Cầu Giấy, Quảng Ninh",
+    "latitude": 18.673653,
+    "longitude": 104.721248
   },
   {
     "id": "233",
-    "name": "Kho Trung tâm - 233",
-    "address": "346 Lý Thường Kiệt, Thị xã Trảng Bàng, Tây Ninh",
-    "latitude": 11.377734,
-    "longitude":  107.003764
+    "name": "Kho Việt Nam - 233",
+    "address": "Số 399, Đường Lý Thường Kiệt, Quận Cầu Giấy, Thanh Hóa",
+    "latitude": 10.072362,
+    "longitude": 104.533072
   },
   {
     "id": "234",
-    "name": "Kho Trung tâm - 234",
-    "address": "802 30/4, Thị xã Hòa Thành, Tây Ninh",
-    "latitude": 11.32187,
-    "longitude": 106.048173
+    "name": "Kho Việt Nam - 234",
+    "address": "Số 453, Đường Phạm Văn Đồng, Quận Hải Châu, Cần Thơ",
+    "latitude": 20.872364,
+    "longitude": 103.489139
   },
   {
     "id": "235",
-    "name": "Kho Trung tâm - 235",
-    "address": "995 30/4, Thị xã Trảng Bàng, Tây Ninh",
-    "latitude": 11.095907,
-    "longitude": 106.333411
+    "name": "Kho Việt Nam - 235",
+    "address": "Số 93, Đường Nguyễn Văn Cừ, TP. Thủ Dầu Một, TP. HCM",
+    "latitude": 21.226565,
+    "longitude": 103.741081
   },
   {
     "id": "236",
-    "name": "Kho Trung tâm - 236",
-    "address": "182 Cách Mạng Tháng Tám, Huyện Dương Minh Châu, Tây Ninh",
-    "latitude": 11.651405,
-    "longitude": 106.315044
+    "name": "Kho Việt Nam - 236",
+    "address": "Số 1267, Đường Nguyễn Văn Cừ, Quận Ninh Kiều, Hải Phòng",
+    "latitude": 20.425056,
+    "longitude": 103.399322
   },
   {
     "id": "237",
-    "name": "Kho Trung tâm - 237",
-    "address": "496 Trần Hưng Đạo, Thị xã Hòa Thành, Tây Ninh",
-    "latitude": 11.382785,
-    "longitude": 106.210926
+    "name": "Kho Việt Nam - 237",
+    "address": "Số 74, Đường Lê Lợi, TP. Thủ Dầu Một, Khánh Hòa",
+    "latitude": 13.538881,
+    "longitude": 106.367535
   },
   {
     "id": "238",
-    "name": "Kho Trung tâm - 238",
-    "address": "808 Lê Lợi, Huyện Dương Minh Châu, Tây Ninh",
-    "latitude": 11.560900,
-    "longitude":  107.809256
+    "name": "Kho Việt Nam - 238",
+    "address": "Số 1363, Đường Phạm Văn Đồng, TP. Bắc Ninh, Bắc Ninh",
+    "latitude": 14.157982,
+    "longitude": 105.757719
   },
   {
     "id": "239",
-    "name": "Kho Trung tâm - 239",
-    "address": "213 Điện Biên Phủ, Thị xã Hòa Thành, Tây Ninh",
-    "latitude": 11.559393,
-    "longitude": 107.801323
+    "name": "Kho Việt Nam - 239",
+    "address": "Số 288, Đường Phạm Văn Đồng, Huyện Châu Đốc, Đà Nẵng",
+    "latitude": 13.957891,
+    "longitude": 107.263538
   },
   {
     "id": "240",
-    "name": "Kho Trung tâm - 240",
-    "address": "596 30/4, Huyện Gò Dầu, Tây Ninh",
-    "latitude": 10.696439,
-    "longitude": 107.739368
+    "name": "Kho Việt Nam - 240",
+    "address": "Số 903, Đường Lý Thường Kiệt, Quận Hải Châu, Nghệ An",
+    "latitude": 21.781445,
+    "longitude": 103.734219
   },
   {
     "id": "241",
-    "name": "Kho Trung tâm - 241",
-    "address": "627 Phan Bội Châu, Thị xã Trảng Bàng, Tây Ninh",
-    "latitude": 11.168041,
-    "longitude": 106.217402
+    "name": "Kho Việt Nam - 241",
+    "address": "Số 467, Đường Lê Lợi, TP. Bắc Ninh, Nghệ An",
+    "latitude": 13.630169,
+    "longitude": 105.53302
   },
   {
     "id": "242",
-    "name": "Kho Trung tâm - 242",
-    "address": "736 Cách Mạng Tháng Tám, TP. Tây Ninh, Tây Ninh",
-    "latitude": 11.038599,
-    "longitude": 106.242709
+    "name": "Kho Việt Nam - 242",
+    "address": "Số 1358, Đường Phạm Văn Đồng, Quận Hồng Bàng, Nghệ An",
+    "latitude": 13.321782,
+    "longitude": 106.909193
   },
   {
     "id": "243",
-    "name": "Kho Trung tâm - 243",
-    "address": "709 Phan Bội Châu, Thị xã Trảng Bàng, Tây Ninh",
-    "latitude": 10.952278,
-    "longitude": 106.316979
+    "name": "Kho Việt Nam - 243",
+    "address": "Số 282, Đường Võ Nguyên Giáp, Quận Cầu Giấy, Hải Phòng",
+    "latitude": 22.743382,
+    "longitude": 104.284535
   },
   {
     "id": "244",
-    "name": "Kho Trung tâm - 244",
-    "address": "3 Hùng Vương, Huyện Dương Minh Châu, Tây Ninh",
-    "latitude": 10.956781,
-    "longitude": 106.324355
+    "name": "Kho Việt Nam - 244",
+    "address": "Số 726, Đường Lê Lợi, Quận Cầu Giấy, Bắc Ninh",
+    "latitude": 15.131269,
+    "longitude": 106.726773
   },
   {
     "id": "245",
-    "name": "Kho Trung tâm - 245",
-    "address": "239 Quang Trung, Huyện Gò Dầu, Tây Ninh",
-    "latitude": 11.554073,
-    "longitude":  107.806059
+    "name": "Kho Việt Nam - 245",
+    "address": "Số 708, Đường Phạm Văn Đồng, Quận Hồng Bàng, Đà Nẵng",
+    "latitude": 11.177329,
+    "longitude": 105.429987
   },
   {
     "id": "246",
-    "name": "Kho Trung tâm - 246",
-    "address": "757 Lý Thường Kiệt, Thị xã Trảng Bàng, Tây Ninh",
-    "latitude": 11.520403,
-    "longitude": 106.136703
+    "name": "Kho Việt Nam - 246",
+    "address": "Số 1479, Đường Lê Lợi, Quận Hồng Bàng, Nghệ An",
+    "latitude": 19.985863,
+    "longitude": 106.382581
   },
   {
     "id": "247",
-    "name": "Kho Trung tâm - 247",
-    "address": "995 Phan Bội Châu, Huyện Dương Minh Châu, Tây Ninh",
-    "latitude": 11.275051,
-    "longitude": 106.01983
+    "name": "Kho Việt Nam - 247",
+    "address": "Số 422, Đường Lê Lợi, Quận 1, Cần Thơ",
+    "latitude": 21.984878,
+    "longitude": 104.650218
   },
   {
     "id": "248",
-    "name": "Kho Trung tâm - 248",
-    "address": "1038 Điện Biên Phủ, TP. Tây Ninh, Tây Ninh",
-    "latitude": 11.239069,
-    "longitude": 106.038945
+    "name": "Kho Việt Nam - 248",
+    "address": "Số 741, Đường Nguyễn Văn Cừ, Huyện Châu Đốc, Hà Nội",
+    "latitude": 18.534709,
+    "longitude": 105.231095
   },
   {
     "id": "249",
-    "name": "Kho Trung tâm - 249",
-    "address": "261 Nguyễn Huệ, Huyện Dương Minh Châu, Tây Ninh",
-    "latitude": 11.610415,
-    "longitude": 106.264713
+    "name": "Kho Việt Nam - 249",
+    "address": "Số 178, Đường Trần Hưng Đạo, TP. Bắc Ninh, Hải Phòng",
+    "latitude": 22.742625,
+    "longitude": 103.549678
   },
   {
     "id": "250",
-    "name": "Kho Trung tâm - 250",
-    "address": "46 Điện Biên Phủ, Thị xã Trảng Bàng, Tây Ninh",
-    "latitude": 11.187364,
-    "longitude": 106.396698
+    "name": "Kho Việt Nam - 250",
+    "address": "Số 314, Đường Võ Nguyên Giáp, Quận Hải Châu, Khánh Hòa",
+    "latitude": 12.611961,
+    "longitude": 106.837951
+  },
+  {
+    "id": "251",
+    "name": "Kho Việt Nam - 251",
+    "address": "Số 1452, Đường Lý Thường Kiệt, TP. Bắc Ninh, Bắc Ninh",
+    "latitude": 22.046696,
+    "longitude": 105.238921
+  },
+  {
+    "id": "252",
+    "name": "Kho Việt Nam - 252",
+    "address": "Số 713, Đường Phạm Văn Đồng, Quận Hồng Bàng, Khánh Hòa",
+    "latitude": 18.87312,
+    "longitude": 103.860014
+  },
+  {
+    "id": "253",
+    "name": "Kho Việt Nam - 253",
+    "address": "Số 869, Đường Phạm Văn Đồng, Huyện Châu Đốc, Quảng Ninh",
+    "latitude": 19.247549,
+    "longitude": 105.238357
+  },
+  {
+    "id": "254",
+    "name": "Kho Việt Nam - 254",
+    "address": "Số 627, Đường Võ Nguyên Giáp, Quận Ninh Kiều, Khánh Hòa",
+    "latitude": 11.271794,
+    "longitude": 105.680616
+  },
+  {
+    "id": "255",
+    "name": "Kho Việt Nam - 255",
+    "address": "Số 127, Đường Lê Lợi, TP. Thủ Dầu Một, Cần Thơ",
+    "latitude": 15.509627,
+    "longitude": 106.627314
+  },
+  {
+    "id": "256",
+    "name": "Kho Việt Nam - 256",
+    "address": "Số 1431, Đường Lê Lợi, Quận Hải Châu, Khánh Hòa",
+    "latitude": 22.64268,
+    "longitude": 105.231587
+  },
+  {
+    "id": "257",
+    "name": "Kho Việt Nam - 257",
+    "address": "Số 868, Đường Nguyễn Văn Cừ, TP. Bắc Ninh, Bình Dương",
+    "latitude": 16.777816,
+    "longitude": 105.274168
+  },
+  {
+    "id": "258",
+    "name": "Kho Việt Nam - 258",
+    "address": "Số 1044, Đường Võ Nguyên Giáp, Quận Ninh Kiều, Khánh Hòa",
+    "latitude": 15.29185,
+    "longitude": 105.345084
+  },
+  {
+    "id": "259",
+    "name": "Kho Việt Nam - 259",
+    "address": "Số 638, Đường Nguyễn Văn Cừ, Quận Ninh Kiều, Hải Phòng",
+    "latitude": 11.586392,
+    "longitude": 105.783712
+  },
+  {
+    "id": "260",
+    "name": "Kho Việt Nam - 260",
+    "address": "Số 192, Đường Phạm Văn Đồng, TP. Bắc Ninh, Quảng Ninh",
+    "latitude": 16.170332,
+    "longitude": 105.85092
+  },
+  {
+    "id": "261",
+    "name": "Kho Việt Nam - 261",
+    "address": "Số 757, Đường Nguyễn Văn Cừ, Quận Cầu Giấy, TP. HCM",
+    "latitude": 19.900427,
+    "longitude": 103.320636
+  },
+  {
+    "id": "262",
+    "name": "Kho Việt Nam - 262",
+    "address": "Số 203, Đường Phạm Văn Đồng, Quận 1, TP. HCM",
+    "latitude": 14.186641,
+    "longitude": 106.272825
+  },
+  {
+    "id": "263",
+    "name": "Kho Việt Nam - 263",
+    "address": "Số 913, Đường Lê Lợi, Quận Hải Châu, Cần Thơ",
+    "latitude": 18.022564,
+    "longitude": 105.200215
+  },
+  {
+    "id": "264",
+    "name": "Kho Việt Nam - 264",
+    "address": "Số 642, Đường Phạm Văn Đồng, Quận Ninh Kiều, Bình Dương",
+    "latitude": 21.395035,
+    "longitude": 106.405439
+  },
+  {
+    "id": "265",
+    "name": "Kho Việt Nam - 265",
+    "address": "Số 241, Đường Nguyễn Văn Cừ, Quận Hồng Bàng, TP. HCM",
+    "latitude": 21.047449,
+    "longitude": 105.961896
+  },
+  {
+    "id": "266",
+    "name": "Kho Việt Nam - 266",
+    "address": "Số 1399, Đường Võ Nguyên Giáp, Quận Hồng Bàng, Khánh Hòa",
+    "latitude": 10.611628,
+    "longitude": 105.545001
+  },
+  {
+    "id": "267",
+    "name": "Kho Việt Nam - 267",
+    "address": "Số 787, Đường Nguyễn Văn Cừ, Quận Cầu Giấy, Hải Phòng",
+    "latitude": 12.398411,
+    "longitude": 106.211362
+  },
+  {
+    "id": "268",
+    "name": "Kho Việt Nam - 268",
+    "address": "Số 980, Đường Phạm Văn Đồng, Quận 1, Hà Nội",
+    "latitude": 19.748596,
+    "longitude": 105.236293
+  },
+  {
+    "id": "269",
+    "name": "Kho Việt Nam - 269",
+    "address": "Số 1019, Đường Nguyễn Văn Cừ, Quận 1, Hải Phòng",
+    "latitude": 16.505332,
+    "longitude": 105.87061
+  },
+  {
+    "id": "270",
+    "name": "Kho Việt Nam - 270",
+    "address": "Số 1031, Đường Lê Lợi, Huyện Châu Đốc, TP. HCM",
+    "latitude": 21.951281,
+    "longitude": 105.653341
+  },
+  {
+    "id": "271",
+    "name": "Kho Việt Nam - 271",
+    "address": "Số 1288, Đường Phạm Văn Đồng, TP. Bắc Ninh, Hải Phòng",
+    "latitude": 11.633341,
+    "longitude": 106.391646
+  },
+  {
+    "id": "272",
+    "name": "Kho Việt Nam - 272",
+    "address": "Số 79, Đường Trần Hưng Đạo, TP. Bắc Ninh, Đà Nẵng",
+    "latitude": 22.346098,
+    "longitude": 102.831091
+  },
+  {
+    "id": "273",
+    "name": "Kho Việt Nam - 273",
+    "address": "Số 955, Đường Trần Hưng Đạo, Quận Ninh Kiều, TP. HCM",
+    "latitude": 18.789909,
+    "longitude": 103.906483
+  },
+  {
+    "id": "274",
+    "name": "Kho Việt Nam - 274",
+    "address": "Số 852, Đường Lý Thường Kiệt, Quận Ninh Kiều, Khánh Hòa",
+    "latitude": 15.33545,
+    "longitude": 106.829133
+  },
+  {
+    "id": "275",
+    "name": "Kho Việt Nam - 275",
+    "address": "Số 547, Đường Phạm Văn Đồng, Quận 1, Nghệ An",
+    "latitude": 21.559827,
+    "longitude": 104.436063
+  },
+  {
+    "id": "276",
+    "name": "Kho Việt Nam - 276",
+    "address": "Số 1331, Đường Phạm Văn Đồng, Quận Hải Châu, Nghệ An",
+    "latitude": 21.117817,
+    "longitude": 106.644504
+  },
+  {
+    "id": "277",
+    "name": "Kho Việt Nam - 277",
+    "address": "Số 607, Đường Trần Hưng Đạo, Quận Hải Châu, Thanh Hóa",
+    "latitude": 21.487062,
+    "longitude": 104.750218
+  },
+  {
+    "id": "278",
+    "name": "Kho Việt Nam - 278",
+    "address": "Số 453, Đường Phạm Văn Đồng, Quận 1, Hải Phòng",
+    "latitude": 18.903244,
+    "longitude": 106.584665
+  },
+  {
+    "id": "279",
+    "name": "Kho Việt Nam - 279",
+    "address": "Số 814, Đường Lê Lợi, Quận Ninh Kiều, Hà Nội",
+    "latitude": 12.757905,
+    "longitude": 108.23229
+  },
+  {
+    "id": "280",
+    "name": "Kho Việt Nam - 280",
+    "address": "Số 1060, Đường Lý Thường Kiệt, Huyện Châu Đốc, Bình Dương",
+    "latitude": 17.157353,
+    "longitude": 106.47201
+  },
+  {
+    "id": "281",
+    "name": "Kho Việt Nam - 281",
+    "address": "Số 1226, Đường Phạm Văn Đồng, Quận 1, Đà Nẵng",
+    "latitude": 11.986421,
+    "longitude": 107.477394
+  },
+  {
+    "id": "282",
+    "name": "Kho Việt Nam - 282",
+    "address": "Số 1033, Đường Lý Thường Kiệt, Quận Ninh Kiều, Thanh Hóa",
+    "latitude": 21.682867,
+    "longitude": 105.826081
+  },
+  {
+    "id": "283",
+    "name": "Kho Việt Nam - 283",
+    "address": "Số 469, Đường Lê Lợi, Quận 1, Nghệ An",
+    "latitude": 18.160889,
+    "longitude": 105.627834
+  },
+  {
+    "id": "284",
+    "name": "Kho Việt Nam - 284",
+    "address": "Số 1341, Đường Lê Lợi, Quận Hồng Bàng, Nghệ An",
+    "latitude": 15.456822,
+    "longitude": 105.134791
+  },
+  {
+    "id": "285",
+    "name": "Kho Việt Nam - 285",
+    "address": "Số 1111, Đường Phạm Văn Đồng, Quận Hồng Bàng, Khánh Hòa",
+    "latitude": 21.284784,
+    "longitude": 103.808702
+  },
+  {
+    "id": "286",
+    "name": "Kho Việt Nam - 286",
+    "address": "Số 548, Đường Lê Lợi, Quận Hồng Bàng, An Giang",
+    "latitude": 10.001464,
+    "longitude": 104.594229
+  },
+  {
+    "id": "287",
+    "name": "Kho Việt Nam - 287",
+    "address": "Số 1221, Đường Trần Hưng Đạo, TP. Thủ Dầu Một, Thanh Hóa",
+    "latitude": 12.186434,
+    "longitude": 107.076462
+  },
+  {
+    "id": "288",
+    "name": "Kho Việt Nam - 288",
+    "address": "Số 233, Đường Trần Hưng Đạo, TP. Thủ Dầu Một, Bình Dương",
+    "latitude": 18.207141,
+    "longitude": 106.104607
+  },
+  {
+    "id": "289",
+    "name": "Kho Việt Nam - 289",
+    "address": "Số 1302, Đường Lý Thường Kiệt, Quận Ninh Kiều, Nghệ An",
+    "latitude": 20.511097,
+    "longitude": 108.294787
+  },
+  {
+    "id": "290",
+    "name": "Kho Việt Nam - 290",
+    "address": "Số 276, Đường Phạm Văn Đồng, Quận Hải Châu, Hà Nội",
+    "latitude": 15.902174,
+    "longitude": 106.315969
+  },
+  {
+    "id": "291",
+    "name": "Kho Việt Nam - 291",
+    "address": "Số 856, Đường Nguyễn Văn Cừ, Quận Hải Châu, Thanh Hóa",
+    "latitude": 19.257939,
+    "longitude": 106.442963
+  },
+  {
+    "id": "292",
+    "name": "Kho Việt Nam - 292",
+    "address": "Số 305, Đường Lý Thường Kiệt, Huyện Châu Đốc, Cần Thơ",
+    "latitude": 20.524009,
+    "longitude": 106.109335
+  },
+  {
+    "id": "293",
+    "name": "Kho Việt Nam - 293",
+    "address": "Số 848, Đường Võ Nguyên Giáp, Quận 1, Hải Phòng",
+    "latitude": 20.637378,
+    "longitude": 105.086922
+  },
+  {
+    "id": "294",
+    "name": "Kho Việt Nam - 294",
+    "address": "Số 959, Đường Phạm Văn Đồng, Quận Hải Châu, Khánh Hòa",
+    "latitude": 18.794707,
+    "longitude": 105.337782
+  },
+  {
+    "id": "295",
+    "name": "Kho Việt Nam - 295",
+    "address": "Số 1285, Đường Lê Lợi, TP. Bắc Ninh, Nghệ An",
+    "latitude": 12.421989,
+    "longitude": 108.468694
+  },
+  {
+    "id": "296",
+    "name": "Kho Việt Nam - 296",
+    "address": "Số 574, Đường Lý Thường Kiệt, Quận Hồng Bàng, Thanh Hóa",
+    "latitude": 19.637529,
+    "longitude": 103.670135
+  },
+  {
+    "id": "297",
+    "name": "Kho Việt Nam - 297",
+    "address": "Số 804, Đường Trần Hưng Đạo, Huyện Châu Đốc, An Giang",
+    "latitude": 11.874008,
+    "longitude": 105.987993
+  },
+  {
+    "id": "298",
+    "name": "Kho Việt Nam - 298",
+    "address": "Số 1477, Đường Nguyễn Văn Cừ, Quận Hải Châu, Đà Nẵng",
+    "latitude": 21.333045,
+    "longitude": 106.590653
+  },
+  {
+    "id": "299",
+    "name": "Kho Việt Nam - 299",
+    "address": "Số 824, Đường Trần Hưng Đạo, TP. Bắc Ninh, Cần Thơ",
+    "latitude": 18.001021,
+    "longitude": 104.27957
+  },
+  {
+    "id": "300",
+    "name": "Kho Việt Nam - 300",
+    "address": "Số 947, Đường Phạm Văn Đồng, TP. Bắc Ninh, Quảng Ninh",
+    "latitude": 13.468992,
+    "longitude": 107.454732
+  },
+  {
+    "id": "301",
+    "name": "Kho Việt Nam - 301",
+    "address": "Số 243, Đường Phạm Văn Đồng, Quận 1, Hà Nội",
+    "latitude": 13.602302,
+    "longitude": 105.650841
+  },
+  {
+    "id": "302",
+    "name": "Kho Việt Nam - 302",
+    "address": "Số 1386, Đường Trần Hưng Đạo, Quận Ninh Kiều, Đà Nẵng",
+    "latitude": 17.28194,
+    "longitude": 105.761389
+  },
+  {
+    "id": "303",
+    "name": "Kho Việt Nam - 303",
+    "address": "Số 1486, Đường Lý Thường Kiệt, Quận 1, Quảng Ninh",
+    "latitude": 20.634688,
+    "longitude": 103.292854
+  },
+  {
+    "id": "304",
+    "name": "Kho Việt Nam - 304",
+    "address": "Số 1437, Đường Trần Hưng Đạo, TP. Bắc Ninh, Nghệ An",
+    "latitude": 20.385742,
+    "longitude": 106.259409
+  },
+  {
+    "id": "305",
+    "name": "Kho Việt Nam - 305",
+    "address": "Số 661, Đường Trần Hưng Đạo, Huyện Châu Đốc, Bình Dương",
+    "latitude": 21.519579,
+    "longitude": 104.998184
+  },
+  {
+    "id": "306",
+    "name": "Kho Việt Nam - 306",
+    "address": "Số 404, Đường Trần Hưng Đạo, Quận 1, Khánh Hòa",
+    "latitude": 11.27017,
+    "longitude": 106.468363
+  },
+  {
+    "id": "307",
+    "name": "Kho Việt Nam - 307",
+    "address": "Số 1114, Đường Nguyễn Văn Cừ, Quận Cầu Giấy, Cần Thơ",
+    "latitude": 19.905064,
+    "longitude": 103.992677
+  },
+  {
+    "id": "308",
+    "name": "Kho Việt Nam - 308",
+    "address": "Số 942, Đường Lê Lợi, Quận Hồng Bàng, Hà Nội",
+    "latitude": 15.503603,
+    "longitude": 105.348798
+  },
+  {
+    "id": "309",
+    "name": "Kho Việt Nam - 309",
+    "address": "Số 261, Đường Võ Nguyên Giáp, Huyện Châu Đốc, Hà Nội",
+    "latitude": 15.853532,
+    "longitude": 105.468563
+  },
+  {
+    "id": "310",
+    "name": "Kho Việt Nam - 310",
+    "address": "Số 973, Đường Võ Nguyên Giáp, Quận Hồng Bàng, Bình Dương",
+    "latitude": 19.977652,
+    "longitude": 108.756103
+  },
+  {
+    "id": "311",
+    "name": "Kho Việt Nam - 311",
+    "address": "Số 937, Đường Phạm Văn Đồng, Quận Hồng Bàng, Bắc Ninh",
+    "latitude": 20.844606,
+    "longitude": 103.921499
+  },
+  {
+    "id": "312",
+    "name": "Kho Việt Nam - 312",
+    "address": "Số 258, Đường Nguyễn Văn Cừ, Quận Hải Châu, Hà Nội",
+    "latitude": 10.116349,
+    "longitude": 105.732402
+  },
+  {
+    "id": "313",
+    "name": "Kho Việt Nam - 313",
+    "address": "Số 557, Đường Võ Nguyên Giáp, Quận Hải Châu, Hà Nội",
+    "latitude": 21.442867,
+    "longitude": 104.076765
+  },
+  {
+    "id": "314",
+    "name": "Kho Việt Nam - 314",
+    "address": "Số 207, Đường Nguyễn Văn Cừ, Quận 1, Thanh Hóa",
+    "latitude": 16.366682,
+    "longitude": 105.147715
+  },
+  {
+    "id": "315",
+    "name": "Kho Việt Nam - 315",
+    "address": "Số 1342, Đường Nguyễn Văn Cừ, TP. Thủ Dầu Một, Hà Nội",
+    "latitude": 22.795991,
+    "longitude": 104.271036
+  },
+  {
+    "id": "316",
+    "name": "Kho Việt Nam - 316",
+    "address": "Số 793, Đường Võ Nguyên Giáp, TP. Bắc Ninh, Hải Phòng",
+    "latitude": 19.284555,
+    "longitude": 107.149649
+  },
+  {
+    "id": "317",
+    "name": "Kho Việt Nam - 317",
+    "address": "Số 304, Đường Phạm Văn Đồng, Quận Ninh Kiều, Thanh Hóa",
+    "latitude": 13.8803,
+    "longitude": 107.49969
+  },
+  {
+    "id": "318",
+    "name": "Kho Việt Nam - 318",
+    "address": "Số 1453, Đường Phạm Văn Đồng, TP. Thủ Dầu Một, Khánh Hòa",
+    "latitude": 19.060872,
+    "longitude": 107.297019
+  },
+  {
+    "id": "319",
+    "name": "Kho Việt Nam - 319",
+    "address": "Số 1144, Đường Lý Thường Kiệt, Quận 1, Bắc Ninh",
+    "latitude": 11.940297,
+    "longitude": 106.608186
+  },
+  {
+    "id": "320",
+    "name": "Kho Việt Nam - 320",
+    "address": "Số 138, Đường Võ Nguyên Giáp, Quận Hồng Bàng, Cần Thơ",
+    "latitude": 15.555647,
+    "longitude": 106.456259
+  },
+  {
+    "id": "321",
+    "name": "Kho Việt Nam - 321",
+    "address": "Số 38, Đường Phạm Văn Đồng, Quận 1, Cần Thơ",
+    "latitude": 18.702825,
+    "longitude": 107.28778
+  },
+  {
+    "id": "322",
+    "name": "Kho Việt Nam - 322",
+    "address": "Số 969, Đường Võ Nguyên Giáp, Quận Cầu Giấy, Hà Nội",
+    "latitude": 8.848023,
+    "longitude": 112.988663
+  },
+  {
+    "id": "323",
+    "name": "Kho Việt Nam - 323",
+    "address": "Số 457, Đường Võ Nguyên Giáp, Quận 1, An Giang",
+    "latitude": 12.389087,
+    "longitude": 108.836629
+  },
+  {
+    "id": "324",
+    "name": "Kho Việt Nam - 324",
+    "address": "Số 1144, Đường Trần Hưng Đạo, Quận Ninh Kiều, Bắc Ninh",
+    "latitude": 19.634336,
+    "longitude": 103.524792
+  },
+  {
+    "id": "325",
+    "name": "Kho Việt Nam - 325",
+    "address": "Số 650, Đường Nguyễn Văn Cừ, Quận Hải Châu, Cần Thơ",
+    "latitude": 22.311269,
+    "longitude": 102.597919
+  },
+  {
+    "id": "326",
+    "name": "Kho Việt Nam - 326",
+    "address": "Số 104, Đường Nguyễn Văn Cừ, Quận Hồng Bàng, Cần Thơ",
+    "latitude": 19.581706,
+    "longitude": 105.185121
+  },
+  {
+    "id": "327",
+    "name": "Kho Việt Nam - 327",
+    "address": "Số 231, Đường Trần Hưng Đạo, Quận 1, Khánh Hòa",
+    "latitude": 20.329428,
+    "longitude": 106.473615
+  },
+  {
+    "id": "328",
+    "name": "Kho Việt Nam - 328",
+    "address": "Số 529, Đường Phạm Văn Đồng, Huyện Châu Đốc, Thanh Hóa",
+    "latitude": 18.238166,
+    "longitude": 105.256474
+  },
+  {
+    "id": "329",
+    "name": "Kho Việt Nam - 329",
+    "address": "Số 253, Đường Phạm Văn Đồng, Huyện Châu Đốc, Bắc Ninh",
+    "latitude": 15.927961,
+    "longitude": 106.666285
+  },
+  {
+    "id": "330",
+    "name": "Kho Việt Nam - 330",
+    "address": "Số 1299, Đường Lý Thường Kiệt, Quận 1, Hà Nội",
+    "latitude": 20.903973,
+    "longitude": 104.414688
+  },
+  {
+    "id": "331",
+    "name": "Kho Việt Nam - 331",
+    "address": "Số 987, Đường Võ Nguyên Giáp, Quận Hồng Bàng, Hải Phòng",
+    "latitude": 17.564045,
+    "longitude": 106.81695
+  },
+  {
+    "id": "332",
+    "name": "Kho Việt Nam - 332",
+    "address": "Số 83, Đường Võ Nguyên Giáp, TP. Bắc Ninh, Thanh Hóa",
+    "latitude": 14.016736,
+    "longitude": 106.432766
+  },
+  {
+    "id": "333",
+    "name": "Kho Việt Nam - 333",
+    "address": "Số 1198, Đường Nguyễn Văn Cừ, Quận Hải Châu, Hải Phòng",
+    "latitude": 12.81958,
+    "longitude": 108.329403
+  },
+  {
+    "id": "334",
+    "name": "Kho Việt Nam - 334",
+    "address": "Số 434, Đường Nguyễn Văn Cừ, TP. Bắc Ninh, Quảng Ninh",
+    "latitude": 12.927085,
+    "longitude": 108.560611
+  },
+  {
+    "id": "335",
+    "name": "Kho Việt Nam - 335",
+    "address": "Số 1394, Đường Phạm Văn Đồng, Huyện Châu Đốc, Quảng Ninh",
+    "latitude": 21.075751,
+    "longitude": 107.822392
+  },
+  {
+    "id": "336",
+    "name": "Kho Việt Nam - 336",
+    "address": "Số 857, Đường Phạm Văn Đồng, Huyện Châu Đốc, Hải Phòng",
+    "latitude": 20.019947,
+    "longitude": 103.631265
+  },
+  {
+    "id": "337",
+    "name": "Kho Việt Nam - 337",
+    "address": "Số 386, Đường Lý Thường Kiệt, Quận Cầu Giấy, Đà Nẵng",
+    "latitude": 20.545692,
+    "longitude": 105.081748
+  },
+  {
+    "id": "338",
+    "name": "Kho Việt Nam - 338",
+    "address": "Số 912, Đường Phạm Văn Đồng, TP. Bắc Ninh, Thanh Hóa",
+    "latitude": 17.053921,
+    "longitude": 111.874919
+  },
+  {
+    "id": "339",
+    "name": "Kho Việt Nam - 339",
+    "address": "Số 1479, Đường Nguyễn Văn Cừ, Quận Cầu Giấy, TP. HCM",
+    "latitude": 20.38771,
+    "longitude": 107.313298
+  },
+  {
+    "id": "340",
+    "name": "Kho Việt Nam - 340",
+    "address": "Số 828, Đường Lê Lợi, TP. Thủ Dầu Một, Nghệ An",
+    "latitude": 17.861352,
+    "longitude": 105.949527
+  },
+  {
+    "id": "341",
+    "name": "Kho Việt Nam - 341",
+    "address": "Số 1455, Đường Lê Lợi, Quận Hải Châu, Bắc Ninh",
+    "latitude": 11.606699,
+    "longitude": 105.928076
+  },
+  {
+    "id": "342",
+    "name": "Kho Việt Nam - 342",
+    "address": "Số 837, Đường Trần Hưng Đạo, Quận Hải Châu, Khánh Hòa",
+    "latitude": 10.769446,
+    "longitude": 105.541113
+  },
+  {
+    "id": "343",
+    "name": "Kho Việt Nam - 343",
+    "address": "Số 149, Đường Lý Thường Kiệt, TP. Bắc Ninh, An Giang",
+    "latitude": 22.761801,
+    "longitude": 102.929984
+  },
+  {
+    "id": "344",
+    "name": "Kho Việt Nam - 344",
+    "address": "Số 253, Đường Phạm Văn Đồng, Quận Ninh Kiều, Khánh Hòa",
+    "latitude": 17.81542,
+    "longitude": 106.977216
+  },
+  {
+    "id": "345",
+    "name": "Kho Việt Nam - 345",
+    "address": "Số 1480, Đường Lê Lợi, Quận 1, Đà Nẵng",
+    "latitude": 13.021217,
+    "longitude": 108.196666
+  },
+  {
+    "id": "346",
+    "name": "Kho Việt Nam - 346",
+    "address": "Số 1157, Đường Võ Nguyên Giáp, Quận Cầu Giấy, Bình Dương",
+    "latitude": 13.623987,
+    "longitude": 105.924191
+  },
+  {
+    "id": "347",
+    "name": "Kho Việt Nam - 347",
+    "address": "Số 1295, Đường Trần Hưng Đạo, Quận Hải Châu, Đà Nẵng",
+    "latitude": 13.655971,
+    "longitude": 108.184961
+  },
+  {
+    "id": "348",
+    "name": "Kho Việt Nam - 348",
+    "address": "Số 1419, Đường Lê Lợi, Quận Ninh Kiều, Hải Phòng",
+    "latitude": 17.319419,
+    "longitude": 106.040897
+  },
+  {
+    "id": "349",
+    "name": "Kho Việt Nam - 349",
+    "address": "Số 1381, Đường Phạm Văn Đồng, Quận Ninh Kiều, Bắc Ninh",
+    "latitude": 18.561891,
+    "longitude": 106.493769
+  },
+  {
+    "id": "350",
+    "name": "Kho Việt Nam - 350",
+    "address": "Số 273, Đường Lê Lợi, Quận Hải Châu, Quảng Ninh",
+    "latitude": 19.522521,
+    "longitude": 103.720394
+  },
+  {
+    "id": "351",
+    "name": "Kho Việt Nam - 351",
+    "address": "Số 715, Đường Phạm Văn Đồng, Quận 1, Quảng Ninh",
+    "latitude": 18.967004,
+    "longitude": 103.947422
+  },
+  {
+    "id": "352",
+    "name": "Kho Việt Nam - 352",
+    "address": "Số 159, Đường Nguyễn Văn Cừ, TP. Thủ Dầu Một, Khánh Hòa",
+    "latitude": 19.295577,
+    "longitude": 105.848918
+  },
+  {
+    "id": "353",
+    "name": "Kho Việt Nam - 353",
+    "address": "Số 1293, Đường Nguyễn Văn Cừ, Quận Cầu Giấy, An Giang",
+    "latitude": 18.655191,
+    "longitude": 106.884633
+  },
+  {
+    "id": "354",
+    "name": "Kho Việt Nam - 354",
+    "address": "Số 973, Đường Lê Lợi, Quận Cầu Giấy, Hải Phòng",
+    "latitude": 22.438925,
+    "longitude": 104.323178
+  },
+  {
+    "id": "355",
+    "name": "Kho Việt Nam - 355",
+    "address": "Số 336, Đường Lý Thường Kiệt, TP. Bắc Ninh, Quảng Ninh",
+    "latitude": 15.365032,
+    "longitude": 105.441816
+  },
+  {
+    "id": "356",
+    "name": "Kho Việt Nam - 356",
+    "address": "Số 978, Đường Phạm Văn Đồng, TP. Thủ Dầu Một, Khánh Hòa",
+    "latitude": 14.636818,
+    "longitude": 106.099139
+  },
+  {
+    "id": "357",
+    "name": "Kho Việt Nam - 357",
+    "address": "Số 460, Đường Võ Nguyên Giáp, TP. Bắc Ninh, TP. HCM",
+    "latitude": 20.971128,
+    "longitude": 107.829356
+  },
+  {
+    "id": "358",
+    "name": "Kho Việt Nam - 358",
+    "address": "Số 835, Đường Phạm Văn Đồng, Quận Ninh Kiều, Đà Nẵng",
+    "latitude": 21.918043,
+    "longitude": 105.237642
+  },
+  {
+    "id": "359",
+    "name": "Kho Việt Nam - 359",
+    "address": "Số 633, Đường Lê Lợi, Quận Cầu Giấy, Khánh Hòa",
+    "latitude": 21.972721,
+    "longitude": 103.07058
+  },
+  {
+    "id": "360",
+    "name": "Kho Việt Nam - 360",
+    "address": "Số 376, Đường Võ Nguyên Giáp, Quận Hải Châu, TP. HCM",
+    "latitude": 19.511913,
+    "longitude": 105.56831
+  },
+  {
+    "id": "361",
+    "name": "Kho Việt Nam - 361",
+    "address": "Số 712, Đường Võ Nguyên Giáp, Quận Cầu Giấy, Cần Thơ",
+    "latitude": 14.274142,
+    "longitude": 106.954484
+  },
+  {
+    "id": "362",
+    "name": "Kho Việt Nam - 362",
+    "address": "Số 384, Đường Lý Thường Kiệt, Quận Hồng Bàng, Nghệ An",
+    "latitude": 11.689405,
+    "longitude": 106.337081
+  },
+  {
+    "id": "363",
+    "name": "Kho Việt Nam - 363",
+    "address": "Số 469, Đường Lê Lợi, Quận Hải Châu, Hải Phòng",
+    "latitude": 19.081131,
+    "longitude": 107.497919
+  },
+  {
+    "id": "364",
+    "name": "Kho Việt Nam - 364",
+    "address": "Số 1111, Đường Trần Hưng Đạo, TP. Bắc Ninh, Bắc Ninh",
+    "latitude": 14.356276,
+    "longitude": 106.321779
+  },
+  {
+    "id": "365",
+    "name": "Kho Việt Nam - 365",
+    "address": "Số 647, Đường Lý Thường Kiệt, Quận Hồng Bàng, An Giang",
+    "latitude": 20.179728,
+    "longitude": 103.686888
+  },
+  {
+    "id": "366",
+    "name": "Kho Việt Nam - 366",
+    "address": "Số 850, Đường Nguyễn Văn Cừ, Quận Hồng Bàng, Cần Thơ",
+    "latitude": 20.053034,
+    "longitude": 107.102046
+  },
+  {
+    "id": "367",
+    "name": "Kho Việt Nam - 367",
+    "address": "Số 1174, Đường Phạm Văn Đồng, Quận Cầu Giấy, Nghệ An",
+    "latitude": 20.860154,
+    "longitude": 102.752284
+  },
+  {
+    "id": "368",
+    "name": "Kho Việt Nam - 368",
+    "address": "Số 211, Đường Lý Thường Kiệt, Quận Hồng Bàng, Khánh Hòa",
+    "latitude": 12.762783,
+    "longitude": 107.093381
+  },
+  {
+    "id": "369",
+    "name": "Kho Việt Nam - 369",
+    "address": "Số 567, Đường Trần Hưng Đạo, Quận 1, TP. HCM",
+    "latitude": 16.695164,
+    "longitude": 105.868115
+  },
+  {
+    "id": "370",
+    "name": "Kho Việt Nam - 370",
+    "address": "Số 583, Đường Phạm Văn Đồng, Quận Hồng Bàng, Nghệ An",
+    "latitude": 14.816991,
+    "longitude": 106.390114
+  },
+  {
+    "id": "371",
+    "name": "Kho Việt Nam - 371",
+    "address": "Số 914, Đường Trần Hưng Đạo, Quận Ninh Kiều, Nghệ An",
+    "latitude": 9.664592,
+    "longitude": 104.877485
+  },
+  {
+    "id": "372",
+    "name": "Kho Việt Nam - 372",
+    "address": "Số 1315, Đường Nguyễn Văn Cừ, Huyện Châu Đốc, Nghệ An",
+    "latitude": 9.882852,
+    "longitude": 104.604136
+  },
+  {
+    "id": "373",
+    "name": "Kho Việt Nam - 373",
+    "address": "Số 315, Đường Võ Nguyên Giáp, Quận Hải Châu, Bình Dương",
+    "latitude": 21.253652,
+    "longitude": 103.764138
+  },
+  {
+    "id": "374",
+    "name": "Kho Việt Nam - 374",
+    "address": "Số 39, Đường Trần Hưng Đạo, Quận Ninh Kiều, Nghệ An",
+    "latitude": 16.16534,
+    "longitude": 105.320865
+  },
+  {
+    "id": "375",
+    "name": "Kho Việt Nam - 375",
+    "address": "Số 1200, Đường Nguyễn Văn Cừ, Quận Hải Châu, Quảng Ninh",
+    "latitude": 12.658005,
+    "longitude": 106.5487
+  },
+  {
+    "id": "376",
+    "name": "Kho Việt Nam - 376",
+    "address": "Số 1224, Đường Lý Thường Kiệt, TP. Bắc Ninh, Hà Nội",
+    "latitude": 20.306619,
+    "longitude": 102.907083
+  },
+  {
+    "id": "377",
+    "name": "Kho Việt Nam - 377",
+    "address": "Số 494, Đường Lê Lợi, Quận Ninh Kiều, Khánh Hòa",
+    "latitude": 12.603434,
+    "longitude": 107.499289
+  },
+  {
+    "id": "378",
+    "name": "Kho Việt Nam - 378",
+    "address": "Số 809, Đường Lê Lợi, TP. Bắc Ninh, Đà Nẵng",
+    "latitude": 20.977031,
+    "longitude": 103.081124
+  },
+  {
+    "id": "379",
+    "name": "Kho Việt Nam - 379",
+    "address": "Số 1203, Đường Lê Lợi, Quận Cầu Giấy, Cần Thơ",
+    "latitude": 10.784585,
+    "longitude": 106.195402
+  },
+  {
+    "id": "380",
+    "name": "Kho Việt Nam - 380",
+    "address": "Số 399, Đường Phạm Văn Đồng, Quận 1, TP. HCM",
+    "latitude": 21.401233,
+    "longitude": 106.211351
+  },
+  {
+    "id": "381",
+    "name": "Kho Việt Nam - 381",
+    "address": "Số 596, Đường Lê Lợi, Quận Hồng Bàng, Đà Nẵng",
+    "latitude": 12.746794,
+    "longitude": 106.902427
+  },
+  {
+    "id": "382",
+    "name": "Kho Việt Nam - 382",
+    "address": "Số 1094, Đường Lê Lợi, Quận 1, Đà Nẵng",
+    "latitude": 21.157034,
+    "longitude": 105.058775
+  },
+  {
+    "id": "383",
+    "name": "Kho Việt Nam - 383",
+    "address": "Số 335, Đường Phạm Văn Đồng, Quận Cầu Giấy, Khánh Hòa",
+    "latitude": 14.232727,
+    "longitude": 108.282425
+  },
+  {
+    "id": "384",
+    "name": "Kho Việt Nam - 384",
+    "address": "Số 473, Đường Trần Hưng Đạo, Huyện Châu Đốc, Bắc Ninh",
+    "latitude": 19.183796,
+    "longitude": 107.686161
+  },
+  {
+    "id": "385",
+    "name": "Kho Việt Nam - 385",
+    "address": "Số 936, Đường Lê Lợi, Huyện Châu Đốc, Đà Nẵng",
+    "latitude": 16.570583,
+    "longitude": 105.775121
+  },
+  {
+    "id": "386",
+    "name": "Kho Việt Nam - 386",
+    "address": "Số 309, Đường Nguyễn Văn Cừ, Quận 1, Khánh Hòa",
+    "latitude": 20.985738,
+    "longitude": 105.920542
+  },
+  {
+    "id": "387",
+    "name": "Kho Việt Nam - 387",
+    "address": "Số 167, Đường Lê Lợi, Quận Hồng Bàng, Khánh Hòa",
+    "latitude": 11.302,
+    "longitude": 105.797817
+  },
+  {
+    "id": "388",
+    "name": "Kho Việt Nam - 388",
+    "address": "Số 1478, Đường Nguyễn Văn Cừ, TP. Bắc Ninh, Khánh Hòa",
+    "latitude": 14.773524,
+    "longitude": 106.15804
+  },
+  {
+    "id": "389",
+    "name": "Kho Việt Nam - 389",
+    "address": "Số 1483, Đường Nguyễn Văn Cừ, Huyện Châu Đốc, An Giang",
+    "latitude": 12.75948,
+    "longitude": 108.466974
+  },
+  {
+    "id": "390",
+    "name": "Kho Việt Nam - 390",
+    "address": "Số 782, Đường Trần Hưng Đạo, Quận Cầu Giấy, Nghệ An",
+    "latitude": 21.992336,
+    "longitude": 105.682402
+  },
+  {
+    "id": "391",
+    "name": "Kho Việt Nam - 391",
+    "address": "Số 684, Đường Trần Hưng Đạo, Quận Ninh Kiều, Quảng Ninh",
+    "latitude": 13.415552,
+    "longitude": 105.510677
+  },
+  {
+    "id": "392",
+    "name": "Kho Việt Nam - 392",
+    "address": "Số 738, Đường Lý Thường Kiệt, Quận 1, Hà Nội",
+    "latitude": 17.165897,
+    "longitude": 106.66656
+  },
+  {
+    "id": "393",
+    "name": "Kho Việt Nam - 393",
+    "address": "Số 967, Đường Trần Hưng Đạo, Huyện Châu Đốc, Cần Thơ",
+    "latitude": 14.813207,
+    "longitude": 107.466545
+  },
+  {
+    "id": "394",
+    "name": "Kho Việt Nam - 394",
+    "address": "Số 1030, Đường Trần Hưng Đạo, Quận 1, Bắc Ninh",
+    "latitude": 20.137816,
+    "longitude": 105.89066
+  },
+  {
+    "id": "395",
+    "name": "Kho Việt Nam - 395",
+    "address": "Số 518, Đường Lê Lợi, Quận Cầu Giấy, Quảng Ninh",
+    "latitude": 22.102063,
+    "longitude": 102.653529
+  },
+  {
+    "id": "396",
+    "name": "Kho Việt Nam - 396",
+    "address": "Số 1143, Đường Võ Nguyên Giáp, Quận Cầu Giấy, TP. HCM",
+    "latitude": 17.854665,
+    "longitude": 104.922479
+  },
+  {
+    "id": "397",
+    "name": "Kho Việt Nam - 397",
+    "address": "Số 1422, Đường Lý Thường Kiệt, Quận Hải Châu, Bình Dương",
+    "latitude": 19.998746,
+    "longitude": 108.521544
+  },
+  {
+    "id": "398",
+    "name": "Kho Việt Nam - 398",
+    "address": "Số 622, Đường Võ Nguyên Giáp, Quận Ninh Kiều, An Giang",
+    "latitude": 20.129629,
+    "longitude": 106.074647
+  },
+  {
+    "id": "399",
+    "name": "Kho Việt Nam - 399",
+    "address": "Số 398, Đường Lý Thường Kiệt, Huyện Châu Đốc, Hà Nội",
+    "latitude": 18.648709,
+    "longitude": 104.941334
+  },
+  {
+    "id": "400",
+    "name": "Kho Việt Nam - 400",
+    "address": "Số 268, Đường Lê Lợi, Quận Hải Châu, Cần Thơ",
+    "latitude": 12.047846,
+    "longitude": 106.523376
+  },
+  {
+    "id": "401",
+    "name": "Kho Việt Nam - 401",
+    "address": "Số 251, Đường Phạm Văn Đồng, Quận Ninh Kiều, Bình Dương",
+    "latitude": 20.55795,
+    "longitude": 107.998194
+  },
+  {
+    "id": "402",
+    "name": "Kho Việt Nam - 402",
+    "address": "Số 691, Đường Võ Nguyên Giáp, TP. Bắc Ninh, Hải Phòng",
+    "latitude": 15.808062,
+    "longitude": 105.231404
+  },
+  {
+    "id": "403",
+    "name": "Kho Việt Nam - 403",
+    "address": "Số 599, Đường Võ Nguyên Giáp, Quận 1, Bình Dương",
+    "latitude": 10.907333,
+    "longitude": 105.356592
+  },
+  {
+    "id": "404",
+    "name": "Kho Việt Nam - 404",
+    "address": "Số 247, Đường Lê Lợi, TP. Bắc Ninh, Thanh Hóa",
+    "latitude": 10.193654,
+    "longitude": 105.046787
+  },
+  {
+    "id": "405",
+    "name": "Kho Việt Nam - 405",
+    "address": "Số 1288, Đường Phạm Văn Đồng, Quận Hải Châu, Khánh Hòa",
+    "latitude": 13.813696,
+    "longitude": 106.642919
+  },
+  {
+    "id": "406",
+    "name": "Kho Việt Nam - 406",
+    "address": "Số 566, Đường Lý Thường Kiệt, Quận Ninh Kiều, Thanh Hóa",
+    "latitude": 17.914787,
+    "longitude": 105.81315
+  },
+  {
+    "id": "407",
+    "name": "Kho Việt Nam - 407",
+    "address": "Số 1160, Đường Lê Lợi, Huyện Châu Đốc, An Giang",
+    "latitude": 17.117525,
+    "longitude": 106.543107
+  },
+  {
+    "id": "408",
+    "name": "Kho Việt Nam - 408",
+    "address": "Số 1020, Đường Trần Hưng Đạo, Huyện Châu Đốc, Đà Nẵng",
+    "latitude": 15.194777,
+    "longitude": 107.235839
+  },
+  {
+    "id": "409",
+    "name": "Kho Việt Nam - 409",
+    "address": "Số 99, Đường Võ Nguyên Giáp, Quận 1, Thanh Hóa",
+    "latitude": 13.004227,
+    "longitude": 108.489443
+  },
+  {
+    "id": "410",
+    "name": "Kho Việt Nam - 410",
+    "address": "Số 583, Đường Lý Thường Kiệt, Huyện Châu Đốc, Quảng Ninh",
+    "latitude": 21.072548,
+    "longitude": 105.155871
+  },
+  {
+    "id": "411",
+    "name": "Kho Việt Nam - 411",
+    "address": "Số 1367, Đường Lê Lợi, Quận Hồng Bàng, Khánh Hòa",
+    "latitude": 15.462699,
+    "longitude": 105.746729
+  },
+  {
+    "id": "412",
+    "name": "Kho Việt Nam - 412",
+    "address": "Số 1276, Đường Võ Nguyên Giáp, Quận Cầu Giấy, Hải Phòng",
+    "latitude": 13.542016,
+    "longitude": 108.522993
+  },
+  {
+    "id": "413",
+    "name": "Kho Việt Nam - 413",
+    "address": "Số 124, Đường Phạm Văn Đồng, TP. Thủ Dầu Một, Hà Nội",
+    "latitude": 17.316511,
+    "longitude": 105.26093
+  },
+  {
+    "id": "414",
+    "name": "Kho Việt Nam - 414",
+    "address": "Số 383, Đường Lê Lợi, TP. Bắc Ninh, Đà Nẵng",
+    "latitude": 13.540277,
+    "longitude": 105.640016
+  },
+  {
+    "id": "415",
+    "name": "Kho Việt Nam - 415",
+    "address": "Số 1267, Đường Trần Hưng Đạo, Huyện Châu Đốc, Bắc Ninh",
+    "latitude": 15.876738,
+    "longitude": 105.172986
+  },
+  {
+    "id": "416",
+    "name": "Kho Việt Nam - 416",
+    "address": "Số 577, Đường Võ Nguyên Giáp, Quận 1, TP. HCM",
+    "latitude": 20.302254,
+    "longitude": 103.339098
+  },
+  {
+    "id": "417",
+    "name": "Kho Việt Nam - 417",
+    "address": "Số 322, Đường Lê Lợi, Huyện Châu Đốc, Khánh Hòa",
+    "latitude": 10.882219,
+    "longitude": 105.219329
+  },
+  {
+    "id": "418",
+    "name": "Kho Việt Nam - 418",
+    "address": "Số 789, Đường Phạm Văn Đồng, Quận Ninh Kiều, Khánh Hòa",
+    "latitude": 21.884889,
+    "longitude": 106.935292
+  },
+  {
+    "id": "419",
+    "name": "Kho Việt Nam - 419",
+    "address": "Số 585, Đường Nguyễn Văn Cừ, Quận Hồng Bàng, An Giang",
+    "latitude": 21.680295,
+    "longitude": 106.784409
+  },
+  {
+    "id": "420",
+    "name": "Kho Việt Nam - 420",
+    "address": "Số 47, Đường Võ Nguyên Giáp, Quận Hải Châu, Đà Nẵng",
+    "latitude": 20.000287,
+    "longitude": 107.948395
+  },
+  {
+    "id": "421",
+    "name": "Kho Việt Nam - 421",
+    "address": "Số 484, Đường Phạm Văn Đồng, TP. Bắc Ninh, Bình Dương",
+    "latitude": 21.788141,
+    "longitude": 107.225297
+  },
+  {
+    "id": "422",
+    "name": "Kho Việt Nam - 422",
+    "address": "Số 1149, Đường Võ Nguyên Giáp, TP. Bắc Ninh, Thanh Hóa",
+    "latitude": 20.023014,
+    "longitude": 104.184026
+  },
+  {
+    "id": "423",
+    "name": "Kho Việt Nam - 423",
+    "address": "Số 890, Đường Trần Hưng Đạo, Huyện Châu Đốc, Hà Nội",
+    "latitude": 11.841741,
+    "longitude": 106.016222
+  },
+  {
+    "id": "424",
+    "name": "Kho Việt Nam - 424",
+    "address": "Số 540, Đường Phạm Văn Đồng, Quận Hải Châu, Hà Nội",
+    "latitude": 18.960925,
+    "longitude": 106.62646
+  },
+  {
+    "id": "425",
+    "name": "Kho Việt Nam - 425",
+    "address": "Số 1257, Đường Phạm Văn Đồng, Quận Cầu Giấy, Bắc Ninh",
+    "latitude": 16.049264,
+    "longitude": 105.753812
+  },
+  {
+    "id": "426",
+    "name": "Kho Việt Nam - 426",
+    "address": "Số 139, Đường Võ Nguyên Giáp, Quận Cầu Giấy, Bình Dương",
+    "latitude": 16.117072,
+    "longitude": 104.746505
+  },
+  {
+    "id": "427",
+    "name": "Kho Việt Nam - 427",
+    "address": "Số 548, Đường Võ Nguyên Giáp, Quận Ninh Kiều, Hà Nội",
+    "latitude": 21.57557,
+    "longitude": 107.493801
+  },
+  {
+    "id": "428",
+    "name": "Kho Việt Nam - 428",
+    "address": "Số 1108, Đường Nguyễn Văn Cừ, Quận Ninh Kiều, Hải Phòng",
+    "latitude": 15.912868,
+    "longitude": 105.237548
+  },
+  {
+    "id": "429",
+    "name": "Kho Việt Nam - 429",
+    "address": "Số 469, Đường Lý Thường Kiệt, Quận 1, Thanh Hóa",
+    "latitude": 16.320662,
+    "longitude": 106.417323
+  },
+  {
+    "id": "430",
+    "name": "Kho Việt Nam - 430",
+    "address": "Số 861, Đường Nguyễn Văn Cừ, Quận Ninh Kiều, Hải Phòng",
+    "latitude": 14.071385,
+    "longitude": 108.131607
+  },
+  {
+    "id": "431",
+    "name": "Kho Việt Nam - 431",
+    "address": "Số 93, Đường Võ Nguyên Giáp, Quận Hải Châu, Hà Nội",
+    "latitude": 19.072816,
+    "longitude": 104.203569
+  },
+  {
+    "id": "432",
+    "name": "Kho Việt Nam - 432",
+    "address": "Số 1473, Đường Võ Nguyên Giáp, Quận 1, Thanh Hóa",
+    "latitude": 12.005713,
+    "longitude": 105.485028
+  },
+  {
+    "id": "433",
+    "name": "Kho Việt Nam - 433",
+    "address": "Số 1274, Đường Phạm Văn Đồng, Quận 1, Nghệ An",
+    "latitude": 22.261021,
+    "longitude": 105.130687
+  },
+  {
+    "id": "434",
+    "name": "Kho Việt Nam - 434",
+    "address": "Số 1120, Đường Nguyễn Văn Cừ, TP. Bắc Ninh, Quảng Ninh",
+    "latitude": 11.586676,
+    "longitude": 105.187779
+  },
+  {
+    "id": "435",
+    "name": "Kho Việt Nam - 435",
+    "address": "Số 347, Đường Lý Thường Kiệt, Quận 1, Cần Thơ",
+    "latitude": 11.351046,
+    "longitude": 105.955142
+  },
+  {
+    "id": "436",
+    "name": "Kho Việt Nam - 436",
+    "address": "Số 277, Đường Phạm Văn Đồng, Quận Hải Châu, Thanh Hóa",
+    "latitude": 19.688782,
+    "longitude": 108.237764
+  },
+  {
+    "id": "437",
+    "name": "Kho Việt Nam - 437",
+    "address": "Số 243, Đường Lý Thường Kiệt, Quận Ninh Kiều, Cần Thơ",
+    "latitude": 22.27931,
+    "longitude": 102.751508
+  },
+  {
+    "id": "438",
+    "name": "Kho Việt Nam - 438",
+    "address": "Số 966, Đường Trần Hưng Đạo, TP. Bắc Ninh, Hải Phòng",
+    "latitude": 16.853295,
+    "longitude": 105.869378
+  },
+  {
+    "id": "439",
+    "name": "Kho Việt Nam - 439",
+    "address": "Số 1484, Đường Trần Hưng Đạo, TP. Thủ Dầu Một, Khánh Hòa",
+    "latitude": 17.107784,
+    "longitude": 105.257333
+  },
+  {
+    "id": "440",
+    "name": "Kho Việt Nam - 440",
+    "address": "Số 4, Đường Phạm Văn Đồng, Quận Ninh Kiều, Cần Thơ",
+    "latitude": 8.511767,
+    "longitude": 112.850962
+  },
+  {
+    "id": "441",
+    "name": "Kho Việt Nam - 441",
+    "address": "Số 144, Đường Trần Hưng Đạo, Huyện Châu Đốc, Nghệ An",
+    "latitude": 20.686342,
+    "longitude": 103.539466
+  },
+  {
+    "id": "442",
+    "name": "Kho Việt Nam - 442",
+    "address": "Số 1064, Đường Lý Thường Kiệt, Quận Ninh Kiều, Hà Nội",
+    "latitude": 21.089706,
+    "longitude": 108.155047
+  },
+  {
+    "id": "443",
+    "name": "Kho Việt Nam - 443",
+    "address": "Số 642, Đường Phạm Văn Đồng, Quận Hồng Bàng, Quảng Ninh",
+    "latitude": 11.488762,
+    "longitude": 105.81156
+  },
+  {
+    "id": "444",
+    "name": "Kho Việt Nam - 444",
+    "address": "Số 556, Đường Lý Thường Kiệt, TP. Thủ Dầu Một, Thanh Hóa",
+    "latitude": 17.053494,
+    "longitude": 106.137229
+  },
+  {
+    "id": "445",
+    "name": "Kho Việt Nam - 445",
+    "address": "Số 1128, Đường Lý Thường Kiệt, Quận Cầu Giấy, Bình Dương",
+    "latitude": 12.006168,
+    "longitude": 108.432973
+  },
+  {
+    "id": "446",
+    "name": "Kho Việt Nam - 446",
+    "address": "Số 830, Đường Phạm Văn Đồng, TP. Bắc Ninh, Thanh Hóa",
+    "latitude": 20.36257,
+    "longitude": 107.901556
+  },
+  {
+    "id": "447",
+    "name": "Kho Việt Nam - 447",
+    "address": "Số 1125, Đường Võ Nguyên Giáp, Quận Cầu Giấy, Hà Nội",
+    "latitude": 11.693175,
+    "longitude": 106.841661
+  },
+  {
+    "id": "448",
+    "name": "Kho Việt Nam - 448",
+    "address": "Số 629, Đường Nguyễn Văn Cừ, Quận Ninh Kiều, Khánh Hòa",
+    "latitude": 13.92181,
+    "longitude": 106.883978
+  },
+  {
+    "id": "449",
+    "name": "Kho Việt Nam - 449",
+    "address": "Số 546, Đường Lý Thường Kiệt, TP. Bắc Ninh, Bình Dương",
+    "latitude": 13.506428,
+    "longitude": 105.713117
+  },
+  {
+    "id": "450",
+    "name": "Kho Việt Nam - 450",
+    "address": "Số 392, Đường Phạm Văn Đồng, TP. Thủ Dầu Một, Quảng Ninh",
+    "latitude": 19.003406,
+    "longitude": 107.571342
+  },
+  {
+    "id": "451",
+    "name": "Kho Việt Nam - 451",
+    "address": "Số 1140, Đường Lê Lợi, TP. Bắc Ninh, Nghệ An",
+    "latitude": 17.280514,
+    "longitude": 105.046993
+  },
+  {
+    "id": "452",
+    "name": "Kho Việt Nam - 452",
+    "address": "Số 263, Đường Nguyễn Văn Cừ, Quận Ninh Kiều, Hải Phòng",
+    "latitude": 15.148009,
+    "longitude": 106.415142
+  },
+  {
+    "id": "453",
+    "name": "Kho Việt Nam - 453",
+    "address": "Số 652, Đường Lê Lợi, TP. Bắc Ninh, Khánh Hòa",
+    "latitude": 21.037604,
+    "longitude": 108.308685
+  },
+  {
+    "id": "454",
+    "name": "Kho Việt Nam - 454",
+    "address": "Số 107, Đường Phạm Văn Đồng, Quận Hồng Bàng, Hà Nội",
+    "latitude": 10.061651,
+    "longitude": 105.020652
+  },
+  {
+    "id": "455",
+    "name": "Kho Việt Nam - 455",
+    "address": "Số 953, Đường Trần Hưng Đạo, Quận Hồng Bàng, TP. HCM",
+    "latitude": 20.976611,
+    "longitude": 103.100833
+  },
+  {
+    "id": "456",
+    "name": "Kho Việt Nam - 456",
+    "address": "Số 973, Đường Võ Nguyên Giáp, Huyện Châu Đốc, An Giang",
+    "latitude": 12.839665,
+    "longitude": 107.041335
+  },
+  {
+    "id": "457",
+    "name": "Kho Việt Nam - 457",
+    "address": "Số 1402, Đường Nguyễn Văn Cừ, TP. Thủ Dầu Một, Hà Nội",
+    "latitude": 20.627011,
+    "longitude": 104.622219
+  },
+  {
+    "id": "458",
+    "name": "Kho Việt Nam - 458",
+    "address": "Số 1461, Đường Võ Nguyên Giáp, TP. Thủ Dầu Một, Hải Phòng",
+    "latitude": 12.087393,
+    "longitude": 108.034397
+  },
+  {
+    "id": "459",
+    "name": "Kho Việt Nam - 459",
+    "address": "Số 410, Đường Võ Nguyên Giáp, Quận 1, Đà Nẵng",
+    "latitude": 13.86616,
+    "longitude": 107.92126
+  },
+  {
+    "id": "460",
+    "name": "Kho Việt Nam - 460",
+    "address": "Số 1336, Đường Lê Lợi, Quận Cầu Giấy, Thanh Hóa",
+    "latitude": 16.813504,
+    "longitude": 105.21548
+  },
+  {
+    "id": "461",
+    "name": "Kho Việt Nam - 461",
+    "address": "Số 1485, Đường Phạm Văn Đồng, Quận 1, TP. HCM",
+    "latitude": 22.101389,
+    "longitude": 106.160731
+  },
+  {
+    "id": "462",
+    "name": "Kho Việt Nam - 462",
+    "address": "Số 930, Đường Phạm Văn Đồng, Quận Hồng Bàng, Đà Nẵng",
+    "latitude": 11.776234,
+    "longitude": 106.984593
+  },
+  {
+    "id": "463",
+    "name": "Kho Việt Nam - 463",
+    "address": "Số 248, Đường Trần Hưng Đạo, Quận Ninh Kiều, TP. HCM",
+    "latitude": 14.808595,
+    "longitude": 105.780733
+  },
+  {
+    "id": "464",
+    "name": "Kho Việt Nam - 464",
+    "address": "Số 389, Đường Phạm Văn Đồng, Quận 1, Cần Thơ",
+    "latitude": 10.707381,
+    "longitude": 106.296317
+  },
+  {
+    "id": "465",
+    "name": "Kho Việt Nam - 465",
+    "address": "Số 1286, Đường Võ Nguyên Giáp, Huyện Châu Đốc, Nghệ An",
+    "latitude": 20.078059,
+    "longitude": 107.673507
+  },
+  {
+    "id": "466",
+    "name": "Kho Việt Nam - 466",
+    "address": "Số 1216, Đường Lê Lợi, Quận 1, Bình Dương",
+    "latitude": 11.221551,
+    "longitude": 106.635971
+  },
+  {
+    "id": "467",
+    "name": "Kho Việt Nam - 467",
+    "address": "Số 1349, Đường Lê Lợi, Huyện Châu Đốc, Đà Nẵng",
+    "latitude": 11.904296,
+    "longitude": 106.539734
+  },
+  {
+    "id": "468",
+    "name": "Kho Việt Nam - 468",
+    "address": "Số 95, Đường Nguyễn Văn Cừ, Quận Ninh Kiều, Thanh Hóa",
+    "latitude": 22.40346,
+    "longitude": 102.72494
+  },
+  {
+    "id": "469",
+    "name": "Kho Việt Nam - 469",
+    "address": "Số 501, Đường Nguyễn Văn Cừ, Quận Hải Châu, Cần Thơ",
+    "latitude": 19.306077,
+    "longitude": 104.857809
+  },
+  {
+    "id": "470",
+    "name": "Kho Việt Nam - 470",
+    "address": "Số 559, Đường Lê Lợi, TP. Thủ Dầu Một, Cần Thơ",
+    "latitude": 19.605624,
+    "longitude": 106.799771
+  },
+  {
+    "id": "471",
+    "name": "Kho Việt Nam - 471",
+    "address": "Số 893, Đường Trần Hưng Đạo, Quận Cầu Giấy, Thanh Hóa",
+    "latitude": 17.453064,
+    "longitude": 105.402494
+  },
+  {
+    "id": "472",
+    "name": "Kho Việt Nam - 472",
+    "address": "Số 213, Đường Lý Thường Kiệt, Huyện Châu Đốc, Hải Phòng",
+    "latitude": 16.509293,
+    "longitude": 105.96416
+  },
+  {
+    "id": "473",
+    "name": "Kho Việt Nam - 473",
+    "address": "Số 514, Đường Lê Lợi, Quận Hồng Bàng, Khánh Hòa",
+    "latitude": 19.232126,
+    "longitude": 105.119343
+  },
+  {
+    "id": "474",
+    "name": "Kho Việt Nam - 474",
+    "address": "Số 591, Đường Nguyễn Văn Cừ, TP. Thủ Dầu Một, Bình Dương",
+    "latitude": 21.714675,
+    "longitude": 104.265946
+  },
+  {
+    "id": "475",
+    "name": "Kho Việt Nam - 475",
+    "address": "Số 459, Đường Võ Nguyên Giáp, TP. Bắc Ninh, Khánh Hòa",
+    "latitude": 22.473669,
+    "longitude": 103.083313
+  },
+  {
+    "id": "476",
+    "name": "Kho Việt Nam - 476",
+    "address": "Số 338, Đường Phạm Văn Đồng, Quận Cầu Giấy, Đà Nẵng",
+    "latitude": 21.825607,
+    "longitude": 104.1257
+  },
+  {
+    "id": "477",
+    "name": "Kho Việt Nam - 477",
+    "address": "Số 867, Đường Nguyễn Văn Cừ, Quận Hồng Bàng, Thanh Hóa",
+    "latitude": 21.558643,
+    "longitude": 103.888068
+  },
+  {
+    "id": "478",
+    "name": "Kho Việt Nam - 478",
+    "address": "Số 107, Đường Lê Lợi, Huyện Châu Đốc, TP. HCM",
+    "latitude": 20.623239,
+    "longitude": 107.76995
+  },
+  {
+    "id": "479",
+    "name": "Kho Việt Nam - 479",
+    "address": "Số 582, Đường Lê Lợi, Quận Hải Châu, Bình Dương",
+    "latitude": 18.803847,
+    "longitude": 104.784843
+  },
+  {
+    "id": "480",
+    "name": "Kho Việt Nam - 480",
+    "address": "Số 590, Đường Phạm Văn Đồng, Quận Hải Châu, An Giang",
+    "latitude": 13.648156,
+    "longitude": 108.559786
+  },
+  {
+    "id": "481",
+    "name": "Kho Việt Nam - 481",
+    "address": "Số 655, Đường Lê Lợi, Huyện Châu Đốc, Bắc Ninh",
+    "latitude": 19.161231,
+    "longitude": 106.922482
+  },
+  {
+    "id": "482",
+    "name": "Kho Việt Nam - 482",
+    "address": "Số 952, Đường Lê Lợi, Quận Hồng Bàng, Nghệ An",
+    "latitude": 19.077787,
+    "longitude": 103.660388
+  },
+  {
+    "id": "483",
+    "name": "Kho Việt Nam - 483",
+    "address": "Số 1441, Đường Võ Nguyên Giáp, TP. Bắc Ninh, Hà Nội",
+    "latitude": 21.357586,
+    "longitude": 107.109023
+  },
+  {
+    "id": "484",
+    "name": "Kho Việt Nam - 484",
+    "address": "Số 578, Đường Lê Lợi, TP. Thủ Dầu Một, Bình Dương",
+    "latitude": 19.574145,
+    "longitude": 108.449017
+  },
+  {
+    "id": "485",
+    "name": "Kho Việt Nam - 485",
+    "address": "Số 570, Đường Phạm Văn Đồng, Quận Hải Châu, Bình Dương",
+    "latitude": 13.027819,
+    "longitude": 107.945941
+  },
+  {
+    "id": "486",
+    "name": "Kho Việt Nam - 486",
+    "address": "Số 1214, Đường Trần Hưng Đạo, Quận Hồng Bàng, Cần Thơ",
+    "latitude": 19.53563,
+    "longitude": 103.445095
+  },
+  {
+    "id": "487",
+    "name": "Kho Việt Nam - 487",
+    "address": "Số 1247, Đường Phạm Văn Đồng, Quận Hải Châu, Đà Nẵng",
+    "latitude": 12.066325,
+    "longitude": 106.05494
+  },
+  {
+    "id": "488",
+    "name": "Kho Việt Nam - 488",
+    "address": "Số 637, Đường Trần Hưng Đạo, Quận Cầu Giấy, Bình Dương",
+    "latitude": 21.413574,
+    "longitude": 106.82228
+  },
+  {
+    "id": "489",
+    "name": "Kho Việt Nam - 489",
+    "address": "Số 806, Đường Lê Lợi, TP. Bắc Ninh, Khánh Hòa",
+    "latitude": 22.564201,
+    "longitude": 105.24454
+  },
+  {
+    "id": "490",
+    "name": "Kho Việt Nam - 490",
+    "address": "Số 875, Đường Phạm Văn Đồng, Quận 1, Thanh Hóa",
+    "latitude": 15.529461,
+    "longitude": 106.340813
+  },
+  {
+    "id": "491",
+    "name": "Kho Việt Nam - 491",
+    "address": "Số 1428, Đường Lê Lợi, Quận Ninh Kiều, Hà Nội",
+    "latitude": 16.683266,
+    "longitude": 105.771691
+  },
+  {
+    "id": "492",
+    "name": "Kho Việt Nam - 492",
+    "address": "Số 348, Đường Võ Nguyên Giáp, Quận Cầu Giấy, Đà Nẵng",
+    "latitude": 22.509798,
+    "longitude": 105.447064
+  },
+  {
+    "id": "493",
+    "name": "Kho Việt Nam - 493",
+    "address": "Số 644, Đường Trần Hưng Đạo, Quận Ninh Kiều, Bắc Ninh",
+    "latitude": 8.878774,
+    "longitude": 112.978752
+  },
+  {
+    "id": "494",
+    "name": "Kho Việt Nam - 494",
+    "address": "Số 1442, Đường Phạm Văn Đồng, Quận Hải Châu, Thanh Hóa",
+    "latitude": 13.373349,
+    "longitude": 106.459448
+  },
+  {
+    "id": "495",
+    "name": "Kho Việt Nam - 495",
+    "address": "Số 1407, Đường Lê Lợi, TP. Bắc Ninh, Hà Nội",
+    "latitude": 19.671148,
+    "longitude": 103.818302
+  },
+  {
+    "id": "496",
+    "name": "Kho Việt Nam - 496",
+    "address": "Số 1290, Đường Phạm Văn Đồng, Quận 1, Bình Dương",
+    "latitude": 20.647022,
+    "longitude": 105.323057
+  },
+  {
+    "id": "497",
+    "name": "Kho Việt Nam - 497",
+    "address": "Số 1198, Đường Võ Nguyên Giáp, Quận Ninh Kiều, Quảng Ninh",
+    "latitude": 20.909561,
+    "longitude": 105.108841
+  },
+  {
+    "id": "498",
+    "name": "Kho Việt Nam - 498",
+    "address": "Số 1475, Đường Nguyễn Văn Cừ, Quận Cầu Giấy, Bình Dương",
+    "latitude": 14.793388,
+    "longitude": 107.442287
+  },
+  {
+    "id": "499",
+    "name": "Kho Việt Nam - 499",
+    "address": "Số 1089, Đường Phạm Văn Đồng, Quận Hồng Bàng, Hà Nội",
+    "latitude": 21.111751,
+    "longitude": 106.700732
+  },
+  {
+    "id": "500",
+    "name": "Kho Việt Nam - 500",
+    "address": "Số 1300, Đường Võ Nguyên Giáp, Quận Cầu Giấy, Nghệ An",
+    "latitude": 14.180122,
+    "longitude": 107.016826
   }
 ]
